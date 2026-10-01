@@ -159,6 +159,72 @@ When official receipts, degrees, or PDFs are uploaded:
 7. **Step 7 - Institutional Cross-Check:** Registry domain matching and student roll verification.
 8. **Step 8 - Verifiable Claims:** Plausibility audit of technical or academic assertions.
 
+### 5. The 8-Step Media Authenticity Investigator Protocol (Photo & Video Deepfake)
+Operates across uploaded videos and photos to prevent deepfake bypass:
+1. **Step 1 — File Clues:** Checks filename and container metadata for generative tools (`gemini_generated`, `veo`, `sora`, `runway`, `gen-2/3`, `pika`, `kling`, `luma`, `haiper`, `midjourney`, `svd`, `imagen`, `flux`).
+2. **Step 2 — Provenance Labels:** Searches raw byte streams for C2PA content credentials (`c2pa`, `jumbf`), Google SynthID watermarks, and `trainedAlgorithmicMedia` / `created by generative AI` tags.
+3. **Step 3 — Visible Marks:** Scans keyframe corners for AI tool logos, generator watermarks, and optical signatures.
+4. **Step 4 — Visual & Physics Check:** Uniform keyframe sampling inspecting facial edge blending, eye reflections, skin micro-pores, hands/fingers, scene text, unnatural lighting, and inter-frame temporal landmark jitter (DeepfakeBench TimeTransformer / TALL).
+5. **Step 5 — Context & Purpose:** Assesses video intent for artificial urgency, financial requests, prizes, fake authority, or impersonation.
+6. **Step 6 — Verdict:** Produces **Confirmed AI** / **Likely AI** / **Unclear** / **Likely real** with confidence level and 2–3 strongest pieces of evidence.
+7. **Step 7 — Limits:** Disclaims re-encoding losses, screen recordings that strip provenance headers, and SynthID latent boundaries.
+8. **Step 8 — Next Steps:** Plain language instructions: sharing caution, platform reporting, and national reporting to **cybercrime.gov.in** and helpline **1930**.
+
+### 6. The 11-Step Misinformation & Scam Investigator Protocol (Trace to Claim)
+Decomposes and audits viral messages, forwarded claims, and suspicious social posts:
+1. **Step 1 — Break Into Claims:** Splitting text into separate, checkable atomic claims (who, what, when, where, numbers).
+2. **Step 2 — Classify The Type:** Misinformation (unintentional), disinformation (deliberate), scam/phishing attempt, satire, old story reused, or accurate.
+3. **Step 3 — Check The Source:** Real domain verification, lookalike spellings, free hosting subdomains, and cited official documents.
+4. **Step 4 — Verify Each Claim:** Cross-referenced against IFCN-signatory fact-checkers and official records (**Supported** / **Contradicted** / **Unverifiable**).
+5. **Step 5 — Trace The Origin:** Earliest recorded appearance, platform, date, and recycled event checks.
+6. **Step 6 — Trace The Spread:** Velocity path across WhatsApp clusters/social media, and signs of coordinated copy-paste timing.
+7. **Step 7 — Look For Manipulation Signs:** Urgency hooks, fear/outrage triggers, "forward to everyone", and credential/OTP requests.
+8. **Step 8 — Assess Harm:** Impact assessment (financial loss, public health risk, panic, reputation) with risk rating (**Low** / **Medium** / **High**).
+9. **Step 9 — Verdict:** **Likely true** / **Misleading** / **Likely false** / **Scam or phishing** / **Cannot verify**, with top 2–3 strongest evidence points.
+10. **Step 10 — Limits:** Discloses unindexed private groups, encrypted chats, and dynamic links.
+11. **Step 11 — What To Do:** Clear guidance: do not share, platform flag, Indian cybercrime reporting (**cybercrime.gov.in** & helpline **1930**), and remediation steps if credentials were typed.
+
+### 7. The 10-Step Cautious Web-Safety Investigator Protocol (URL Safety)
+Safe automated analysis of deceptive links without automated execution:
+1. **Step 1 — Fetch The Page:** Safe server-side crawler fetches title, headers, and visible text.
+2. **Step 2 — Claims To Be:** Identifies brand, bank, or organization represented on the page.
+3. **Step 3 — Where It Lives:** Real domain inspection vs brand, free hosting subdomains (`weebly`, `000webhost`), and high-abuse odd TLDs.
+4. **Step 4 — What It Asks For:** Form field inspection (passwords, cards, OTPs, seed phrases).
+5. **Step 5 — Name vs. Purpose:** Flags mismatched domains with generic official words (`kyc-verify`, `bank-update`).
+6. **Step 6 — Urgency & Pressure:** Flags coercive psychological countdowns and "account suspended" alerts.
+7. **Step 7 — Threat Reputation:** Aggregates 92 security engines via VirusTotal and Google Safe Browsing.
+8. **Step 8 — Verdict:** **Likely phishing or scam** / **Suspicious** / **Likely safe** with confidence percentage.
+9. **Step 9 — Limits:** Discloses dynamic JavaScript bypasses and cloaked geographic redirects.
+10. **Step 10 — Next Steps:** Immediate remediation guidance, password resets, 2FA activation, and reporting channels (CERT-In, APWG).
+
+---
+
+## 🎤 Hackathon 3-Minute Presentation Script (Track 2: Trust in a Synthetic World)
+
+> **Speaker Pitch:**
+> 
+> *"Good morning judges. We live in an era where an AI-generated video can impersonate a CEO, a fake exam paper can leak online, and a phishing link can drain a bank account in seconds. 
+> 
+> But existing solutions give users a binary 52% probability score. If you are an enterprise, a university, or an ordinary citizen, **a percentage is not an answer. You need explainable truth.**
+> 
+> That is why we built **TRUTHSCAN 360** — the Six-Pillar Digital Trust Platform.
+> 
+> **Here is what makes TRUTHSCAN unique:**
+> 
+> **1. Explainable Forensic Protocols, Not Black Boxes:**
+> When you upload a video or photo, our **8-Step Media Authenticity Investigator** doesn't just guess. It inspects Step 1 File Clues, Step 2 C2PA and SynthID provenance, Step 3 visible tool marks, and Step 4 spatio-temporal keyframe jitter. When an AI video like Google Gemini/Veo or Sora is uploaded, it captures the filename cues, diffusion spectral roll-off, and boundary seams with exact timestamps.
+> 
+> **2. Real-Time Trust Firewall (Module A):**
+> For live video calls, remote hiring, and proctored examinations, our sub-30ms Trust Firewall runs continuous closed-loop monitoring: optical face-swap detection, AASIST voice clone spectral harmonics, and SyncNet lip-sync audio-visual desync alerts — backed by interactive biometric liveness challenges.
+> 
+> **3. Universal Content Passport & Cryptographic DAG (Module B):**
+> For official documents and degrees, we bind a dual-hash fingerprint: SHA-256 for bit-exact verification, and perceptual `dHash` to track visual tampering. Our interactive DAG visualizes the complete provenance lineage from the issuing authority to the blockchain-ready ledger.
+> 
+> **4. Zero-Knowledge Privacy:**
+> We never store the user's raw files. Using SHA-256 cryptographic commitments, users can prove a document was audited without disclosing private details.
+> 
+> TRUTHSCAN 360 is live today on Vercel at `truthscan-eta.vercel.app`. It bridges cutting-edge AI reasoning with cryptographic proof to restore trust in a synthetic world. Thank you!"*
+
 ---
 
 ## 🛠️ Technology Stack
