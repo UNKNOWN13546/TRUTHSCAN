@@ -4,26 +4,58 @@ Pushes all committed project files to https://github.com/UNKNOWN13546/TRUTHSCAN.
 """
 import sys
 import os
+import webbrowser
 import dulwich.porcelain as porcelain
+
+TOKEN_GEN_URL = "https://github.com/settings/tokens/new?scopes=repo&description=TRUTHSCAN"
 
 def clean_token(token: str) -> str:
     token = token.strip()
-    # Strip accidental angle brackets if the user typed <token>
     if token.startswith('<') and token.endswith('>'):
         token = token[1:-1].strip()
-    # Strip quotes if copied with quotes
     token = token.strip('"\'')
     return token
 
-def push_repo(token: str):
-    token = clean_token(token)
-    if not token:
-        print("[ERROR] Token cannot be empty.")
-        return False
+def prompt_for_token() -> str:
+    while True:
+        print("\n-------------------------------------------------------------")
+        print("Please enter your GitHub Personal Access Token (starts with 'ghp_'):")
+        print("1. If you don't have one, press 'O' to automatically OPEN the GitHub token creation page.")
+        print("2. Or paste your token below and press Enter.")
+        print("-------------------------------------------------------------")
+        
+        user_input = input("Enter Token (or 'O' to open browser): ").strip()
+        
+        if not user_input:
+            print("[!] Token cannot be empty. Please try again.")
+            continue
+            
+        if user_input.lower() == 'o':
+            print(f"\nOpening {TOKEN_GEN_URL} in your browser...")
+            webbrowser.open(TOKEN_GEN_URL)
+            print("Steps in browser:")
+            print("  1. The page is pre-configured with note 'TRUTHSCAN' and 'repo' checked.")
+            print("  2. Scroll down and click the green 'Generate token' button.")
+            print("  3. Copy the token (starts with ghp_...) and paste it here.")
+            continue
+            
+        cleaned = clean_token(user_input)
+        
+        # Check if user accidentally pasted the URL instead of the token
+        if cleaned.startswith("http://") or cleaned.startswith("https://") or "github.com" in cleaned:
+            print("\n[!] ATTENTION: You entered the web link (URL), NOT your token!")
+            print("    A GitHub token is a secret password key that starts with: ghp_...")
+            print("    Opening token creation page now...")
+            webbrowser.open(TOKEN_GEN_URL)
+            continue
+            
+        return cleaned
 
+def push_repo(token: str) -> bool:
     repo_dir = os.path.dirname(os.path.abspath(__file__))
-    print(f"\n[1/3] Repository root: {repo_dir}")
-    print(f"[2/3] Authenticating with GitHub repository...")
+    print(f"\n[1/3] Target repository: https://github.com/UNKNOWN13546/TRUTHSCAN.git")
+    print(f"[2/3] Local directory:   {repo_dir}")
+    print(f"[3/3] Authenticating and pushing branch 'main' to GitHub...")
 
     remote_url = f"https://{token}@github.com/UNKNOWN13546/TRUTHSCAN.git"
     
@@ -32,19 +64,18 @@ def push_repo(token: str):
         print("\n===========================================================")
         print(" SUCCESS! ALL FILES SUCCESSFULLY PUSHED TO GITHUB!")
         print("===========================================================")
-        print("Repository: https://github.com/UNKNOWN13546/TRUTHSCAN")
-        print("Branch:     main")
+        print("Repository URL: https://github.com/UNKNOWN13546/TRUTHSCAN")
+        print("Branch:         main")
+        print("Status:         Up to date with all Modules & Forensic Tools")
         print("===========================================================\n")
         return True
     except Exception as e:
         err_msg = str(e)
         print(f"\n[ERROR] Push failed: {err_msg}")
-        if "Authentication failed" in err_msg or "403" in err_msg or "401" in err_msg:
-            print("\nTroubleshooting GitHub Authentication:")
-            print("1. Go to: https://github.com/settings/tokens")
-            print("2. Generate a 'Personal Access Token (Classic)' or 'Fine-grained token'")
-            print("3. Check 'repo' scope (Full control of private repositories) or 'Contents: Read and write'")
-            print("4. Copy the token (starts with ghp_ or github_pat_) and try again.")
+        print("\nTroubleshooting:")
+        print("1. Ensure your token has the 'repo' permission checked.")
+        print("2. Ensure your token has not expired.")
+        print("3. Try generating a new token at: " + TOKEN_GEN_URL)
         return False
 
 if __name__ == '__main__':
@@ -55,21 +86,17 @@ if __name__ == '__main__':
 
     token = None
     if len(sys.argv) > 1:
-        token = sys.argv[1]
-    else:
-        print("\nPlease paste your GitHub Personal Access Token below.")
-        print("(It usually starts with 'ghp_' or 'github_pat_')")
-        print("If you do not have one yet, create it here: https://github.com/settings/tokens\n")
-        try:
-            token = input("GitHub Token: ").strip()
-        except (KeyboardInterrupt, EOFError):
-            print("\nOperation cancelled.")
-            sys.exit(0)
+        arg_token = sys.argv[1].strip()
+        if not (arg_token.startswith("http://") or arg_token.startswith("https://") or "github.com" in arg_token):
+            token = clean_token(arg_token)
+
+    if not token:
+        token = prompt_for_token()
 
     success = push_repo(token)
-    if not success and sys.platform == "win32":
-        # Keep open if launched via double-click
+    
+    if sys.platform == "win32":
         try:
-            input("\nPress Enter to exit...")
+            input("Press Enter to close this window...")
         except Exception:
             pass
