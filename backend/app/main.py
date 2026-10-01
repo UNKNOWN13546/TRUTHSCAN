@@ -21,7 +21,7 @@ import io
 import uuid
 import base64
 from typing import Optional, List, Dict, Any
-from fastapi import FastAPI, UploadFile, File, Form, Body, Request
+from fastapi import FastAPI, UploadFile, File, Form, Body, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -47,6 +47,8 @@ from app.services.gemini_service import GeminiService
 from app.services.synthid_service import SynthIDService
 from app.services.zkp_privacy_service import ZKPrivacyService
 from app.services.url_crawler_service import URLCrawlerService
+from app.services.trust_firewall_service import TrustFirewallService
+from app.services.content_passport_service import ContentPassportService
 from eval.evaluate_metrics import calculate_reliability_metrics
 
 app = FastAPI(
@@ -511,6 +513,134 @@ async def analyze_deepfake(image_file: UploadFile = File(...)):
 async def get_reliability():
     """Build Trust: Evaluation transparency metrics from golden benchmark dataset."""
     return calculate_reliability_metrics()
+
+# ========================================================
+# MODULE A: REAL-TIME TRUST FIREWALL ENDPOINTS
+# ========================================================
+@app.post("/api/trust/session")
+async def create_trust_session(payload: Dict[str, Any] = Body(default={})):
+    """Create a new Real-Time Trust Firewall verification session."""
+    stype = payload.get("type", "video_call")
+    uid = payload.get("user_id")
+    title = payload.get("title")
+    cfg = payload.get("config")
+    return TrustFirewallService.create_session(session_type=stype, user_id=uid, title=title, config=cfg)
+
+@app.post("/api/trust/session/{session_id}/join")
+async def join_trust_session(session_id: str, payload: Dict[str, Any] = Body(default={})):
+    """Join an active trust session with device attestation and WebAuthn status."""
+    pid = payload.get("participant_id", "participant_1")
+    attestation = payload.get("device_attestation")
+    passkey = payload.get("passkey_verified", False)
+    return TrustFirewallService.join_session(session_id, pid, attestation, passkey)
+
+@app.post("/api/trust/session/{session_id}/verify-frame")
+async def verify_trust_frame(session_id: str, payload: Dict[str, Any] = Body(...)):
+    """Process video frame and audio chunk for deepfake, voice-clone, and liveness signals."""
+    frame_b64 = payload.get("frame_base64")
+    audio_b64 = payload.get("audio_chunk_base64")
+    meta = payload.get("metadata", {})
+    return TrustFirewallService.process_telemetry_chunk(session_id, frame_b64, audio_b64, meta)
+
+@app.post("/api/trust/session/{session_id}/liveness-challenge")
+async def issue_liveness_challenge(session_id: str):
+    """Issue dynamic liveness challenge to defeat pre-recorded deepfakes."""
+    return TrustFirewallService.generate_liveness_challenge(session_id)
+
+@app.post("/api/trust/session/{session_id}/end")
+async def end_trust_session(session_id: str):
+    """Terminate trust session and seal audit record."""
+    return TrustFirewallService.end_session(session_id)
+
+@app.get("/api/trust/session/{session_id}/report")
+async def get_trust_report(session_id: str):
+    """Retrieve full tamper-evident audit report with chronological trust events."""
+    return TrustFirewallService.get_audit_report(session_id)
+
+@app.websocket("/ws/trust/{session_id}")
+async def websocket_trust_firewall(websocket: WebSocket, session_id: str):
+    """Live bi-directional WebSocket streaming pipeline for real-time video/audio trust verification."""
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_json()
+            frame_b64 = data.get("frame_base64")
+            audio_b64 = data.get("audio_chunk_base64")
+            meta = data.get("metadata", {})
+            result = TrustFirewallService.process_telemetry_chunk(session_id, frame_b64, audio_b64, meta)
+            await websocket.send_json(result)
+    except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        try:
+            await websocket.send_json({"error": str(e), "session_id": session_id})
+        except Exception:
+            pass
+
+# ========================================================
+# MODULE B: UNIVERSAL CONTENT PASSPORT & PROVENANCE GRAPH
+# ========================================================
+@app.post("/api/passport/create")
+async def create_content_passport(
+    content_file: Optional[UploadFile] = File(None),
+    text_content: Optional[str] = Form(None),
+    source_url: Optional[str] = Form(None),
+    issuer: Optional[str] = Form(None),
+    author: Optional[str] = Form(None)
+):
+    """Create a tamper-evident Content Passport with SHA-256, perceptual dHash, and metadata."""
+    if content_file:
+        bytes_data = await content_file.read()
+        fname = content_file.filename
+        ctype = "document" if fname.lower().endswith(".pdf") else "media"
+    elif text_content:
+        bytes_data = text_content.encode("utf-8")
+        fname = "text_statement.txt"
+        ctype = "text"
+    elif source_url:
+        bytes_data = source_url.encode("utf-8")
+        fname = "url_reference.uri"
+        ctype = "url"
+    else:
+        bytes_data = b"empty_asset"
+        fname = "unspecified.bin"
+        ctype = "binary"
+
+    return ContentPassportService.create_content_passport(
+        content_bytes=bytes_data,
+        filename=fname,
+        content_type=ctype,
+        issuer_name=issuer,
+        source_url=source_url,
+        claimed_author=author
+    )
+
+@app.post("/api/passport/verify")
+async def verify_content_passport(payload: Dict[str, Any] = Body(...)):
+    """Verify Content Passport authenticity by Passport ID or SHA-256 hash."""
+    query = payload.get("passport_id") or payload.get("sha256") or ""
+    return ContentPassportService.verify_passport(query)
+
+@app.get("/api/passport/{passport_id}/provenance-graph")
+async def get_provenance_graph(passport_id: str):
+    """Retrieve Directed Acyclic Provenance Graph (nodes & edges) for interactive visualization."""
+    return ContentPassportService.get_provenance_graph(passport_id)
+
+@app.get("/api/passport/{passport_id}/report")
+async def get_content_passport_report(passport_id: str):
+    """Retrieve explainable authenticity and forensics report for a Content Passport."""
+    passport_data = ContentPassportService.verify_passport(passport_id)
+    graph = ContentPassportService.get_provenance_graph(passport_id)
+    return {
+        "passport": passport_data,
+        "provenance_graph": graph,
+        "explainable_summary": "Asset provenance verified cryptographically against registered source node and C2PA manifests."
+    }
+
+@app.get("/api/passport/list")
+async def list_content_passports():
+    """Catalog of all active Content Passports registered in this environment."""
+    return ContentPassportService.list_passports()
 
 # Serve Frontend Landing Page & Workspace SPA
 import os
