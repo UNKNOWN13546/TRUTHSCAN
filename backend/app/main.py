@@ -99,10 +99,10 @@ async def analyze_media(
     is_vid = any(filename.endswith(ext) for ext in ['.mp4', '.mov', '.avi', '.webm', '.mkv', '.m4v'])
 
     if is_vid:
-        video_res = DeepfakeBenchService.analyze_video(content, filename=image_file.filename or "video.mp4")
+        video_res = await DeepfakeBenchService.analyze_video(content, filename=image_file.filename or "video.mp4")
         confidence = video_res.get("confidence", 0.0)
         verdict = video_res.get("verdict", "NATURAL_VIDEO")
-        is_ai_gen = confidence >= 0.55
+        is_ai_gen = video_res.get("is_ai_generated", False) or (confidence >= 0.55)
         
         status = "AI_GENERATED" if is_ai_gen else ("POTENTIALLY_MANIPULATED" if confidence >= 0.40 else "AUTHENTIC_NATURAL_PHOTO")
         
@@ -119,10 +119,12 @@ async def analyze_media(
             "metrics": video_res.get("metrics", {}),
             "synthid": {"is_ai_generated": is_ai_gen, "confidence": confidence},
             "video_forensics": video_res,
+            "media_authenticity_8steps": video_res.get("media_authenticity_8steps", {}),
+            "gemini_media_report": video_res.get("gemini_media_report", {}),
             "gemini_report": {
-                "headline": f"Deepfake Video Analysis: {verdict.replace('_', ' ').title()}",
+                "headline": video_res.get("gemini_media_report", {}).get("headline") or f"Deepfake Video Analysis: {verdict.replace('_', ' ').title()}",
                 "plain_english_explanation": video_res.get("forensic_explanation", "Temporal coherence and Face X-Ray boundary blending inspected across video stream."),
-                "recommended_action": "Flag candidate and require live proctored re-verification." if is_ai_gen else "Temporal continuity coherent across sampled video keyframes.",
+                "recommended_action": video_res.get("gemini_media_report", {}).get("recommended_action") or ("Flag candidate and require live proctored re-verification." if is_ai_gen else "Temporal continuity coherent across sampled video keyframes."),
                 "confidence": confidence
             },
             "evidence": video_res.get("evidence", []),
@@ -139,8 +141,24 @@ async def analyze_media(
     synthid_res = SynthIDService.inspect_ai_generation(content, gemini_result=gemini_synthid)
     synthid_ev = synthid_res.get("evidence", [])
 
-    is_ai_generated = synthid_res.get("is_ai_generated", False)
-    
+    is_ai_generated = synthid_res.get("is_ai_generated", False) or gemini_synthid.get("is_ai_generated", False)
+
+    # 8-Step Media Authenticity Protocol for Images
+    media_8steps_res = await GeminiService.analyze_media_authenticity(
+        media_type="image",
+        filename=image_file.filename or "photo.png",
+        file_bytes=content,
+        keyframe_bytes=content,
+        forensic_details={
+            "anomalous_frames_count": 1 if is_ai_generated else 0,
+            "sampled_frames_count": 1,
+            "average_temporal_jitter": 0.0,
+            "suspicious_timestamps": []
+        }
+    )
+    if media_8steps_res.get("is_ai_generated"):
+        is_ai_generated = True
+
     # Tamper check: Only flag as manipulated if:
     # 1. SynthID / AI generator detects synthetic generative media, OR
     # 2. Strong copy-move cloning detected, OR
@@ -163,11 +181,13 @@ async def analyze_media(
         "exif": exif_meta,
         "synthid": synthid_res,
         "gemini_synthid": gemini_synthid,
+        "media_authenticity_8steps": media_8steps_res.get("forensic_8steps", {}),
+        "gemini_media_report": media_8steps_res,
         "gemini_report": {
-            "headline": gemini_synthid.get("headline", "AI SynthID Analysis Completed"),
-            "plain_english_explanation": gemini_synthid.get("plain_english_explanation", "Forensic visual and spectral examination completed."),
-            "recommended_action": gemini_synthid.get("recommended_action", "Maintain zero-trust verification procedures."),
-            "confidence": gemini_synthid.get("confidence", 0.90)
+            "headline": media_8steps_res.get("headline") or gemini_synthid.get("headline", "AI SynthID Analysis Completed"),
+            "plain_english_explanation": media_8steps_res.get("plain_english_explanation") or gemini_synthid.get("plain_english_explanation", "Forensic visual and spectral examination completed."),
+            "recommended_action": media_8steps_res.get("recommended_action") or gemini_synthid.get("recommended_action", "Maintain zero-trust verification procedures."),
+            "confidence": media_8steps_res.get("confidence", 0.90) if isinstance(media_8steps_res.get("confidence"), (int, float)) else 0.90
         },
         "evidence": all_ev,
         "limits": "Error Level Analysis, Google SynthID watermark detection, and Gemini Vision optics inspect sensor noise and generative diffusion cues."

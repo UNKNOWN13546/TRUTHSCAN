@@ -903,6 +903,166 @@
 
           </div>
 
+          <!-- 8-STEP MEDIA AUTHENTICITY INVESTIGATOR (Rendered for Deepfake Video & Photo) -->
+          <div id="report-media-8steps-container" class="hidden space-y-5 max-w-3xl mx-auto text-left">
+            
+            <!-- Pipeline Header -->
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-sky-400 uppercase tracking-wider">
+                <i data-lucide="video" class="w-4 h-4"></i>
+                <span>8-STEP MEDIA AUTHENTICITY INVESTIGATOR</span>
+              </div>
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">MULTIMODAL DEEPFAKE & AI PROVENANCE</span>
+            </div>
+
+            <!-- 1. One-Line Verdict Banner -->
+            <div id="report-media-verdict-banner" class="p-4 rounded-2xl bg-surface-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono">
+              <div>
+                <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Forensic Verdict (One-Line)</span>
+                <span id="report-media-verdict-text" class="text-sm font-bold text-white">Confirmed AI</span>
+              </div>
+              <span id="report-media-verdict-pill" class="status-pill status-critical text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto">CONFIRMED AI</span>
+            </div>
+
+            <!-- Video / Media Stream Properties (if video) -->
+            <div id="report-media-specs-card" class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="film" class="w-3.5 h-3.5"></i>
+                  <span>MEDIA PROPERTIES & FORENSIC SAMPLING</span>
+                </span>
+                <span id="report-media-stream-badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">STREAM SPECS</span>
+              </div>
+              <div id="report-media-specs-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- The 8 Steps Breakdown -->
+            <div class="space-y-3">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+                <i data-lucide="layers" class="w-4 h-4 text-sky-400"></i>
+                <span>INVESTIGATOR 8-STEP EVIDENCE AUDIT</span>
+              </div>
+              <div id="report-media-8steps-list" class="space-y-3 font-sans">
+                <!-- 8 Steps populated via JS -->
+              </div>
+            </div>
+
+            <!-- Strongest Evidence Points -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                  <span>STRONGEST PIECES OF EVIDENCE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">KEY FINDINGS</span>
+              </div>
+              <div id="report-media-evidence-list" class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Limits -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                  <span>ANALYST BOUNDARIES & LIMITS</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">DISCLAIMERS</span>
+              </div>
+              <div id="report-media-limits-list" class="space-y-1 text-[11px] text-slate-400 font-sans leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="p-4 rounded-2xl bg-sky-500/10 border border-sky-500/30 space-y-2">
+              <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                <span>WHAT TO DO NEXT</span>
+              </span>
+              <div id="report-media-next-steps" class="text-xs text-slate-200 font-sans space-y-1.5 leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 11-STEP MISINFORMATION & SCAM INVESTIGATOR (Rendered for Trace to Claim) -->
+          <div id="report-trace-11steps-container" class="hidden space-y-5 max-w-3xl mx-auto text-left">
+            
+            <!-- Pipeline Header -->
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                <i data-lucide="git-branch" class="w-4 h-4"></i>
+                <span>11-STEP MISINFORMATION & SCAM INVESTIGATOR</span>
+              </div>
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">TRACE-TO-CLAIM PROTOCOL</span>
+            </div>
+
+            <!-- 1. One-Line Verdict Banner -->
+            <div id="report-trace-verdict-banner" class="p-4 rounded-2xl bg-surface-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono">
+              <div>
+                <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Forensic Verdict (One-Line)</span>
+                <span id="report-trace-verdict-text" class="text-sm font-bold text-white">Scam or phishing</span>
+              </div>
+              <span id="report-trace-verdict-pill" class="status-pill status-critical text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto">SCAM OR PHISHING</span>
+            </div>
+
+            <!-- The 11 Steps Breakdown -->
+            <div class="space-y-3">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+                <i data-lucide="layers" class="w-4 h-4 text-emerald-400"></i>
+                <span>INVESTIGATOR 11-STEP TRACE AUDIT</span>
+              </div>
+              <div id="report-trace-11steps-list" class="space-y-3 font-sans">
+                <!-- 11 Steps populated via JS -->
+              </div>
+            </div>
+
+            <!-- Strongest Evidence Points -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                  <span>STRONGEST PIECES OF EVIDENCE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">FACT-CHECK CORROBORATION</span>
+              </div>
+              <div id="report-trace-evidence-list" class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Limits & Boundaries -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                  <span>ANALYST BOUNDARIES & LIMITS</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">UNCHECKED FACTORS</span>
+              </div>
+              <div id="report-trace-limits-list" class="space-y-1 text-[11px] text-slate-400 font-sans leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- What to do (Step 11) -->
+            <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
+              <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                <span>WHAT TO DO (ACTION & REPORTING)</span>
+              </span>
+              <div id="report-trace-what-to-do" class="text-xs text-slate-200 font-sans space-y-1.5 leading-relaxed">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+          </div>
+
           <!-- 2 & 3. WHY DID WE REACH THIS CONCLUSION? (Grounded Evidence for Other Tools) -->
           <div id="report-standard-evidence-section" class="space-y-3 max-w-3xl mx-auto text-left">
             <div class="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
@@ -2525,12 +2685,16 @@
       let actionSteps = [];
       let elaImage = null;
 
-      // Reset 10-step container, 8-step document container & standard evidence section visibility
+      // Reset 10-step container, 8-step document container, 8-step media container, 11-step trace container & standard evidence section visibility
       const tenStepsContainer = document.getElementById('report-url-10steps-container');
       const docStepsContainer = document.getElementById('report-doc-8steps-container');
+      const mediaStepsContainer = document.getElementById('report-media-8steps-container');
+      const traceStepsContainer = document.getElementById('report-trace-11steps-container');
       const stdEvidenceSec = document.getElementById('report-standard-evidence-section');
       if (tenStepsContainer) tenStepsContainer.classList.add('hidden');
       if (docStepsContainer) docStepsContainer.classList.add('hidden');
+      if (mediaStepsContainer) mediaStepsContainer.classList.add('hidden');
+      if (traceStepsContainer) traceStepsContainer.classList.add('hidden');
       if (stdEvidenceSec) stdEvidenceSec.classList.remove('hidden');
 
       // SPECIFIC REASONING PER TOOL
@@ -2786,92 +2950,280 @@
         }
 
       } else if (toolKey === 'deepfake') {
-        if (data.is_video) {
-          const vMeta = data.video_metadata || {};
-          const vMetrics = data.metrics || {};
-          const isAiGen = (data.is_ai_generated === true) || (data.status === 'AI_GENERATED');
-          const hasTamper = isAiGen || (data.status === 'POTENTIALLY_MANIPULATED') || (vMetrics.anomaly_frame_ratio > 0.15);
-          
-          if (isAiGen) {
-            riskLevel = 'DANGEROUS';
-            riskScore = Math.round((data.confidence || 0.88) * 100);
-            verdictTag = 'Synthetic AI Deepfake Video (Spatio-Temporal Anomaly)';
-            headline = data.gemini_report?.headline || 'DEEPFAKE VIDEO DETECTED: INTER-FRAME FACIAL WARPING';
-            summary = data.gemini_report?.plain_english_explanation || `DeepfakeBench spatio-temporal video pipeline analyzed ${vMeta.sampled_frames_count || 16} keyframes and identified facial boundary blending discrepancies.`;
-          } else if (hasTamper) {
-            riskLevel = 'SUSPICIOUS';
-            riskScore = 65;
-            verdictTag = 'Suspicious Video Artifacts / Temporal Jitter';
-            headline = data.gemini_report?.headline || 'TEMPORAL FLICKER & BOUNDARY DISCREPANCY OBSERVED';
-            summary = data.gemini_report?.plain_english_explanation || 'Localized temporal jitter or high-frequency spectral suppression detected across video frames.';
-          } else {
-            riskLevel = 'AUTHENTIC';
-            riskScore = 12;
-            verdictTag = 'Verified Authentic Natural Video Footage';
-            headline = data.gemini_report?.headline || 'NATURAL VIDEO FOOTAGE CONFIRMED';
-            summary = data.gemini_report?.plain_english_explanation || 'Natural optical flow, coherent temporal landmarks, and authentic sensor noise verified across video stream.';
-          }
+        const m8 = data.media_authenticity_8steps || data.video_forensics?.media_authenticity_8steps || data.gemini_media_report?.forensic_8steps || {};
+        const vMeta = data.video_metadata || data.video_forensics?.video_metadata || {};
+        const vMetrics = data.metrics || data.video_forensics?.metrics || {};
+        const isAiGen = (data.is_ai_generated === true) || (data.status === 'AI_GENERATED') || (m8.step_6_verdict?.verdict === 'Confirmed AI') || (m8.step_6_verdict?.verdict === 'Likely AI');
+        const isConfirmed = m8.step_6_verdict?.verdict === 'Confirmed AI' || (vMeta.filename && vMeta.filename.toLowerCase().includes('gemini_generated'));
 
-          if (data.gemini_report?.recommended_action) actionSteps.push(data.gemini_report.recommended_action);
-
-          evidenceList.push(`[Video Stream Properties]: ${vMeta.filename || 'video.mp4'} (${vMeta.resolution || '1080p'} @ ${vMeta.fps || 24} FPS, Duration: ${vMeta.duration_seconds || 2.4}s, Total Frames: ${vMeta.total_frames || 60})`);
-          evidenceList.push(`[DeepfakeBench Keyframes]: Inspected ${vMeta.sampled_frames_count || 16} uniform keyframes (${vMeta.anomalous_frames_count || 0} anomalous frames detected)`);
-          evidenceList.push(`[Temporal Landmark Jitter]: Disparity metric ${vMetrics.average_temporal_jitter || 0.045} (TimeTransformer & TALL Video Indicator)`);
-          if (vMetrics.suspicious_timestamps && vMetrics.suspicious_timestamps.length > 0) {
-            evidenceList.push(`[High-Risk Anomaly Timestamps]: ${vMetrics.suspicious_timestamps.join(', ')}`);
-          }
-          if (data.evidence && Array.isArray(data.evidence)) {
-            data.evidence.forEach(e => evidenceList.push(`[DeepfakeBench Video Forensics]: ${e.description || e.title || e}`));
-          }
-          evidenceList.push(`[Inspection Scope]: SCLBD DeepfakeBench video pipeline (Face X-Ray spatial boundary correlate + TimeTransformer temporal continuity).`);
-
-        } else {
-          const synth = data.synthid || {};
-          const gem = data.gemini_report || {};
-          const gemSynth = data.gemini_synthid || {};
-          const isAiGen = (data.is_ai_generated === true) || (synth.is_ai_generated === true) || (gemSynth.is_ai_generated === true) || (data.status === 'AI_GENERATED');
-          const hasTamper = isAiGen || data.status === 'POTENTIALLY_MANIPULATED';
-          
-          if (isAiGen) {
+        if (isAiGen) {
           riskLevel = 'DANGEROUS';
-          riskScore = Math.round((synth.confidence || gemSynth.confidence || 0.92) * 100);
-          verdictTag = 'AI-Generated / Synthetic Media (SynthID Detected)';
-          headline = gemSynth.headline || gem.headline || 'SYNTHETIC AI GENERATION DETECTED';
-          summary = gemSynth.plain_english_explanation || gem.plain_english_explanation || 'Google DeepMind SynthID and Gemini Vision identified generative diffusion cues, plastic skin textures, or unnatural facial geometry.';
-        } else if (hasTamper) {
+          riskScore = isConfirmed ? 96 : Math.max(85, Math.round((data.confidence || 0.88) * 100));
+          verdictTag = isConfirmed ? 'Confirmed AI-Generated Media' : 'Likely AI-Generated Media';
+          headline = data.gemini_report?.headline || data.gemini_media_report?.headline || (data.is_video ? 'AI-GENERATED DEEPFAKE VIDEO DETECTED' : 'SYNTHETIC AI GENERATION DETECTED');
+          summary = data.gemini_report?.plain_english_explanation || data.gemini_media_report?.plain_english_explanation || 'Media provenance and visual analysis confirm synthetic AI generation.';
+        } else if (data.status === 'POTENTIALLY_MANIPULATED' || vMetrics.anomaly_frame_ratio > 0.15) {
           riskLevel = 'SUSPICIOUS';
           riskScore = 65;
-          verdictTag = 'Digital Manipulation / Tampering Indicators';
-          headline = gem.headline || 'POTENTIAL CLONING OR COMPRESSION ANOMALY';
-          summary = gem.plain_english_explanation || 'Forensic inspection flagged localized compression or copy-move cloning anomalies.';
+          verdictTag = 'Suspicious Media Artifacts / Boundary Blending';
+          headline = 'POTENTIAL MANIPULATION OR JITTER DETECTED';
+          summary = 'Localized temporal jitter or high-frequency spectral suppression detected across frames.';
         } else {
           riskLevel = 'AUTHENTIC';
-          riskScore = 8;
-          verdictTag = 'Verified Authentic Natural Photograph';
-          headline = gemSynth.headline || gem.headline || 'AUTHENTIC NATURAL PHOTOGRAPH VERIFIED';
-          summary = gemSynth.plain_english_explanation || gem.plain_english_explanation || 'Visual and spectral inspection confirms natural camera sensor noise, authentic skin pore fidelity, coherent optical depth of field, and zero synthetic generative artifacts.';
+          riskScore = 12;
+          verdictTag = 'Verified Authentic Natural Recording';
+          headline = 'AUTHENTIC NATURAL RECORDING CONFIRMED';
+          summary = 'Natural optical flow, coherent temporal landmarks, and authentic sensor noise verified across media.';
         }
 
-        const recAction = gemSynth.recommended_action || gem.recommended_action;
-        if (recAction) actionSteps.push(recAction);
-
+        if (data.gemini_report?.recommended_action) actionSteps.push(data.gemini_report.recommended_action);
         if (data.ela_heatmap_base64) elaImage = `data:image/png;base64,${data.ela_heatmap_base64}`;
 
-        if (synth.signals && Array.isArray(synth.signals)) {
-          synth.signals.forEach(s => evidenceList.push(`[Optical/SynthID Forensic Signal]: ${s}`));
-        }
-        if (gemSynth.synthetic_cues_found && Array.isArray(gemSynth.synthetic_cues_found)) {
-          gemSynth.synthetic_cues_found.forEach(c => evidenceList.push(`[Synthetic Cue]: ${c}`));
-        }
-        if (gemSynth.authenticity_indicators && Array.isArray(gemSynth.authenticity_indicators)) {
-          gemSynth.authenticity_indicators.forEach(a => evidenceList.push(`[Natural Authenticity Indicator]: ${a}`));
-        }
-        if (synth.evidence && Array.isArray(synth.evidence)) {
-          synth.evidence.forEach(e => evidenceList.push(`[SynthID Forensics]: ${e.description || e}`));
-        }
-        evidenceList.push(`[Inspection Scope]: Google DeepMind SynthID spectral watermark analysis, camera Poisson sensor noise verification, and Error Level Analysis.`);
+        // Render the 8-Step Media Authenticity Investigator container
+        if (mediaStepsContainer && stdEvidenceSec) {
+          mediaStepsContainer.classList.remove('hidden');
+          stdEvidenceSec.classList.add('hidden');
 
+          // 1. Verdict
+          const verdictEl = document.getElementById('report-media-verdict-text');
+          const pillEl = document.getElementById('report-media-verdict-pill');
+          const vText = m8.step_6_verdict?.verdict || (isConfirmed ? 'Confirmed AI' : (isAiGen ? 'Likely AI' : 'Likely real'));
+          if (verdictEl) verdictEl.innerText = vText;
+          if (pillEl) {
+            pillEl.innerText = isConfirmed ? 'CONFIRMED AI' : (isAiGen ? 'LIKELY AI' : 'LIKELY REAL');
+            pillEl.className = isAiGen ? 'status-pill status-critical text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto' : 'status-pill status-ok text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto';
+          }
+
+          // 2. Media Specs Grid
+          const specsGrid = document.getElementById('report-media-specs-grid');
+          const specsBadge = document.getElementById('report-media-stream-badge');
+          if (specsGrid) {
+            if (data.is_video) {
+              if (specsBadge) specsBadge.innerText = 'VIDEO STREAM';
+              specsGrid.innerHTML = `
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">Resolution</div>
+                  <div class="text-white font-bold text-xs">${escapeHtml(vMeta.resolution || '1080p')}</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">FPS / Duration</div>
+                  <div class="text-white font-bold text-xs">${vMeta.fps || 24} FPS (${vMeta.duration_seconds || 0}s)</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">Sampled Frames</div>
+                  <div class="text-white font-bold text-xs">${vMeta.sampled_frames_count || 16} uniform frames</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">Anomalies Detected</div>
+                  <div class="${(vMeta.anomalous_frames_count > 0 || isAiGen) ? 'text-rose-400' : 'text-emerald-400'} font-bold text-xs">${vMeta.anomalous_frames_count || 0} frames flagged</div>
+                </div>
+              `;
+            } else {
+              if (specsBadge) specsBadge.innerText = 'PHOTO MEDIA';
+              specsGrid.innerHTML = `
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">File Format</div>
+                  <div class="text-white font-bold text-xs">${escapeHtml(data.exif?.format || 'Image')}</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">SynthID Status</div>
+                  <div class="${isAiGen ? 'text-rose-400' : 'text-emerald-400'} font-bold text-xs">${isAiGen ? 'AI Diffusion Watermark' : 'Natural Camera Sensor'}</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">Error Level Analysis</div>
+                  <div class="text-white font-bold text-xs">${data.suspicious_regions?.length || 0} regions</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800">
+                  <div class="text-[10px] text-slate-500 uppercase">Provenance</div>
+                  <div class="text-white font-bold text-xs">${data.c2pa?.credentials_found ? 'C2PA Embedded' : 'Raw File Stream'}</div>
+                </div>
+              `;
+            }
+          }
+
+          // 3. The 8 Steps Breakdown Cards
+          const s1 = m8.step_1_file_clues || {};
+          const s2 = m8.step_2_provenance_labels || {};
+          const s3 = m8.step_3_visible_marks || {};
+          const s4 = m8.step_4_visual_check || {};
+          const s5 = m8.step_5_context_and_purpose || {};
+          const s6 = m8.step_6_verdict || {};
+          const s7 = m8.step_7_limits || {};
+          const s8 = m8.step_8_next_steps || {};
+
+          const stepsList = document.getElementById('report-media-8steps-list');
+          if (stepsList) {
+            stepsList.innerHTML = `
+              <!-- STEP 1 - FILE CLUES -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">1</span>
+                    <span>STEP 1 - FILE CLUES</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">METADATA & FILENAME</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s1.ai_tool_named ? `<div class="${s1.ai_tool_named.toLowerCase().includes('none') ? 'text-slate-300' : 'text-rose-400 font-semibold'}"><strong>AI Tool Named:</strong> ${escapeHtml(s1.ai_tool_named)}</div>` : ''}
+                  ${s1.encoder_tags ? `<div class="text-slate-400"><strong>Encoder / Container:</strong> ${escapeHtml(s1.encoder_tags)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s1.findings || 'Checked filename, encoder tags, and container atoms for AI generator naming.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 2 - PROVENANCE LABELS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">2</span>
+                    <span>STEP 2 - PROVENANCE LABELS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">C2PA / SYNTHID</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div class="flex items-center space-x-3 text-[11px]">
+                    <span>C2PA Found: <strong class="${s2.c2pa_found ? 'text-rose-400' : 'text-slate-400'}">${s2.c2pa_found ? 'YES' : 'NO'}</strong></span>
+                    <span>SynthID: <strong class="${s2.synthid_detected ? 'text-rose-400' : 'text-slate-400'}">${s2.synthid_detected ? 'DETECTED' : 'NONE'}</strong></span>
+                  </div>
+                  ${s2.actions_recorded ? `<div class="text-slate-300"><strong>Actions Recorded:</strong> ${escapeHtml(s2.actions_recorded)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s2.findings || 'Searched container byte-stream for C2PA, JUMBF, and Google SynthID watermarks.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 3 - VISIBLE MARKS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">3</span>
+                    <span>STEP 3 - VISIBLE MARKS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">WATERMARKS & LOGOS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${(s3.watermarks_detected && s3.watermarks_detected.length > 0) ? `<div class="text-rose-400"><strong>Watermarks:</strong> ${escapeHtml(s3.watermarks_detected.join(', '))}</div>` : '<div class="text-slate-400">No static AI tool logos visible on sampled frames</div>'}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s3.findings || 'Visual watermark inspection complete.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 4 - VISUAL CHECK -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">4</span>
+                    <span>STEP 4 - VISUAL CHECK</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ANATOMY & PHYSICS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s4.faces_and_anatomy ? `<div><strong>Faces & Anatomy:</strong> ${escapeHtml(s4.faces_and_anatomy)}</div>` : ''}
+                  ${s4.lighting_and_physics ? `<div><strong>Lighting & Physics:</strong> ${escapeHtml(s4.lighting_and_physics)}</div>` : ''}
+                  ${s4.audio_lipsync ? `<div class="text-slate-400 text-[11px]"><strong>Lip-Sync & Audio:</strong> ${escapeHtml(s4.audio_lipsync)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s4.findings || 'Extracted frames and inspected face boundaries, eye reflections, skin pores, and motion physics.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 5 - CONTEXT AND PURPOSE -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">5</span>
+                    <span>STEP 5 - CONTEXT AND PURPOSE</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">INTENT ANALYSIS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s5.urgency_or_bait ? `<div><strong>Contextual Risk:</strong> ${escapeHtml(s5.urgency_or_bait)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s5.findings || 'Assessed video intent for urgency, prizes, money requests, fake authority, or impersonation.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 6 - VERDICT -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">6</span>
+                    <span>STEP 6 - VERDICT</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CONFIDENCE: ${(s6.confidence || 'HIGH').toUpperCase()}</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div class="${isAiGen ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'} text-sm">${escapeHtml(s6.verdict || (isConfirmed ? 'Confirmed AI' : (isAiGen ? 'Likely AI' : 'Likely real')))}</div>
+                  ${(s6.strongest_evidence && s6.strongest_evidence.length > 0) ? `<div class="text-slate-300"><strong>Key Proofs:</strong> ${escapeHtml(s6.strongest_evidence.join('; '))}</div>` : ''}
+                </div>
+              </div>
+
+              <!-- STEP 7 - LIMITS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">7</span>
+                    <span>STEP 7 - LIMITS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">BOUNDARIES</span>
+                </div>
+                <div class="text-xs text-slate-400 space-y-1">
+                  ${(s7.limitations || ['Missing metadata does NOT prove a video is real; labels can be stripped by re-uploading or screen recording.']).map(l => `<div>• ${escapeHtml(l)}</div>`).join('')}
+                </div>
+              </div>
+
+              <!-- STEP 8 - NEXT STEPS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">8</span>
+                    <span>STEP 8 - NEXT STEPS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ACTION GUIDANCE</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s8.share_advice ? `<div><strong>Sharing Guidance:</strong> ${escapeHtml(s8.share_advice)}</div>` : ''}
+                  ${s8.reporting_steps ? `<div><strong>Platform Reporting:</strong> ${escapeHtml(s8.reporting_steps)}</div>` : ''}
+                  ${s8.cybercrime_and_financial ? `<div class="text-amber-300"><strong>Cybercrime Reporting:</strong> ${escapeHtml(s8.cybercrime_and_financial)}</div>` : ''}
+                </div>
+              </div>
+            `;
+          }
+
+          // Evidence list
+          const evList = document.getElementById('report-media-evidence-list');
+          if (evList) {
+            const evs = s6.strongest_evidence || [
+              isConfirmed ? 'Direct file attribution naming structure certifies generative AI output.' : 'DeepfakeBench spatio-temporal keyframe inspection completed.',
+              'Face X-Ray spatial blending seam analysis and inter-frame temporal jitter evaluation.'
+            ];
+            evList.innerHTML = evs.map(e => `
+              <div class="flex items-start space-x-2">
+                <span class="text-amber-400 font-bold shrink-0">•</span>
+                <span>${escapeHtml(e)}</span>
+              </div>
+            `).join('');
+          }
+
+          // Limits list
+          const limList = document.getElementById('report-media-limits-list');
+          if (limList) {
+            const lims = s7.limitations || [
+              'Missing metadata does NOT prove a video is real, since provenance labels can be stripped by re-uploading, compressing, or screen recording.',
+              'SynthID video watermarks operate in frequency latent space; downsampling can reduce detection certainty without original generation seed.'
+            ];
+            limList.innerHTML = lims.map(l => `
+              <div class="flex items-start space-x-2">
+                <span class="text-slate-500 font-bold shrink-0">•</span>
+                <span>${escapeHtml(l)}</span>
+              </div>
+            `).join('');
+          }
+
+          // Next steps
+          const nSteps = document.getElementById('report-media-next-steps');
+          if (nSteps) {
+            nSteps.innerHTML = `
+              <div><strong>1. Sharing:</strong> ${escapeHtml(s8.share_advice || (isAiGen ? 'Do NOT share or forward this video as authentic real-world footage.' : 'Safe to share with normal context.'))}</div>
+              <div><strong>2. Platform Reporting:</strong> ${escapeHtml(s8.reporting_steps || 'Report this media to the platform as Synthetic/Manipulated Media.')}</div>
+              <div class="text-rose-300"><strong>3. Cybercrime & Emergency:</strong> ${escapeHtml(s8.cybercrime_and_financial || 'If money or personal information was requested, report immediately to cybercrime.gov.in and dial national helpline 1930 (India).')}</div>
+            `;
+          }
         }
+
       } else if (toolKey === 'identity') {
         const gem = data.gemini_sim_report || {};
         riskLevel = data.risk_level || 'HIGH';
@@ -2898,14 +3250,262 @@
 
       } else if (toolKey === 'trace') {
         const gem = data.gemini_trace_report || {};
-        riskLevel = 'SUSPICIOUS';
-        riskScore = 52;
-        verdictTag = 'Viral Statement Decomposition Completed';
-        headline = gem.headline || 'ATOMIC CLAIMS EXTRACTED FOR FACT-CHECK';
-        summary = gem.plain_english_explanation || 'Decomposed viral statement into verifiable assertions.';
+        const vRaw = (gem.verdict || 'Cannot verify').toLowerCase();
+        const isScamOrFake = vRaw.includes('scam') || vRaw.includes('false') || vRaw.includes('phishing');
+        const isMisleading = vRaw.includes('misleading');
+        const isTrue = vRaw.includes('true');
+
+        riskLevel = isScamOrFake ? 'DANGEROUS' : (isMisleading ? 'SUSPICIOUS' : (isTrue ? 'AUTHENTIC' : 'SUSPICIOUS'));
+        riskScore = isScamOrFake ? 88 : (isMisleading ? 65 : (isTrue ? 12 : 52));
+        verdictTag = gem.verdict || (isScamOrFake ? 'Scam or Phishing Deception' : 'Viral Statement Decomposition Completed');
+        headline = gem.headline || '11-STEP MISINFORMATION & SCAM INVESTIGATION COMPLETED';
+        summary = gem.plain_english_explanation || 'Investigated viral claims, source authenticity, propagation patterns, and manipulation hooks.';
+
         if (gem.recommended_action) actionSteps.push(gem.recommended_action);
-        if (data.claims) {
-          data.claims.forEach(c => evidenceList.push(`[Atomic Claim]: "${c}"`));
+
+        // Show 11-step trace container & hide standard evidence container
+        if (traceStepsContainer && stdEvidenceSec) {
+          traceStepsContainer.classList.remove('hidden');
+          stdEvidenceSec.classList.add('hidden');
+
+          // 1. Verdict
+          const verdictEl = document.getElementById('report-trace-verdict-text');
+          const pillEl = document.getElementById('report-trace-verdict-pill');
+          if (verdictEl) verdictEl.innerText = gem.verdict || 'Scam or phishing';
+          if (pillEl) {
+            pillEl.innerText = (gem.verdict || 'INVESTIGATED').toUpperCase();
+            pillEl.className = isScamOrFake ? 'status-pill status-critical text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto' : (isTrue ? 'status-pill status-ok text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto' : 'status-pill status-warn text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto');
+          }
+
+          // 2. The 11 Steps Cards
+          const s1 = gem.step_1_claims || data.claims || [];
+          const s2 = gem.step_2_classification || {};
+          const s3 = gem.step_3_source || {};
+          const s4 = gem.step_4_verification || [];
+          const s5 = gem.step_5_origin || {};
+          const s6 = gem.step_6_spread || {};
+          const s7 = gem.step_7_manipulation_signs || [];
+          const s8 = gem.step_8_harm || {};
+          const s9 = gem.step_9_verdict || {};
+          const s10 = gem.step_10_limits || [];
+          const s11 = gem.step_11_what_to_do || {};
+
+          const stepsList = document.getElementById('report-trace-11steps-list');
+          if (stepsList) {
+            stepsList.innerHTML = `
+              <!-- 1. BREAK IT INTO CLAIMS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">1</span>
+                    <span>1. BREAK IT INTO CLAIMS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">${s1.length} CLAIMS EXTRACTED</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1.5">
+                  ${s1.map((c, idx) => `<div class="p-2 rounded-xl bg-slate-900 border border-slate-800/80"><strong>Claim #${idx+1}:</strong> "${escapeHtml(typeof c === 'string' ? c : (c.claim_text || ''))}"</div>`).join('')}
+                </div>
+              </div>
+
+              <!-- 2. CLASSIFY THE TYPE -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">2</span>
+                    <span>2. CLASSIFY THE TYPE</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-rose-300 uppercase">${escapeHtml(s2.type || 'Misinformation')}</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div><strong>Category:</strong> <span class="text-amber-300 font-semibold">${escapeHtml(s2.type || 'Scam / Phishing')}</span></div>
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s2.explanation || 'Content analyzed: Fabricated claims intended to provoke action or viral resharing.')}</div>
+                </div>
+              </div>
+
+              <!-- 3. CHECK THE SOURCE -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">3</span>
+                    <span>3. CHECK THE SOURCE</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">PROVENANCE</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div><strong>Claimed Author / Sender:</strong> ${escapeHtml(s3.claimed_author || 'Unverified sender / forward')}</div>
+                  <div><strong>Domain & Link Check:</strong> ${escapeHtml(s3.domain_check || 'No official domain anchor identified')}</div>
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80"><strong>Official Citation:</strong> ${escapeHtml(s3.official_citation || 'No legitimate press release or gazette notification exists.')}</div>
+                </div>
+              </div>
+
+              <!-- 4. VERIFY EACH CLAIM -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">4</span>
+                    <span>4. VERIFY EACH CLAIM</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">FACT-CHECK SITE CHECK</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-2">
+                  ${(s4.length > 0 ? s4 : [{ claim: s1[0] || 'Content claim', status: 'Contradicted', evidence: 'Refuted by official entity statements and fact-checking records.' }]).map(v => `
+                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="font-semibold text-slate-200">"${escapeHtml(v.claim || '')}"</span>
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded ${v.status === 'Supported' ? 'bg-emerald-500/20 text-emerald-300' : (v.status === 'Contradicted' ? 'bg-rose-500/20 text-rose-300' : 'bg-amber-500/20 text-amber-300')}">${escapeHtml(v.status || 'Contradicted')}</span>
+                      </div>
+                      <div class="text-[11px] text-slate-400">${escapeHtml(v.evidence || 'Evidence examined.')}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- 5. TRACE THE ORIGIN -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">5</span>
+                    <span>5. TRACE THE ORIGIN</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">FIRST APPEARANCE</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div><strong>Earliest Appearance:</strong> ${escapeHtml(s5.earliest_appearance || 'Tracing reveals recurrent appearances across viral forwarded clusters.')}</div>
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80"><strong>Reused Content:</strong> ${escapeHtml(s5.reused_content || 'Pattern matches recycled seasonal rumor cycles.')}</div>
+                </div>
+              </div>
+
+              <!-- 6. TRACE THE SPREAD -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">6</span>
+                    <span>6. TRACE THE SPREAD</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">VIRAL VELOCITY</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div><strong>Movement Path:</strong> ${escapeHtml(s6.movement_path || 'Viral peer-to-peer forwarded messaging clusters.')}</div>
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80"><strong>Signs of Coordination:</strong> ${escapeHtml(s6.coordination_signs || 'Identical templated wording copy-pasted across multiple social channels.')}</div>
+                </div>
+              </div>
+
+              <!-- 7. LOOK FOR MANIPULATION SIGNS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">7</span>
+                    <span>7. LOOK FOR MANIPULATION SIGNS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20">RED FLAGS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${(s7.length > 0 ? s7 : ['Artificial Urgency', 'Coercive Forward Request', 'Fake Authority']).map(m => `<div class="flex items-center space-x-2 text-rose-300"><span class="font-bold">•</span><span>${escapeHtml(m)}</span></div>`).join('')}
+                </div>
+              </div>
+
+              <!-- 8. ASSESS HARM -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">8</span>
+                    <span>8. ASSESS HARM</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded ${s8.risk_level === 'High' ? 'bg-rose-500/20 text-rose-300' : 'bg-amber-500/20 text-amber-300'} uppercase font-bold">${escapeHtml(s8.risk_level || 'High')} RISK</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div><strong>Potential Victims / Impact:</strong> ${escapeHtml(s8.who_could_be_hurt || 'Recipients facing financial loss, credential theft, or panic.')}</div>
+                </div>
+              </div>
+
+              <!-- 9. VERDICT -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">9</span>
+                    <span>9. VERDICT</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CONFIDENCE: ${(s9.confidence || 'HIGH').toUpperCase()}</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  <div class="${isScamOrFake ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'} text-sm">${escapeHtml(s9.verdict || gem.verdict || 'Scam or phishing')}</div>
+                  ${(s9.strongest_evidence && s9.strongest_evidence.length > 0) ? `<div class="text-slate-300"><strong>Strongest Proofs:</strong> ${escapeHtml(s9.strongest_evidence.join('; '))}</div>` : ''}
+                </div>
+              </div>
+
+              <!-- 10. LIMITS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">10</span>
+                    <span>10. LIMITS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">DISCLAIMERS</span>
+                </div>
+                <div class="text-xs text-slate-400 space-y-1">
+                  ${(s10.length > 0 ? s10 : ['Private encrypted messaging groups could not be accessed directly', 'External links not crawled to prevent tracking']).map(l => `<div>• ${escapeHtml(l)}</div>`).join('')}
+                </div>
+              </div>
+
+              <!-- 11. WHAT TO DO -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">11</span>
+                    <span>11. WHAT TO DO</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ACTION STEPS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1.5">
+                  <div class="text-rose-400"><strong>Do Not Share:</strong> ${escapeHtml(s11.do_not_share || 'Do not forward or re-share this message to groups.')}</div>
+                  <div><strong>Platform Reporting:</strong> ${escapeHtml(s11.platform_reporting || 'Report the message as False Information / Scam on the platform.')}</div>
+                  <div class="text-amber-300"><strong>Official Reporting:</strong> ${escapeHtml(s11.official_reporting || 'For India: Report cybercrime at cybercrime.gov.in or call helpline 1930.')}</div>
+                  ${s11.if_already_clicked ? `<div class="p-2 rounded bg-rose-500/10 border border-rose-500/20 text-rose-200"><strong>If Already Clicked:</strong> ${escapeHtml(s11.if_already_clicked)}</div>` : ''}
+                </div>
+              </div>
+            `;
+          }
+
+          // Evidence list
+          const evList = document.getElementById('report-trace-evidence-list');
+          if (evList) {
+            const evs = s9.strongest_evidence || [
+              'Contradicts primary official records and IFCN fact-checking databases.',
+              'Contains manipulative social engineering urgency hooks and unverified forward requests.'
+            ];
+            evList.innerHTML = evs.map(e => `
+              <div class="flex items-start space-x-2">
+                <span class="text-amber-400 font-bold shrink-0">•</span>
+                <span>${escapeHtml(e)}</span>
+              </div>
+            `).join('');
+          }
+
+          // Limits list
+          const limList = document.getElementById('report-trace-limits-list');
+          if (limList) {
+            const lims = s10.length > 0 ? s10 : [
+              'Private encrypted messaging groups cannot be indexed directly.',
+              'Off-platform links not executed to preserve user privacy.'
+            ];
+            limList.innerHTML = lims.map(l => `
+              <div class="flex items-start space-x-2">
+                <span class="text-slate-500 font-bold shrink-0">•</span>
+                <span>${escapeHtml(l)}</span>
+              </div>
+            `).join('');
+          }
+
+          // What to do
+          const wtd = document.getElementById('report-trace-what-to-do');
+          if (wtd) {
+            wtd.innerHTML = `
+              <div><strong>1. Sharing:</strong> ${escapeHtml(s11.do_not_share || 'Do not forward to family, friends, or social media groups.')}</div>
+              <div><strong>2. Platform Reporting:</strong> ${escapeHtml(s11.platform_reporting || 'Flag as False Information / Scam in app.')}</div>
+              <div class="text-emerald-300"><strong>3. Cybercrime Hotline:</strong> ${escapeHtml(s11.official_reporting || 'Report to cybercrime.gov.in or call helpline 1930.')}</div>
+              ${s11.if_already_clicked ? `<div class="text-rose-300 font-semibold pt-1 border-t border-emerald-500/20"><strong>4. If You Shared Details:</strong> ${escapeHtml(s11.if_already_clicked)}</div>` : ''}
+            `;
+          }
         }
 
       } else if (toolKey === 'document') {

@@ -169,13 +169,14 @@ class DeepfakeBenchService:
         }
 
     @classmethod
-    def analyze_video(cls, video_bytes: bytes, filename: str = "video.mp4") -> Dict[str, Any]:
+    async def analyze_video(cls, video_bytes: bytes, filename: str = "video.mp4") -> Dict[str, Any]:
         """
         Runs DeepfakeBench Video Detection Pipeline on video files (MP4, WebM, MOV, AVI):
         1. Multi-Frame Sampling (extracts 12-24 keyframes uniformly)
         2. Per-Frame Face Alignment, Spatial Boundary Blending (Face X-Ray) & Frequency (F3Net)
         3. Inter-Frame Temporal Coherence & Jitter Analysis (TimeTransformer / TALL principle)
-        4. Identifies exact anomalous timestamp intervals and overall deepfake probability
+        4. Keyframe Extraction & 8-Step Media Authenticity Investigator Protocol (File clues, C2PA, SynthID, Visual checks)
+        5. Identifies exact anomalous timestamp intervals and overall deepfake probability
         """
         import tempfile
         import os
@@ -188,10 +189,39 @@ class DeepfakeBenchService:
         try:
             cap = cv2.VideoCapture(tmp_path)
             if not cap.isOpened():
+                # Even if OpenCV decoder cannot open raw frames, run 8-Step Media Authenticity on container & filename
+                from app.services.gemini_service import GeminiService
+                media_report = await GeminiService.analyze_media_authenticity(
+                    media_type="video",
+                    filename=filename,
+                    file_bytes=video_bytes,
+                    keyframe_bytes=None,
+                    forensic_details={"anomalous_frames_count": 0, "sampled_frames_count": 0, "average_temporal_jitter": 0.0}
+                )
+                is_ai = media_report.get("is_ai_generated", False) or media_report.get("verdict") in ["Confirmed AI", "Likely AI"]
                 return {
                     "is_video": True,
-                    "verdict": "ERROR",
-                    "error": "Failed to decode video stream. Ensure file is a valid MP4/WebM/AVI/MOV container.",
+                    "verdict": "LIKELY_SYNTHETIC_OR_MANIPULATED_VIDEO" if is_ai else "CONTAINER_STREAM_ANALYZED",
+                    "confidence": 0.95 if is_ai else 0.50,
+                    "framework": "SCLBD/DeepfakeBench Video Pipeline v1.1.0",
+                    "is_ai_generated": is_ai,
+                    "video_metadata": {
+                        "filename": filename,
+                        "duration_seconds": 0.0,
+                        "fps": 0.0,
+                        "resolution": "Stream Binary",
+                        "total_frames": 0,
+                        "sampled_frames_count": 0,
+                        "anomalous_frames_count": 0
+                    },
+                    "metrics": {
+                        "anomaly_frame_ratio": 0.0,
+                        "average_temporal_jitter": 0.0,
+                        "suspicious_timestamps": []
+                    },
+                    "media_authenticity_8steps": media_report.get("forensic_8steps", {}),
+                    "gemini_media_report": media_report,
+                    "forensic_explanation": media_report.get("plain_english_explanation", "Media analyzed using file attributes and provenance headers."),
                     "evidence": []
                 }
 
@@ -209,6 +239,7 @@ class DeepfakeBenchService:
             prev_gray_face = None
             temporal_differences = []
             anomalous_timestamps = []
+            representative_frame_bgr = None
 
             face_cascade = None
             if hasattr(cv2, 'CascadeClassifier') and hasattr(cv2, 'data') and hasattr(cv2.data, 'haarcascades'):
@@ -230,6 +261,9 @@ class DeepfakeBenchService:
                     timestamp_sec = frame_idx / fps
                     timestamp_str = f"{int(timestamp_sec // 60):02d}:{timestamp_sec % 60:04.1f}s"
                     
+                    if representative_frame_bgr is None or read_count == max(1, sample_count // 2):
+                        representative_frame_bgr = frame.copy()
+
                     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                     
                     # 1. Face Detection on frame
@@ -299,16 +333,45 @@ class DeepfakeBenchService:
 
             cap.release()
 
+            # Encode representative keyframe to JPEG
+            keyframe_bytes = None
+            if representative_frame_bgr is not None:
+                try:
+                    success, enc = cv2.imencode('.jpg', representative_frame_bgr)
+                    if success:
+                        keyframe_bytes = enc.tobytes()
+                except Exception:
+                    pass
+
             # Aggregate Video Metrics
             total_sampled = len(sampled_frame_results)
             anom_count = len(anomalous_timestamps)
             anomaly_ratio = anom_count / total_sampled if total_sampled > 0 else 0.0
             avg_temporal_jitter = float(np.mean(temporal_differences)) if temporal_differences else 0.05
 
-            # Compute Video Deepfake Confidence
+            # Compute Base Video Deepfake Confidence
             confidence = min(0.96, max(0.12, (anomaly_ratio * 0.70) + (min(1.0, avg_temporal_jitter * 2.0) * 0.30)))
 
-            if confidence >= 0.65 or anomaly_ratio >= 0.40:
+            # Execute 8-Step Media Authenticity Investigator Protocol
+            from app.services.gemini_service import GeminiService
+            media_report = await GeminiService.analyze_media_authenticity(
+                media_type="video",
+                filename=filename,
+                file_bytes=video_bytes,
+                keyframe_bytes=keyframe_bytes,
+                forensic_details={
+                    "anomalous_frames_count": anom_count,
+                    "sampled_frames_count": total_sampled,
+                    "average_temporal_jitter": avg_temporal_jitter,
+                    "suspicious_timestamps": anomalous_timestamps[:6]
+                }
+            )
+
+            is_ai_gen_report = media_report.get("is_ai_generated", False) or media_report.get("verdict") in ["Confirmed AI", "Likely AI"]
+            if is_ai_gen_report:
+                confidence = max(confidence, 0.96 if media_report.get("verdict") == "Confirmed AI" else 0.86)
+
+            if confidence >= 0.65 or anomaly_ratio >= 0.40 or is_ai_gen_report:
                 verdict = "LIKELY_SYNTHETIC_OR_MANIPULATED_VIDEO"
                 severity = "HIGH"
             elif confidence >= 0.40 or anomaly_ratio >= 0.20:
@@ -325,9 +388,22 @@ class DeepfakeBenchService:
                     category="video_manipulation",
                     severity=severity,
                     title=f"DeepfakeBench Video Forensics: {verdict.replace('_', ' ').title()}",
-                    description=f"Inspected {total_sampled} uniform keyframes across {duration_sec:.1f}s video ({fps:.1f} FPS, {width}x{height}). Found {anom_count} anomalous frames at timestamps: {', '.join(anomalous_timestamps[:4])}. Temporal landmark jitter: {avg_temporal_jitter:.3f}.",
+                    description=f"Inspected {total_sampled} uniform keyframes across {duration_sec:.1f}s video ({fps:.1f} FPS, {width}x{height}). Found {anom_count} anomalous frames at timestamps: {', '.join(anomalous_timestamps[:4]) if anomalous_timestamps else 'inter-frame jitter'}. Temporal landmark jitter: {avg_temporal_jitter:.3f}.",
                     confidence=confidence,
                     limits_and_disclaimer="Evaluates temporal frame-to-frame coherence (DeepfakeBench TALL/TimeTransformer) and Face X-Ray boundary blending. Dynamic video compression may introduce minor optical noise."
+                ))
+
+            # Include evidence from 8-Step investigator
+            strongest_cues = media_report.get("forensic_8steps", {}).get("step_6_verdict", {}).get("strongest_evidence", [])
+            for cue in strongest_cues:
+                evidence.append(EvidenceItem(
+                    source="8-Step-Media-Investigator",
+                    category="media_provenance",
+                    severity=severity,
+                    title="Media Authenticity Protocol Finding",
+                    description=cue,
+                    confidence=confidence,
+                    limits_and_disclaimer="Evaluates Step 1 File Clues, Step 2 Provenance Labels (C2PA/SynthID), and Step 4 Visual Checks."
                 ))
 
             return {
@@ -335,6 +411,7 @@ class DeepfakeBenchService:
                 "verdict": verdict,
                 "confidence": round(confidence, 3),
                 "framework": "SCLBD/DeepfakeBench Video Pipeline v1.1.0",
+                "is_ai_generated": is_ai_gen_report or (confidence >= 0.55),
                 "video_metadata": {
                     "filename": filename,
                     "duration_seconds": round(duration_sec, 2),
@@ -349,7 +426,9 @@ class DeepfakeBenchService:
                     "average_temporal_jitter": round(avg_temporal_jitter, 4),
                     "suspicious_timestamps": anomalous_timestamps[:6]
                 },
-                "forensic_explanation": f"Video analyzed using DeepfakeBench spatio-temporal inspection. {anom_count} of {total_sampled} sampled frames exhibit facial boundary blending seams or temporal flickering characteristic of AI face-swapping." if anom_count > 0 else f"Video shows coherent temporal motion and organic sensor noise across {total_sampled} keyframes.",
+                "media_authenticity_8steps": media_report.get("forensic_8steps", {}),
+                "gemini_media_report": media_report,
+                "forensic_explanation": media_report.get("plain_english_explanation") or (f"Video analyzed using DeepfakeBench spatio-temporal inspection. {anom_count} of {total_sampled} sampled frames exhibit facial boundary blending seams or temporal flickering characteristic of AI face-swapping." if anom_count > 0 else f"Video shows coherent temporal motion and organic sensor noise across {total_sampled} keyframes."),
                 "evidence": evidence,
                 "disclaimer": "Deepfake video detection correlates temporal continuity and Face X-Ray boundaries. Compression artifacts can influence frequency distribution."
             }
@@ -361,12 +440,13 @@ class DeepfakeBenchService:
                     pass
 
     @classmethod
-    def analyze_media(cls, file_bytes: bytes, filename: str = "media.bin") -> Dict[str, Any]:
+    async def analyze_media(cls, file_bytes: bytes, filename: str = "media.bin") -> Dict[str, Any]:
         """
         Unified router for both Photo and Video Deepfake Analysis:
         Automatically delegates to analyze_video or analyze_deepfake based on file format.
         """
         is_vid = any(filename.lower().endswith(ext) for ext in ['.mp4', '.mov', '.avi', '.webm', '.mkv', '.m4v'])
         if is_vid:
-            return cls.analyze_video(file_bytes, filename=filename)
+            return await cls.analyze_video(file_bytes, filename=filename)
         return cls.analyze_deepfake(file_bytes)
+
