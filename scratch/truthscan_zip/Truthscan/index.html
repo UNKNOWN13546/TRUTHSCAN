@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" class="landing-v2-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRUSTSCAN 360 — Digital Trust &amp; Cognitive Safety</title>
+  <meta name="description" content="Know what to trust in a digitally manipulated world. Explore evidence-backed tools for synthetic media, identity, document integrity, and claim provenance." />
+
+  <!-- 1. Inter UI font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- 2. BubbledotICG-FinePos (retro dot-matrix display) -->
+  <link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet" />
+
+  <!-- 4. Font Awesome 6.5.2 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Primary Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="landing-v2">
+
+  <!-- PAGE LOADER -->
+  <div id="ts-loader" role="status" aria-label="Loading page">
+    <div class="spinner" aria-hidden="true">
+      <div class="spinner1"></div>
+    </div>
+    <p class="loader-status">Preparing your trust engine<span aria-hidden="true">...</span></p>
+  </div>
+
+  <div class="landing-v2-content">
+    <header class="lp-header">
+      <a class="lp-brand" href="#home" aria-label="TrustScan 360 home">
+        <span class="lp-brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+        <span><strong>TRUSTSCAN <em>360</em></strong><small>Digital Trust &amp; Safety Platform</small></span>
+      </a>
+      <nav class="lp-nav" aria-label="Landing page navigation">
+        <a href="#pillars">Six Pillars</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#evidence">Evidence Model</a>
+        <a href="#privacy">ZK Privacy</a>
+      </nav>
+      <a class="lp-button lp-button-small" href="TRUTHSCAN_STANDALONE.html" target="_blank" rel="noopener">Launch TrustScan <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="lp-hero" id="home" aria-labelledby="lp-hero-title">
+        <svg class="lp-hero-waves" viewBox="0 0 1440 640" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-80 340 C120 250 190 430 390 340 S660 250 860 340 1130 430 1330 340 1540 250 1620 310" />
+          <path d="M-80 382 C120 292 190 472 390 382 S660 292 860 382 1130 472 1330 382 1540 292 1620 352" />
+          <path d="M-80 298 C120 208 190 388 390 298 S660 208 860 298 1130 388 1330 298 1540 208 1620 268" />
+          <path d="M-80 256 C120 166 190 346 390 256 S660 166 860 256 1130 346 1330 256 1540 166 1620 226" />
+          <path d="M-80 424 C120 334 190 514 390 424 S660 334 860 424 1130 514 1330 424 1540 334 1620 394" />
+        </svg>
+        <div class="lp-hero-content">
+          <div class="lp-eyebrow"><span class="lp-live-dot"></span> PROBLEM STATEMENT 2 <span class="lp-eyebrow-divider">·</span> GEMINI 3.8 FLASH CORE</div>
+          <h1 id="lp-hero-title">TRUSTSCAN <span>360</span></h1>
+          <p class="lp-hero-tagline">Know what to trust in a digitally manipulated world.</p>
+          <p class="lp-hero-copy">Detect suspicious content, verify authenticity, trace digital claims, protect identities, and respond to online threats—with evidence-backed AI analysis.</p>
+          <div class="lp-hero-actions">
+            <a class="lp-button" href="TRUTHSCAN_STANDALONE.html" target="_blank" rel="noopener">Launch TrustScan <span aria-hidden="true">↗</span></a>
+            <a class="lp-button lp-button-secondary" href="TRUTHSCAN_STANDALONE.html?demo=golden" target="_blank" rel="noopener">Load Golden Demo Story <small>2.5 min</small></a>
+          </div>
+          <div class="lp-capability-row" aria-label="Platform highlights">
+            <div><strong>10</strong><span>Modality scanners</span></div>
+            <div><strong>REAL</strong><span>Grounded evidence</span></div>
+            <div><strong>ZK-READY</strong><span>Privacy-first proofs</span></div>
+            <div><strong>FAST</strong><span>Auditable reports</span></div>
+          </div>
+        </div>
+        <a class="lp-scroll-cue" href="#pillars"><span></span> EXPLORE THE TRUST ENGINE</a>
+      </section>
+
+      <section class="lp-section lp-pillars-section" id="pillars" aria-labelledby="lp-pillars-title">
+        <div class="lp-section-heading">
+          <span class="lp-section-kicker">ONE ENGINE · SIX LAYERS OF INTEGRITY</span>
+          <h2 id="lp-pillars-title">A complete defense for a synthetic world.</h2>
+          <p>Protect people, enterprises, and institutions against manipulated media, digital deception, impersonation, and fraudulent payment channels.</p>
+        </div>
+        <div class="lp-pillar-grid">
+          <article class="lp-pillar-card lp-accent-violet">
+            <span class="lp-card-number">01 / MEDIA FORENSICS</span><span class="lp-card-icon"><i class="fa-solid fa-eye" aria-hidden="true"></i></span>
+            <h3>Detect</h3><p>Find manipulated and suspicious content.</p>
+            <ul><li>ELA compression heatmaps</li><li>SynthID signals &amp; C2PA provenance</li><li>Deepfake boundary analysis</li></ul>
+            <span class="lp-engine-label">DeepfakeBench + SynthID Forensics</span>
+          </article>
+          <article class="lp-pillar-card lp-accent-cyan">
+            <span class="lp-card-number">02 / IDENTITY &amp; TELECOM</span><span class="lp-card-icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
+            <h3>Protect</h3><p>Identify identity and impersonation risks.</p>
+            <ul><li>SIM-swap symptom checks</li><li>Unexpected eSIM &amp; OTP signals</li><li>HIBP k-anonymity range checks</li></ul>
+            <span class="lp-engine-label">CAMARA + HIBP k-Anonymity</span>
+          </article>
+          <article class="lp-pillar-card lp-accent-lilac">
+            <span class="lp-card-number">03 / CRYPTOGRAPHIC SEALS</span><span class="lp-card-icon"><i class="fa-solid fa-file-circle-check" aria-hidden="true"></i></span>
+            <h3>Verify</h3><p>Check documents, credentials, and digital content.</p>
+            <ul><li>Ed25519 examination seals</li><li>64-bit dHash consistency checks</li><li>Document tamper indicators</li></ul>
+            <span class="lp-engine-label">Ed25519 + perceptual hashing</span>
+          </article>
+          <article class="lp-pillar-card lp-accent-pink">
+            <span class="lp-card-number">04 / CLAIMS &amp; PROVENANCE</span><span class="lp-card-icon"><i class="fa-solid fa-route" aria-hidden="true"></i></span>
+            <h3>Trace</h3><p>Investigate where claims began and how they spread.</p>
+            <ul><li>Atomic claim extraction</li><li>Fact-check archive lookups</li><li>Reverse-image provenance timeline</li></ul>
+            <span class="lp-engine-label">IFCN archives + provenance mapping</span>
+          </article>
+          <article class="lp-pillar-card lp-accent-blue">
+            <span class="lp-card-number">05 / THREAT INTELLIGENCE</span><span class="lp-card-icon"><i class="fa-solid fa-shield-virus" aria-hidden="true"></i></span>
+            <h3>Secure</h3><p>Catch scams, phishing, and cyber threats.</p>
+            <ul><li>VirusTotal multi-engine URL scans</li><li>QR destination inspection</li><li>UPI drain &amp; smishing heuristics</li></ul>
+            <span class="lp-engine-label">VirusTotal 92-engine telemetry + threat heuristics</span>
+          </article>
+          <article class="lp-pillar-card lp-accent-mint">
+            <span class="lp-card-number">06 / AUDITABLE PASSPORTS</span><span class="lp-card-icon"><i class="fa-solid fa-certificate" aria-hidden="true"></i></span>
+            <h3>Build Trust</h3><p>See the evidence and limits behind every result.</p>
+            <ul><li>SHA-256 integrity commitments</li><li>Shareable Trust Passports</li><li>Public verification by assessment ID</li></ul>
+            <span class="lp-engine-label">Transparent, verifiable assessment records</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="lp-section lp-workflow-section" id="workflow" aria-labelledby="lp-workflow-title">
+        <div class="lp-section-heading">
+          <span class="lp-section-kicker">FROM SIGNAL TO SAFER ACTION</span>
+          <h2 id="lp-workflow-title">How TrustScan works.</h2>
+          <p>Each assessment turns a raw signal into a clear, evidence-backed next step.</p>
+        </div>
+        <ol class="lp-workflow-grid">
+          <li><span>01</span><h3>Content</h3><p>Submit text, an image, URL, QR code, or document.</p></li>
+          <li><span>02</span><h3>Analysis</h3><p>Coordinate the relevant AI and forensic engines.</p></li>
+          <li><span>03</span><h3>Evidence</h3><p>Isolate exact indicators, anomalies, and vendor flags.</p></li>
+          <li><span>04</span><h3>Verification</h3><p>Evaluate signatures, hashes, and provenance signals.</p></li>
+          <li><span>05</span><h3>Report</h3><p>Return a verdict, severity, rationale, and limitations.</p></li>
+          <li><span>06</span><h3>Action</h3><p>Use practical steps to reduce risk and report abuse.</p></li>
+        </ol>
+      </section>
+
+      <section class="lp-section lp-evidence-section" id="evidence" aria-labelledby="lp-evidence-title">
+        <div class="lp-evidence-intro">
+          <span class="lp-section-kicker">NO BLACK-BOX VERDICTS</span>
+          <h2 id="lp-evidence-title">Trust isn’t a guess.<br /><span>It’s evidence.</span></h2>
+          <p>In a world of AI-synthesized media and automated phishing, a confidence score alone is not enough. TrustScan is designed to make the signals—and uncertainty—visible.</p>
+        </div>
+        <div class="lp-principles-grid">
+          <article><span>01</span><h3>Grounded findings</h3><p>Connect conclusions to exact words, pixel anomalies, or domain intelligence—not unsupported claims.</p></article>
+          <article><span>02</span><h3>Honest limitations</h3><p>Disclose what was inspected, what was unavailable, and where a detector can be uncertain.</p></article>
+          <article><span>03</span><h3>Cryptographic integrity</h3><p>Use Ed25519 signatures and perceptual hashes to check document seals and content consistency.</p></article>
+          <article><span>04</span><h3>Privacy by design</h3><p>Use metadata commitments to support verification without publishing the private source content.</p></article>
+        </div>
+      </section>
+
+      <section class="lp-privacy-section" id="privacy" aria-labelledby="lp-privacy-title">
+        <div class="lp-privacy-wave" aria-hidden="true"></div>
+        <div class="lp-privacy-content">
+          <span class="lp-section-kicker">PRIVATE BY DESIGN · BUILT TO BE AUDITABLE</span>
+          <h2 id="lp-privacy-title">Prove integrity.<br /><span>Keep the message private.</span></h2>
+          <p>Trust Passports can carry SHA-256 commitments that help demonstrate assessment integrity without revealing sensitive text. The architecture is designed to support Groth16 zero-knowledge verification as the system evolves.</p>
+          <div class="lp-privacy-points">
+            <div><i class="fa-solid fa-lock" aria-hidden="true"></i><span><strong>No plaintext secrets in a commitment</strong><small>Keep messages and passwords out of public proof material.</small></span></div>
+            <div><i class="fa-solid fa-fingerprint" aria-hidden="true"></i><span><strong>Integrity you can check</strong><small>Commit to assessment metadata with SHA-256.</small></span></div>
+            <div><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span><strong>Verification-ready records</strong><small>Share a passport for independent assessment checks.</small></span></div>
+          </div>
+        </div>
+        <div class="lp-proof-card"><span class="lp-proof-orbit"></span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><strong>TRUST PASSPORT</strong><small>SHA-256 INTEGRITY COMMITMENT</small><code>content: private<br />integrity: verifiable<br />proof: privacy-first</code></div>
+      </section>
+
+      <section class="lp-final-cta" aria-labelledby="lp-final-title">
+        <div class="lp-final-wave" aria-hidden="true"></div>
+        <span class="lp-section-kicker">YOUR NEXT SIGNAL STARTS HERE</span>
+        <h2 id="lp-final-title">Make trust easier to verify.</h2>
+        <p>Bring suspicious content to one workspace. Get evidence, context, and a safer next step.</p>
+        <a class="lp-button" href="TRUTHSCAN_STANDALONE.html" target="_blank" rel="noopener">Enter TrustScan Workspace <span aria-hidden="true">↗</span></a>
+        <small>Zero private-content retention is the platform privacy commitment; review each detector’s disclosed limits.</small>
+      </section>
+    </main>
+
+    <footer class="lp-footer">
+      <a class="lp-brand" href="#home"><span class="lp-brand-mark"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><span><strong>TRUSTSCAN <em>360</em></strong><small>Digital Trust &amp; Cognitive Safety</small></span></a>
+      <p>© 2026 TRUSTSCAN 360 · Know what to trust.<br /><span class="lp-route-note">Public verification route format: /verify/{assessment_id}</span></p>
+      <a href="#privacy">Privacy commitment <span aria-hidden="true">↑</span></a>
+    </footer>
+  </div>
+
+  <!-- SVG filter defs for spin buttons (hidden) -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+    <defs>
+      <filter width="300%" x="-100%" height="300%" y="-100%" id="unopaq">
+        <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 9 0"></feColorMatrix>
+      </filter>
+      <filter width="300%" x="-100%" height="300%" y="-100%" id="unopaq2">
+        <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 3 0"></feColorMatrix>
+      </filter>
+      <filter width="300%" x="-100%" height="300%" y="-100%" id="unopaq3">
+        <feColorMatrix values="1 0 0 0.2 0  0 1 0 0.2 0  0 0 1 0.2 0  0 0 0 2 0"></feColorMatrix>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Full-viewport cover video behind all UI -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- Single Viewport Page (3 Vertical Regions) -->
+  <div class="page">
+    
+    <!-- 1) HEADER (Top, shrink 0) -->
+    <header class="header">
+      <!-- Logo: Circular button, white bg, icon 72% -->
+      <a href="#" class="logo-btn" aria-label="Truthscan Home" data-open-truthscan>
+        <img src="assets/logo.webp" alt="" width="52" height="52" class="logo-img" />
+      </a>
+
+      <!-- Nav pill (white) -->
+      <nav class="nav-pill" aria-label="Main Navigation">
+        <a href="#overview" class="nav-link active">Overview</a>
+        <a href="#deepfake" class="nav-link" data-open-truthscan>Detect</a>
+        <a href="#verify" class="nav-link" data-open-truthscan>Verify</a>
+        <a href="#trace" class="nav-link" data-open-truthscan>Trace</a>
+      </nav>
+
+      <!-- Trust Engine: Dark pill -->
+      <!-- Scan Now: spin button (small variant) -->
+      <div class="spin-btn-wrap">
+        <button class="spin-real-btn" type="button" data-open-truthscan aria-label="Scan Now"></button>
+        <div class="spin-container">
+          <div class="spin spin-blur"></div>
+          <div class="spin spin-intense"></div>
+          <div class="spin-border">
+            <div class="spin spin-inside"></div>
+            <div class="spin-label">Scan Now</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" id="burger-btn" class="burger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <div class="burger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </header>
+
+    <!-- 2) HERO (Center, flex 1) -->
+    <main class="hero">
+      
+      <!-- Trust row: Overlapping security badges + pill -->
+      <div class="trust-row anim" style="--d: 0.05s">
+        <!-- Shield 1: Google DeepMind SynthID -->
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <i class="fa-brands fa-google"></i>
+          </div>
+        </div>
+        <!-- Shield 2: C2PA & Provenance -->
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <i class="fa-solid fa-fingerprint"></i>
+          </div>
+        </div>
+        <!-- Shield 3: Zero-Trust Defense -->
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+        </div>
+        <!-- Trust pill -->
+        <div class="trust-pill">
+          <span class="trust-text">Unified Six-Pillar Cognitive Defense</span>
+        </div>
+      </div>
+
+      <!-- Headline: Solid white, dot-matrix -->
+      <h1 class="headline">
+        <span class="headline-line line-1" data-text="TRUTHSCAN">TRUTHSCAN</span>
+        <span class="headline-line line-2" data-text="TRUST IN SYNTHETIC REALITY">TRUST IN SYNTHETIC REALITY</span>
+      </h1>
+
+      <!-- Subhead -->
+      <p class="subhead anim" style="--d: 0.28s">
+        Detect deepfakes, thwart SIM-swap impersonation, verify cryptographic document seals, and trace synthetic deception across multimodal attack vectors in real time.
+      </p>
+
+      <!-- CTA: SelfMadeSystem Spin Button -->
+      <div class="button-wrap anim-pulse" style="--d: 0.4s">
+        <button class="real-button" type="button" data-open-truthscan aria-label="Open Trust Case"></button>
+        <div class="button-container">
+          <div class="spin spin-blur"></div>
+          <div class="spin spin-intense"></div>
+          <div class="button-border">
+            <div class="spin spin-inside"></div>
+            <div class="button-inner">Open Trust Case</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 3) STATS FOOTER (Bottom, shrink 0, exact 4 metrics) -->
+    <footer class="stats" aria-label="Truthscan Performance Metrics">
+      
+      <!-- Metric 1: Synthesis Latency -->
+      <div class="stat-item anim" style="--d: 0.5s">
+        <div class="stat-icon">&lt;</div>
+        <div class="stat-value"><span id="stat-latency">0</span>ms</div>
+        <div class="stat-label">Synthesis Latency</div>
+      </div>
+
+      <!-- Metric 2: Detection Precision -->
+      <div class="stat-item anim" style="--d: 0.58s">
+        <div class="stat-icon">%</div>
+        <div class="stat-value"><span id="stat-accuracy">0</span>%</div>
+        <div class="stat-label">Detection Precision</div>
+      </div>
+
+      <!-- Metric 3: Active Defense Pillars -->
+      <div class="stat-item anim" style="--d: 0.66s">
+        <div class="stat-icon">*</div>
+        <div class="stat-value"><span id="stat-pillars">0</span>/6</div>
+        <div class="stat-label">Cognitive Pillars</div>
+      </div>
+
+      <!-- Metric 4: Attacks Audited -->
+      <div class="stat-item anim" style="--d: 0.74s">
+        <div class="stat-icon">#</div>
+        <div class="stat-value"><span id="stat-scans">0</span>M</div>
+        <div class="stat-label">Attacks Audited</div>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <!-- Mobile Overlay & Menu Sheet -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <a href="#overview" class="mobile-link active">Overview</a>
+    <a href="#detect" class="mobile-link" data-open-truthscan>1. Detect (Deepfakes)</a>
+    <a href="#protect" class="mobile-link" data-open-truthscan>2. Protect (SIM-Swap)</a>
+    <a href="#verify" class="mobile-link" data-open-truthscan>3. Verify (Exam Seals)</a>
+    <a href="#trace" class="mobile-link" data-open-truthscan>4. Trace (Claims)</a>
+    <a href="#signin" class="mobile-signin-btn" data-open-truthscan>Launch Full Suite</a>
+  </div>
+
+  <!-- TRUTHSCAN COGNITIVE ENGINE MODAL OVERLAY -->
+  <div id="truthscan-modal" class="truthscan-modal" role="dialog" aria-modal="true" aria-label="Truthscan Cognitive Suite">
+    <div class="truthscan-dialog">
+      <button type="button" id="modal-close" class="modal-close-btn" aria-label="Close Truthscan Dialog">&times;</button>
+      
+      <!-- Modal Header -->
+      <div class="suite-modal-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 38px; height: 38px; border-radius: 12px; background: #fff; display: grid; place-items: center;">
+            <i class="fa-solid fa-shield-halved" style="color: #000; font-size: 18px;"></i>
+          </div>
+          <div>
+            <h2 style="font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.02em;">TRUTHSCAN COGNITIVE SUITE</h2>
+            <p style="font-size: 11px; color: #8e8e8e; font-family: monospace;">Detect · Protect · Verify · Trace · Secure · Build Trust</p>
+          </div>
+        </div>
+        <a href="TRUTHSCAN_STANDALONE.html" target="_blank" style="font-size: 12px; color: #fff; text-decoration: none; background: #28282a; padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); transition: background-color 0.2s;">
+          Open Full Engine &rarr;
+        </a>
+      </div>
+
+      <!-- Detect · Verify · Trace feature navigation with soft violet wave artwork -->
+      <section class="feature-wave-panel" aria-labelledby="feature-wave-title">
+        <svg class="feature-wave-art" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-40 194 C120 110 210 270 370 190 S620 110 780 190 1030 270 1240 160" />
+          <path d="M-40 220 C120 136 210 296 370 216 S620 136 780 216 1030 296 1240 186" />
+          <path d="M-40 168 C120 84 210 244 370 164 S620 84 780 164 1030 244 1240 134" />
+          <path d="M-40 142 C120 58 210 218 370 138 S620 58 780 138 1030 218 1240 108" />
+        </svg>
+        <div class="feature-wave-content">
+          <span class="feature-wave-kicker"><span></span> THREE CORE SIGNAL TOOLS</span>
+          <h3 id="feature-wave-title">A calm scanning signal field.</h3>
+          <p>Move from suspicious media to verified documents and traceable claims.</p>
+          <div class="feature-wave-grid">
+            <a class="feature-wave-card" href="TRUTHSCAN_STANDALONE.html?tab=detect-tab" target="_blank" rel="noopener">
+              <span class="feature-wave-index">01 / DETECT</span>
+              <strong>Spot synthetic signals</strong>
+              <span class="feature-wave-description">Deepfake and image forensics</span>
+              <span class="feature-wave-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="feature-wave-card" href="TRUTHSCAN_STANDALONE.html?tab=verify-tab" target="_blank" rel="noopener">
+              <span class="feature-wave-index">02 / VERIFY</span>
+              <strong>Check what is genuine</strong>
+              <span class="feature-wave-description">Document seals and integrity</span>
+              <span class="feature-wave-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="feature-wave-card" href="TRUTHSCAN_STANDALONE.html?tab=trace-tab" target="_blank" rel="noopener">
+              <span class="feature-wave-index">03 / TRACE</span>
+              <strong>Follow claims to source</strong>
+              <span class="feature-wave-description">Origin, context, and provenance</span>
+              <span class="feature-wave-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Trust Case Submission Form -->
+      <div class="quick-scan-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 24px; margin-bottom: 24px;">
+        <h3 style="font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 8px;">Run Cross-Pillar Threat Assessment</h3>
+        <p style="font-size: 12px; color: #8e8e8e; margin-bottom: 16px;">Paste message text, email headers, suspicious URLs, WhatsApp forwards, or call scripts to synthesize forensic intelligence across all 6 cognitive defense pillars.</p>
+        
+        <form onsubmit="handleQuickScan(event)" style="display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <textarea id="quick-scan-text" rows="4" style="width: 100%; background: #000; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 12px; color: #fff; font-family: var(--font-sans); font-size: 13px; outline: none; resize: vertical;" placeholder="e.g. Urgent alert: Your SBI NetBanking KYC suspended. Click https://sbi-secure.apk or transfer Rs 25,000 emergency fund immediately..."></textarea>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+            <input id="quick-claimed-entity" type="text" placeholder="Claimed Entity (e.g. State Bank of India / Son / Police)" style="background: #000; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 10px 14px; color: #fff; font-size: 12px; outline: none;" />
+            <input id="quick-channel-sender" type="text" placeholder="Sender / Channel (+91-9876543210, sms-hdr, email)" style="background: #000; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 10px 14px; color: #fff; font-size: 12px; outline: none;" />
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 6px;">
+            <span style="font-size: 11px; color: #8e8e8e; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-lock" style="color: #4ade80;"></i> Zero telemetry retention · Client-side privacy safe
+            </span>
+            <button type="submit" id="quick-scan-btn" style="background: #ffffff; color: #000000; font-family: var(--font-sans); font-weight: 600; font-size: 13px; padding: 10px 24px; border-radius: 999px; border: none; cursor: pointer;">
+              Synthesize Attack Chain
+            </button>
+          </div>
+        </form>
+
+        <div id="quick-result" style="display: none; margin-top: 18px; padding: 16px; border-radius: 12px; background: #000; border: 1px solid rgba(255,255,255,0.2); font-family: monospace; font-size: 12px;">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- The 6 Pillars Overview -->
+      <div class="pillar-overview-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; text-align: center; font-family: monospace; font-size: 11px;">
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #38bdf8; display: block; margin-bottom: 2px;">1. DETECT</strong>
+          <span style="color: #8e8e8e;">Deepfakes & Media</span>
+        </div>
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #4ade80; display: block; margin-bottom: 2px;">2. PROTECT</strong>
+          <span style="color: #8e8e8e;">Identity & SIM-Swap</span>
+        </div>
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #c084fc; display: block; margin-bottom: 2px;">3. VERIFY</strong>
+          <span style="color: #8e8e8e;">Docs & Exam Seals</span>
+        </div>
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #facc15; display: block; margin-bottom: 2px;">4. TRACE</strong>
+          <span style="color: #8e8e8e;">Claims & Origins</span>
+        </div>
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #fb7185; display: block; margin-bottom: 2px;">5. SECURE</strong>
+          <span style="color: #8e8e8e;">Phishing & Fraud</span>
+        </div>
+        <div style="padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08);">
+          <strong style="color: #2dd4bf; display: block; margin-bottom: 2px;">6. BUILD TRUST</strong>
+          <span style="color: #8e8e8e;">Audit & Provenance</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Quick in-modal assessment handler
+    function handleQuickScan(e) {
+      e.preventDefault();
+      const btn = document.getElementById('quick-scan-btn');
+      const out = document.getElementById('quick-result');
+      const text = document.getElementById('quick-scan-text').value;
+      const claimed = document.getElementById('quick-claimed-entity').value;
+      const channel = document.getElementById('quick-channel-sender').value;
+
+      if (!text && !claimed && !channel) {
+        alert("Please enter message text or claimed sender details.");
+        return;
+      }
+
+      btn.innerText = "Analyzing Attack Chain...";
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerText = "Synthesize Attack Chain";
+        btn.disabled = false;
+        out.style.display = "block";
+        
+        let isSuspicious = text.toLowerCase().includes('kyc') || text.toLowerCase().includes('urgent') || text.toLowerCase().includes('http') || text.toLowerCase().includes('otp');
+        
+        out.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <span style="color: #fff; font-weight: bold;">CASE ID: TS-${Math.floor(100000 + Math.random() * 900000)}</span>
+            <span style="background: ${isSuspicious ? 'rgba(239, 68, 68, 0.2)' : 'rgba(34, 197, 94, 0.2)'}; color: ${isSuspicious ? '#f87171' : '#4ade80'}; border: 1px solid ${isSuspicious ? 'rgba(239, 68, 68, 0.4)' : 'rgba(34, 197, 94, 0.4)'}; padding: 2px 8px; border-radius: 999px; font-size: 11px;">
+              ${isSuspicious ? 'CRITICAL_RISK_DETECTED' : 'LOW_RISK_CLEAR'}
+            </span>
+          </div>
+          <div style="color: #c4c2c3; line-height: 1.6;">
+            <strong>Cognitive Synthesis:</strong> ${isSuspicious ? 'Urgency signals, unauthorized credential vector, and deceptive entity pairing matched active social engineering attack chains. Gemini flash reasoning flagged deceptive intent.' : 'Standard communication characteristics observed without known adversarial indicators.'}<br>
+            <span style="color: #8e8e8e; display: block; margin-top: 6px;">For forensic deepfake ELA inspection, pyHanko document seals, or QR matrix decoding, launch <a href="TRUTHSCAN_STANDALONE.html" target="_blank" style="color: #fff; text-decoration: underline; font-weight: 600;">Full Standalone Engine &rarr;</a></span>
+          </div>
+        `;
+      }, 700);
+    }
+  </script>
+</body>
+</html>

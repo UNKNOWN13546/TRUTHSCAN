@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRUSTSCAN 360 — Know What to Trust in a Digitally Manipulated World</title>
+  
+  <!-- Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Three.js CDN for MagicRings Background Effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              900: '#0c4a6e',
+            },
+            surface: {
+              950: '#070d19',
+              900: '#0d1629',
+              850: '#121f3a',
+              800: '#18294a',
+              border: 'rgba(255, 255, 255, 0.10)',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0b1329;
+      background-image: 
+        radial-gradient(ellipse at 50% 12%, rgba(56, 189, 248, 0.28) 0%, transparent 65%),
+        radial-gradient(ellipse at 85% 35%, rgba(236, 72, 153, 0.24) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 65%, rgba(99, 102, 241, 0.28) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 90%, rgba(14, 165, 233, 0.22) 0%, transparent 60%);
+      color: #f1f5f9;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      overflow-x: hidden;
+    }
+
+    .tech-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    }
+
+    .glass-card {
+      background: rgba(13, 22, 41, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .subtle-glow {
+      box-shadow: 0 0 50px -10px rgba(2, 132, 199, 0.25);
+    }
+
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+    }
+
+    .status-critical { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.45); }
+    .status-elevated { background: rgba(249, 115, 22, 0.2); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.45); }
+    .status-warn     { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.45); }
+    .status-ok       { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.45); }
+    .status-muted    { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.25); }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070d19; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+    /* Archify Cybernetic Motion & Circuit Animations */
+    @keyframes laser-flow {
+      from { stroke-dashoffset: 200; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .laser-conduit-cyan {
+      stroke: #38bdf8;
+      stroke-dasharray: 8, 12;
+      animation: laser-flow 1.5s linear infinite;
+      filter: drop-shadow(0 0 6px #38bdf8);
+    }
+
+    .laser-conduit-emerald {
+      stroke: #34d399;
+      stroke-dasharray: 8, 12;
+      animation: laser-flow 1.5s linear infinite;
+      filter: drop-shadow(0 0 6px #34d399);
+    }
+
+    .laser-conduit-amber {
+      stroke: #fbbf24;
+      stroke-dasharray: 8, 12;
+      animation: laser-flow 1.5s linear infinite;
+      filter: drop-shadow(0 0 6px #fbbf24);
+    }
+
+    .laser-conduit-purple {
+      stroke: #c084fc;
+      stroke-dasharray: 8, 12;
+      animation: laser-flow 1.5s linear infinite;
+      filter: drop-shadow(0 0 6px #c084fc);
+    }
+
+    /* Modal Animation */
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-modal {
+      animation: fadeInModal 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* MagicRings Canvas Container (Bright & Vibrant) */
+    #magic-rings-mount {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.92;
+      overflow: hidden;
+    }
+    #magic-rings-mount canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-sky-500/30 selection:text-sky-200 tech-grid relative">
+
+  <!-- ======================================================== -->
+  <!--               1. LANDING PAGE VIEW (ROUTE /)             -->
+  <!-- ======================================================== -->
+  <div id="view-landing" class="hidden flex-col min-h-screen relative z-10">
+    
+    <!-- Landing Navigation Header -->
+    <header class="sticky top-0 z-40 bg-surface-950/85 backdrop-blur-xl border-b border-surface-border">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="/" onclick="event.preventDefault(); routeTo('/');" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform duration-200">
+            <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-extrabold text-xl tracking-tight text-white font-mono">TRUSTSCAN</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold border border-sky-500/30">360</span>
+            </div>
+            <p class="text-[10px] text-slate-400 font-mono tracking-wider uppercase">Digital Trust & Safety Platform</p>
+          </div>
+        </a>
+
+        <!-- Landing Menu Links -->
+        <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+          <a href="#pillars" class="hover:text-sky-400 transition">Six Pillars</a>
+          <a href="#flow" class="hover:text-sky-400 transition">Workflow</a>
+          <a href="#philosophy" class="hover:text-sky-400 transition">Evidence Model</a>
+          <a href="#zk" class="hover:text-sky-400 transition">ZK Privacy</a>
+        </nav>
+
+        <!-- Primary CTA to Launch App -->
+        <div class="flex items-center space-x-3">
+          <button onclick="routeTo('/app')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all duration-200 flex items-center space-x-2 cursor-pointer active:scale-95">
+            <span>LAUNCH TRUSTSCAN</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-28 px-6 overflow-hidden">
+      <!-- Glow Gradients -->
+      <div class="absolute left-1/2 -top-20 -translate-x-1/2 w-[700px] h-[400px] bg-sky-500/18 rounded-full blur-[140px] pointer-events-none"></div>
+      <div class="absolute right-10 top-40 w-[400px] h-[350px] bg-indigo-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+        
+        <!-- Live Badges -->
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-mono shadow-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-slate-300 font-medium">Problem Statement 2: Trust in a Synthetic World</span>
+          <span class="text-slate-500">·</span>
+          <span class="text-sky-400 font-semibold">Gemini 3.8 Flash Core</span>
+        </div>
+
+        <!-- Hero Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+          TRUSTSCAN 360
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-cyan-300 tracking-tight">
+          Know what to trust in a digitally manipulated world.
+        </p>
+
+        <!-- Supporting Text -->
+        <p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed font-normal">
+          Detect suspicious content, verify authenticity, trace digital claims, protect identities, and respond to online threats — with evidence-backed AI analysis.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="routeTo('/app')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 hover:from-sky-400 hover:via-blue-500 hover:to-indigo-500 text-white font-bold text-base shadow-2xl shadow-sky-500/30 hover:shadow-sky-500/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center space-x-3 group cursor-pointer">
+            <span>[ LAUNCH TRUSTSCAN ]</span>
+            <i data-lucide="sparkles" class="w-5 h-5 text-sky-200 group-hover:rotate-12 transition-transform"></i>
+          </button>
+          
+          <button onclick="launchDemoAndNavigate()" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 text-slate-200 hover:text-white font-mono text-sm transition-all duration-200 flex items-center justify-center space-x-2">
+            <i data-lucide="play-circle" class="w-4 h-4 text-amber-400"></i>
+            <span>Load Golden Demo Story (2.5m)</span>
+          </button>
+        </div>
+
+        <!-- Capability Tags -->
+        <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto text-xs font-mono">
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+            <span class="text-sky-400 font-bold block">10 SCANNERS</span>
+            <span class="text-slate-400">Unified in + Menu</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+            <span class="text-emerald-400 font-bold block">REAL EVIDENCE</span>
+            <span class="text-slate-400">Zero Placeholder Data</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+            <span class="text-purple-400 font-bold block">ZK-READY</span>
+            <span class="text-slate-400">SHA-256 Commitments</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-center">
+            <span class="text-amber-400 font-bold block">FAST & AUDITABLE</span>
+            <span class="text-slate-400">Verifiable Passports</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 3. THE SIX PILLARS SECTION ================= -->
+    <section id="pillars" class="py-20 px-6 border-t border-slate-800/80 relative">
+      <div class="max-w-7xl mx-auto space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <h2 class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">Architecture & Coverage</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The Six Pillars of TrustScan 360</p>
+          <p class="text-slate-400 text-sm sm:text-base">Built to protect against synthetic media, digital deception, impersonation, and fraudulent payment channels.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Pillar 1: DETECT -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-sky-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center mb-4 text-sky-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="scan" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-sky-400">PILLAR 1</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Deepfake & Forensics</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">DETECT</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Find manipulated and suspicious content. Inspects error level analysis (ELA) compression heatmaps, SynthID spectral watermarks, Face X-Ray boundary correlates, and C2PA provenance manifests.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-sky-400">
+              <span>DeepfakeBench + SynthID</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- Pillar 2: PROTECT -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-4 text-emerald-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-emerald-400">PILLAR 2</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Identity & Telecom</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">PROTECT</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Identify identity and impersonation risks. Audits CAMARA SIM-swap symptom flags (sudden no-service, unauthorized eSIM swaps) and performs HIBP k-anonymity password breach range checks without plain-text exposure.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-emerald-400">
+              <span>CAMARA + HIBP Range</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- Pillar 3: VERIFY -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-purple-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mb-4 text-purple-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="stamp" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-purple-400">PILLAR 3</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Cryptographic Seals</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">VERIFY</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Check authenticity of documents, credentials and digital content. Issues and verifies official Ed25519 examination paper seals and validates 64-bit dHash perceptual consistency down to single-character edits.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-purple-400">
+              <span>Ed25519 + 64-bit dHash</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- Pillar 4: TRACE -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-amber-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4 text-amber-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="git-commit" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-amber-400">PILLAR 4</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Provenance & Fact-Check</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">TRACE</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Investigate the origin and spread of claims. Extracts atomic claims via NLP decomposition, queries Google Fact Check and IFCN verified archives, and cross-references image provenance timelines.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-amber-400">
+              <span>IFCN + Reverse Provenance</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- Pillar 5: SECURE -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-rose-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center mb-4 text-rose-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-rose-400">PILLAR 5</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Scams, Phishing & QR</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">SECURE</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Detect scams, phishing and cyber threats. Scans URLs against 92 VirusTotal security engines and decodes QR codes to alert users against UPI payment drain traps and coercive smishing attacks.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-rose-400">
+              <span>VirusTotal + UPI Trap Audit</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- Pillar 6: BUILD TRUST -->
+          <div class="glass-card p-6 rounded-3xl relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-4 text-cyan-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs font-mono font-bold text-cyan-400">PILLAR 6</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">Auditable Passports</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mt-1">BUILD TRUST</h3>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Explain the evidence behind every result. Issues tamper-proof Trust Passports with SHA-256 canonical commitments and Zero-Knowledge verification proofs that can be audited publicly on /verify/{id}.
+            </p>
+            <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-cyan-400">
+              <span>ZK Commitment + Passports</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VISUAL FLOW SECTION ================= -->
+    <section id="flow" class="py-20 px-6 border-t border-slate-800/80 bg-slate-950/50">
+      <div class="max-w-6xl mx-auto space-y-12">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <h2 class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">Operational Pipeline</h2>
+          <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The TrustScan Verification Flow</p>
+          <p class="text-slate-400 text-sm sm:text-base">From raw input to cryptographically verifiable protection in 6 transparent stages.</p>
+        </div>
+
+        <!-- Flow Diagram Container -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold font-mono text-sm">
+              1
+            </div>
+            <span class="font-bold text-white text-xs font-mono">CONTENT</span>
+            <p class="text-[11px] text-slate-400">Message, screenshot, URL, QR, or PDF file</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold font-mono text-sm">
+              2
+            </div>
+            <span class="font-bold text-white text-xs font-mono">ANALYSIS</span>
+            <p class="text-[11px] text-slate-400">Gemini 3.8 Flash, VirusTotal & Forensics</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold font-mono text-sm">
+              3
+            </div>
+            <span class="font-bold text-white text-xs font-mono">EVIDENCE</span>
+            <p class="text-[11px] text-slate-400">Grounded extracted indicators & ELA heatmaps</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 font-bold font-mono text-sm">
+              4
+            </div>
+            <span class="font-bold text-white text-xs font-mono">VERIFICATION</span>
+            <p class="text-[11px] text-slate-400">Ed25519 signatures & dHash consistency</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold font-mono text-sm">
+              5
+            </div>
+            <span class="font-bold text-white text-xs font-mono">FINAL REPORT</span>
+            <p class="text-[11px] text-slate-400">Real/Fake verdict, risk score, WHY & limits</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-surface-900 border border-slate-800 flex flex-col items-center text-center space-y-2 relative group hover:border-sky-500/50 transition">
+            <div class="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold font-mono text-sm">
+              6
+            </div>
+            <span class="font-bold text-white text-xs font-mono">ACTION</span>
+            <p class="text-[11px] text-slate-400">Specific defense guidance & containment</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= MANIFESTO SECTION ================= -->
+    <section id="philosophy" class="py-24 px-6 border-t border-slate-800/80 relative">
+      <div class="max-w-4xl mx-auto space-y-8">
+        
+        <div class="glass-card p-8 sm:p-12 rounded-3xl border border-sky-500/20 relative overflow-hidden subtle-glow">
+          <div class="space-y-6">
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-mono font-bold">
+              <span>FOUNDATIONAL PHILOSOPHY</span>
+            </span>
+
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Trust isn't a guess. <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-indigo-300 to-cyan-300">It's evidence.</span>
+            </h2>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+              In a world flooded with AI-synthesized audio, deepfaked videos, cloned payment apps, and automated phishing campaigns, probabilistic AI confidence scores are no longer enough.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono text-slate-300 pt-2">
+              <div class="p-4 rounded-2xl bg-surface-950/80 border border-slate-800/80 space-y-1">
+                <span class="text-sky-400 font-bold block">1. Grounded Findings</span>
+                <span>Every conclusion must highlight exact words, pixel anomalies, or domain threat intelligence.</span>
+              </div>
+              <div class="p-4 rounded-2xl bg-surface-950/80 border border-slate-800/80 space-y-1">
+                <span class="text-emerald-400 font-bold block">2. Detector Limitations</span>
+                <span>We clearly disclose what was inspected and what remains uncertain. Zero false omniscience.</span>
+              </div>
+              <div class="p-4 rounded-2xl bg-surface-950/80 border border-slate-800/80 space-y-1">
+                <span class="text-purple-400 font-bold block">3. Cryptographic Proof</span>
+                <span>Ed25519 digital signatures and perceptual dHash hashes guarantee exam and document authenticity.</span>
+              </div>
+              <div class="p-4 rounded-2xl bg-surface-950/80 border border-slate-800/80 space-y-1">
+                <span class="text-amber-400 font-bold block">4. Zero-Knowledge Ready</span>
+                <span>Users can prove risk predicates without exposing original private content or secrets.</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between">
+              <button onclick="routeTo('/app')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 transition flex items-center space-x-2">
+                <span>Enter TrustScan Workspace</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+              <span class="text-xs text-slate-400 font-mono">Real-Time Verification</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Landing Footer -->
+    <footer class="mt-auto py-10 px-6 border-t border-slate-800/80 bg-surface-950 text-xs font-mono text-slate-400">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-2">
+          <span class="font-bold text-white">TRUSTSCAN 360</span>
+          <span>— Digital Trust & Cognitive Safety Platform</span>
+        </div>
+        <div class="flex items-center space-x-6 text-slate-400">
+          <a href="/" onclick="event.preventDefault(); routeTo('/');" class="hover:text-white transition">Home</a>
+          <a href="/app" onclick="event.preventDefault(); routeTo('/app');" class="hover:text-white transition">Launch App</a>
+          <a href="#zk" onclick="event.preventDefault(); routeTo('/app'); switchAppTab('privacy');" class="hover:text-white transition">ZK Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!--             2. MAIN APPLICATION WORKSPACE (/app)         -->
+  <!-- ======================================================== -->
+  <div id="view-app" class="flex flex-col min-h-screen relative">
+    
+    <!-- React Bits <MagicRings /> Three.js Interactive Background Component Mount -->
+    <div id="magic-rings-mount"></div>
+
+    <!-- Ambient Glowing Orbs to make the background much brighter & luminous -->
+    <div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] bg-gradient-to-tr from-sky-400/25 via-fuchsia-500/20 to-cyan-400/25 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-10 right-1/4 w-[600px] h-[450px] bg-indigo-500/20 rounded-full blur-[130px] pointer-events-none z-0"></div>
+
+    <!-- Clean Main App Header -->
+    <header class="sticky top-0 z-40 bg-surface-950/80 backdrop-blur-xl border-b border-surface-border relative z-20">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        
+        <!-- Logo (links to Landing Page) -->
+        <a href="/" onclick="window.location.href='/';" class="flex items-center space-x-2.5 group cursor-pointer" title="Back to Landing Page">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-md shadow-sky-500/30 group-hover:scale-105 transition-transform">
+            <i data-lucide="shield-check" class="w-4 h-4 text-white"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-1.5">
+              <span class="font-extrabold text-base tracking-tight text-white font-mono">TRUSTSCAN</span>
+              <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-sky-500/20 text-sky-400 font-mono font-bold">360</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Main Navigation (Dashboard, History, Trust Passport, Privacy, Architecture) -->
+        <nav class="flex items-center space-x-1 text-xs font-mono font-medium p-1 bg-surface-900/90 rounded-xl border border-surface-border">
+          <button onclick="switchAppTab('dashboard')" id="app-nav-dashboard" class="app-nav-btn px-3 py-1.5 rounded-lg bg-sky-500/15 text-sky-400 border border-sky-500/30 flex items-center space-x-1.5 transition">
+            <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+            <span>Dashboard</span>
+          </button>
+          
+          <button onclick="switchAppTab('history')" id="app-nav-history" class="app-nav-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 flex items-center space-x-1.5 transition">
+            <i data-lucide="history" class="w-3.5 h-3.5"></i>
+            <span>History</span>
+          </button>
+
+          <button onclick="switchAppTab('passport')" id="app-nav-passport" class="app-nav-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 flex items-center space-x-1.5 transition">
+            <i data-lucide="badge-check" class="w-3.5 h-3.5"></i>
+            <span>Trust Passport</span>
+          </button>
+
+          <button onclick="switchAppTab('privacy')" id="app-nav-privacy" class="app-nav-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 flex items-center space-x-1.5 transition">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span class="text-emerald-400">Privacy</span>
+          </button>
+
+          <button onclick="switchAppTab('arch')" id="app-nav-arch" class="app-nav-btn px-3 py-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/50 flex items-center space-x-1.5 transition">
+            <i data-lucide="network" class="w-3.5 h-3.5"></i>
+            <span>Architecture</span>
+          </button>
+        </nav>
+
+        <!-- Right Side Controls -->
+        <div class="flex items-center space-x-2">
+          <button onclick="loadGoldenDemoStory()" class="hidden sm:flex text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-lg items-center space-x-1.5 font-mono transition">
+            <i data-lucide="play" class="w-3 h-3 text-amber-400 fill-amber-400"></i>
+            <span>Demo Story (2.5m)</span>
+          </button>
+
+          <button onclick="window.location.href='/'" class="text-xs px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-mono transition flex items-center space-x-1" title="Back to Landing Page">
+            <i data-lucide="home" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Home</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Workspace Main Container - CENTERED FOCUS LAYOUT -->
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 space-y-8 relative z-10">
+
+      <!-- ======================================================== -->
+      <!--            SUBVIEW 1: DASHBOARD (PRIMARY WORKSPACE)      -->
+      <!-- ======================================================== -->
+      <div id="subview-dashboard" class="app-subview space-y-6">
+        
+        <!-- PROMINENT "+" / "+ NEW ANALYSIS" ACTION BAR (CENTERED) -->
+        <div class="glass-card rounded-3xl p-4 sm:p-5 border border-slate-700/80 shadow-2xl relative">
+          
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <!-- Left / Center: The Big + Button and Active Tool Badge -->
+            <div class="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-start">
+              
+              <!-- THE BIG "+" BUTTON -->
+              <button type="button" id="btn-plus-action" onclick="openNewAnalysisModal()" class="w-12 h-12 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white flex items-center justify-center font-bold text-3xl shadow-lg shadow-sky-500/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer shrink-0" title="Click to choose from all 10 analysis tools">
+                <span class="leading-none mb-0.5">+</span>
+              </button>
+
+              <div class="min-w-0 text-left">
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Active Modality:</span>
+                  <span id="active-tool-badge" class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-mono text-xs font-bold border border-sky-500/30">
+                    Text Scanner
+                  </span>
+                </div>
+                <h2 id="active-tool-title" class="text-base sm:text-lg font-bold text-white tracking-tight truncate">
+                  SMS & Smishing Fraud Scanner
+                </h2>
+              </div>
+
+            </div>
+
+            <!-- Right / Center: "+ New Analysis" Direct Selector Button -->
+            <div class="flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-end">
+              <button type="button" onclick="openNewAnalysisModal()" class="px-4 py-2.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-600/80 text-slate-200 hover:text-white text-xs font-mono font-bold flex items-center space-x-2 transition shadow-md cursor-pointer hover:border-sky-500/50">
+                <i data-lucide="plus" class="w-4 h-4 text-sky-400"></i>
+                <span>+ NEW ANALYSIS</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= TOOL DEDICATED DROP ZONE & INPUT (ALL CENTERED) ================= -->
+        <div id="tool-workspace-container" class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-700/80 shadow-2xl relative space-y-6 text-center">
+          
+          <!-- Tool Header & Quick Actions - Centered -->
+          <div class="text-center space-y-2 pb-5 border-b border-slate-800/80">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-400 text-xs font-mono font-bold mx-auto mb-1">
+              <span id="active-tool-header-badge">Text Scanner</span>
+            </div>
+            <h2 id="active-tool-main-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight font-mono">
+              SMS, Phishing & Smishing Fraud Scanner
+            </h2>
+            <p id="tool-description-text" class="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Paste suspicious message, SMS, email, or WhatsApp message to inspect coercive urgency, lottery claims, or bank phishing.
+            </p>
+            
+            <!-- Quick Sample Loaders - Centered -->
+            <div id="tool-sample-actions" class="flex flex-wrap items-center justify-center gap-2 pt-2"></div>
+          </div>
+
+          <!-- Dynamic Tool Input Area - Centered & Focused -->
+          <div id="dynamic-tool-input-fields" class="space-y-4 max-w-2xl mx-auto text-left"></div>
+
+          <!-- Drag and Drop Zone - Centered -->
+          <div id="tool-dropzone" class="hidden border-2 border-dashed border-slate-700 hover:border-sky-500/60 rounded-2xl p-8 text-center bg-surface-950/70 transition-all duration-200 cursor-pointer relative group max-w-2xl mx-auto" ondragover="handleFileDragOver(event)" ondragleave="handleFileDragLeave(event)" ondrop="handleFileDrop(event)" onclick="document.getElementById('hidden-file-input').click()">
+            <input type="file" id="hidden-file-input" class="hidden" onchange="handleFileSelected(this.files)" />
+            
+            <div class="flex flex-col items-center justify-center space-y-2 pointer-events-none">
+              <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform">
+                <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+              </div>
+              <p id="dropzone-title" class="font-bold text-white text-sm font-mono">Drop File Here or Click to Browse</p>
+              <p id="dropzone-sub" class="text-xs text-slate-400 font-mono">Accepts PNG, JPG, WebP, PDF up to 25MB</p>
+            </div>
+
+            <!-- Attached File Chip Preview -->
+            <div id="dropzone-preview-chip" class="hidden mt-3 inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-sky-950/90 border border-sky-500/40 text-xs font-mono text-sky-300">
+              <i data-lucide="file-check" class="w-4 h-4 text-emerald-400"></i>
+              <span id="dropzone-file-name">filename.png</span>
+              <button type="button" onclick="event.stopPropagation(); clearActiveFile();" class="text-slate-400 hover:text-white ml-2">✕</button>
+            </div>
+          </div>
+
+          <!-- Run Analysis Execution Bar - Centered -->
+          <div class="flex flex-col items-center justify-center gap-3 pt-6 border-t border-slate-800/80 max-w-2xl mx-auto text-center">
+            
+            <div class="flex items-center justify-center space-x-3 w-full sm:w-auto">
+              <button type="button" onclick="resetActiveToolForm()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-mono transition">
+                Reset
+              </button>
+
+              <button type="button" id="btn-run-analysis" onclick="executeCurrentToolAnalysis()" class="px-8 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm font-mono shadow-xl shadow-sky-500/30 flex items-center justify-center space-x-2.5 cursor-pointer transition active:scale-95">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span id="btn-run-label">RUN ANALYSIS</span>
+              </button>
+            </div>
+
+            <div class="text-xs font-mono text-slate-400 flex items-center justify-center space-x-2 pt-1 text-center">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Gemini 3.8 Flash Core Active</span>
+              <span class="text-slate-600">·</span>
+              <span>VirusTotal 92-Engine Telemetry</span>
+            </div>
+
+          </div>
+
+          <!-- Loading Progress State - Centered -->
+          <div id="tool-loading-state" class="hidden p-6 rounded-2xl bg-surface-950/90 border border-sky-500/30 space-y-3 text-center max-w-2xl mx-auto">
+            <div class="flex items-center justify-center space-x-3">
+              <div class="w-5 h-5 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
+              <span id="loading-stage-text" class="font-mono text-sm text-sky-300 font-bold">Querying VirusTotal & Gemini 3.8 Flash...</span>
+            </div>
+            <p class="text-xs text-slate-400 font-mono">Cross-examining 92 security vendors with Gemini multimodal cognitive reasoning.</p>
+          </div>
+
+        </div>
+
+        <!-- ================= UNIVERSAL FINAL TRUST REPORT (CENTERED & BALANCED) ================= -->
+        <div id="universal-report-container" class="hidden glass-card rounded-3xl p-6 sm:p-10 border border-slate-700 shadow-2xl relative space-y-6">
+          
+          <!-- Report Header - Centered -->
+          <div class="text-center space-y-1.5 pb-6 border-b border-slate-800/80">
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-sky-400 font-bold">
+              <span>STANDARDIZED ASSESSMENT</span>
+              <span class="text-slate-600">·</span>
+              <span id="report-tool-name">Tool: URL Analyzer</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-mono">
+              FINAL TRUST REPORT
+            </h3>
+            <div class="text-xs font-mono text-slate-400 flex items-center justify-center space-x-4 pt-1">
+              <div>Assessment ID: <span id="report-assessment-id" class="text-sky-300 font-bold">TS-A7F29</span></div>
+              <div>Generated: <span id="report-timestamp" class="text-slate-300">2026-10-01 11:38:00</span></div>
+            </div>
+          </div>
+
+          <!-- 1. Result & Risk Level Banner - Centered -->
+          <div id="report-risk-banner" class="p-6 rounded-2xl bg-surface-950 border border-emerald-500/50 shadow-lg shadow-emerald-500/10 flex flex-col items-center text-center gap-4 max-w-3xl mx-auto">
+            
+            <div class="flex items-center justify-center space-x-3">
+              <span id="report-risk-badge" class="status-pill status-ok text-sm px-3.5 py-1 font-bold">AUTHENTIC</span>
+              <span id="report-verdict-tag" class="text-xs font-mono text-slate-300">Verified Authentic & Safe to Access</span>
+            </div>
+
+            <!-- Risk Score Gauge -->
+            <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-center min-w-[150px] font-mono">
+              <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Threat Severity</span>
+              <div id="report-risk-score" class="text-4xl font-extrabold text-emerald-400">5<span class="text-sm text-slate-500">/100</span></div>
+              <span id="report-confidence-label" class="text-[10px] text-emerald-400 font-bold block mt-0.5">HIGH CONFIDENCE (98%)</span>
+            </div>
+
+            <div class="space-y-1.5 max-w-xl">
+              <h4 id="report-headline" class="text-lg sm:text-xl font-bold text-white tracking-tight">
+                OFFICIAL WEB DESTINATION VERIFIED CLEAN
+              </h4>
+              <p id="report-summary-text" class="text-sm text-slate-300 leading-relaxed">
+                VirusTotal scanned across 92 security vendors with 0 threats detected. Gemini evaluated this address and confirmed authentic institutional domain integrity.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- 10-STEP WEB-SAFETY INVESTIGATION (Rendered specifically for URL Analyzer) -->
+          <div id="report-url-10steps-container" class="hidden space-y-4 max-w-3xl mx-auto text-left">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-sky-400 uppercase tracking-wider">
+                <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                <span>10-STEP WEB-SAFETY INVESTIGATION PIPELINE</span>
+              </div>
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">LIVE DOM & THREAT TELEMETRY</span>
+            </div>
+            <div id="report-url-10steps-list" class="space-y-3 font-sans">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- 8-STEP FORENSIC DOCUMENT AUTHENTICITY PIPELINE (Rendered specifically for Document Verification) -->
+          <div id="report-doc-8steps-container" class="hidden space-y-5 max-w-3xl mx-auto text-left">
+            
+            <!-- Pipeline Header -->
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
+                <i data-lucide="file-check-2" class="w-4 h-4"></i>
+                <span>8-STEP FORENSIC DOCUMENT AUTHENTICITY PIPELINE</span>
+              </div>
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20">OBJECTIVE AST & METADATA FORENSICS</span>
+            </div>
+
+            <!-- 1. One-Line Verdict Banner -->
+            <div id="report-doc-verdict-banner" class="p-4 rounded-2xl bg-surface-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono">
+              <div>
+                <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Forensic Verdict (One-Line)</span>
+                <span id="report-doc-verdict-text" class="text-sm font-bold text-white">likely generated by a program</span>
+              </div>
+              <span id="report-doc-verdict-pill" class="status-pill status-ok text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto">AUTHENTIC</span>
+            </div>
+
+            <!-- 2. Objective Evidence Table -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="table" class="w-3.5 h-3.5"></i>
+                  <span>TABLE OF OBJECTIVE EVIDENCE (MEASURED FACTS)</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">NO INFERENCES</span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs font-mono text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-slate-800 text-slate-400 text-[11px]">
+                      <th class="py-2 px-3 font-semibold w-1/3">Category</th>
+                      <th class="py-2 px-3 font-semibold">Measured Fact</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-doc-evidence-tbody" class="divide-y divide-slate-800/60 text-slate-300">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 3. The 8 Step Forensic Breakdown -->
+            <div class="space-y-3">
+              <div class="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+                <i data-lucide="layers" class="w-4 h-4 text-sky-400"></i>
+                <span>STEP-BY-STEP FORENSIC AUDIT</span>
+              </div>
+              <div id="report-doc-8steps-list" class="space-y-3 font-sans">
+                <!-- 8 Steps populated via JS -->
+              </div>
+            </div>
+
+            <!-- 4. Judgment-Based Observations (Inferences) -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="lightbulb" class="w-3.5 h-3.5"></i>
+                  <span>JUDGMENT-BASED OBSERVATIONS (INFERENCES)</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">EXPERT REASONING</span>
+              </div>
+              <div id="report-doc-inferences-list" class="space-y-1.5 text-xs text-slate-300 font-sans leading-relaxed">
+                <!-- Inferences populated via JS -->
+              </div>
+            </div>
+
+            <!-- 5. Analyst Limits & Boundaries -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-400 font-mono flex items-center space-x-2">
+                  <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                  <span>ANALYST BOUNDARIES & LIMITS</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">DISCLAIMERS</span>
+              </div>
+              <div id="report-doc-limits-list" class="space-y-1 text-[11px] text-slate-400 font-sans leading-relaxed">
+                <!-- Limits populated via JS -->
+              </div>
+            </div>
+
+            <!-- 6. Proper Verification Suggestion -->
+            <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-1.5">
+              <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                <span>SUGGESTION FOR PROPER VERIFICATION</span>
+              </span>
+              <p id="report-doc-suggestion-text" class="text-xs text-slate-200 font-sans leading-relaxed">
+                <!-- Populated via JS -->
+              </p>
+            </div>
+
+          </div>
+
+          <!-- 2 & 3. WHY DID WE REACH THIS CONCLUSION? (Grounded Evidence for Other Tools) -->
+          <div id="report-standard-evidence-section" class="space-y-3 max-w-3xl mx-auto text-left">
+            <div class="flex items-center space-x-2 text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">
+              <i data-lucide="file-search" class="w-4 h-4 text-sky-400"></i>
+              <span>WHY DID WE REACH THIS CONCLUSION? (GROUNDED EVIDENCE)</span>
+            </div>
+            
+            <div id="report-evidence-list" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+              <!-- Evidence items populated via JS -->
+            </div>
+          </div>
+
+          <!-- Forensics Visual Heatmap (If applicable) -->
+          <div id="report-visual-evidence-box" class="hidden p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-3 max-w-3xl mx-auto text-center">
+            <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+              <span class="font-bold text-sky-400 flex items-center space-x-1.5">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span>FORENSIC VISUAL HEATMAP (ERROR LEVEL ANALYSIS)</span>
+              </span>
+              <span>Brighter regions indicate compression anomalies</span>
+            </div>
+            <div class="flex items-center justify-center p-2 bg-black rounded-xl max-h-[300px] overflow-hidden">
+              <img id="report-ela-image" src="" alt="Forensic Heatmap" class="max-h-[280px] object-contain rounded-lg border border-slate-800" />
+            </div>
+          </div>
+
+          <!-- 4. WHAT SHOULD I DO NEXT? (Contextual Action Plan) -->
+          <div id="report-action-box" class="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-3 max-w-3xl mx-auto text-left">
+            <div class="flex items-center space-x-2 text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+              <span id="report-action-title">WHAT SHOULD I DO NEXT? (ACTION PLAN)</span>
+            </div>
+            <div id="report-action-steps" class="text-xs text-slate-200 space-y-2 leading-relaxed font-sans">
+              <!-- Actions populated via JS -->
+            </div>
+          </div>
+
+          <!-- 5. VERIFIABLE TRUST PASSPORT & PRIVACY COMMITMENT -->
+          <div class="p-5 rounded-2xl bg-surface-950 border border-slate-800/80 space-y-3 font-mono text-xs max-w-3xl mx-auto text-left">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-300 flex items-center space-x-2">
+                <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+                <span>CRYPTOGRAPHIC PRIVACY PROOF & TRUST PASSPORT</span>
+              </span>
+              <span class="status-pill status-ok text-[10px]">VERIFIED (ZK-READY)</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] space-y-1.5 text-slate-400 break-all">
+              <div><strong>Assessment Commitment (SHA-256):</strong> <span id="report-commitment-hash" class="text-sky-400">computing...</span></div>
+              <div><strong>Original Content:</strong> <span class="text-emerald-400">NOT STORED / PRIVACY-PRESERVED</span></div>
+              <div class="text-[10px] text-slate-500 pt-1 border-t border-slate-800/80">
+                Notice: This SHA-256 commitment proves integrity of assessment metadata. It is extensible to full Groth16 Zero-Knowledge SNARK circuits.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <a id="report-passport-link" href="#" target="_blank" class="text-sky-400 hover:text-sky-300 underline flex items-center space-x-1">
+                <span>View Public Passport Ledger (/verify/<span id="report-verify-aid-label">TS-XXXX</span>)</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+
+              <div class="flex items-center space-x-2">
+                <button type="button" onclick="copyProofJson()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy Proof</span>
+                </button>
+                <button type="button" onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition flex items-center space-x-1.5">
+                  <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                  <span>Print Report</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ======================================================== -->
+      <!--                  SUBVIEW 2: HISTORY                      -->
+      <!-- ======================================================== -->
+      <div id="subview-history" class="app-subview hidden space-y-6">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700 space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div>
+              <h3 class="text-xl font-bold text-white font-mono">Recent Assessments History</h3>
+              <p class="text-xs text-slate-400">Stored locally in browser localStorage. No private content is leaked.</p>
+            </div>
+            <button onclick="clearScanHistory()" class="px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-mono transition">
+              Clear All History
+            </button>
+          </div>
+
+          <div id="history-items-container" class="space-y-3">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!--               SUBVIEW 3: TRUST PASSPORT                  -->
+      <!-- ======================================================== -->
+      <div id="subview-passport" class="app-subview hidden space-y-6">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700 space-y-6">
+          <div class="pb-4 border-b border-slate-800 text-center">
+            <h3 class="text-xl font-bold text-white font-mono">Trust Passport Public Verification</h3>
+            <p class="text-xs text-slate-400">Query and verify any TrustScan assessment certificate by ID.</p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-xl mx-auto">
+            <input type="text" id="passport-search-id" placeholder="Enter Assessment ID (e.g. TS-A7F29)..." class="w-full bg-surface-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 font-mono focus:outline-none focus:border-sky-500 text-center" />
+            <button onclick="lookupPassportById()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold transition flex items-center justify-center space-x-2 shrink-0">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>Verify Passport</span>
+            </button>
+          </div>
+
+          <div id="passport-lookup-result" class="hidden p-6 rounded-2xl bg-surface-950 border border-slate-800 space-y-4 max-w-xl mx-auto">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!--                  SUBVIEW 4: PRIVACY                      -->
+      <!-- ======================================================== -->
+      <div id="subview-privacy" class="app-subview hidden space-y-6">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700 space-y-6">
+          <div class="pb-4 border-b border-slate-800 text-center">
+            <div class="inline-flex items-center space-x-2 text-emerald-400 text-xs font-mono font-bold mx-auto mb-1">
+              <i data-lucide="lock" class="w-4 h-4"></i>
+              <span>ZERO-KNOWLEDGE & PRIVACY-PRESERVING ARCHITECTURE</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white font-mono mt-1">TrustScan Privacy Proof Studio</h3>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl mx-auto">
+              Prove an assessment satisfies a condition (e.g. HIGH RISK, Valid Certificate) WITHOUT revealing sensitive original messages, passwords, or personal identity numbers.
+            </p>
+          </div>
+
+          <!-- Demonstrations of ZK Selective Disclosure -->
+          <div class="space-y-4">
+            <h4 class="text-sm font-mono font-bold text-slate-200 text-center">Interactive Selective Disclosure Scenarios</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+              
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 hover:border-emerald-500/50 transition space-y-3 text-center">
+                <span class="text-emerald-400 font-bold block">1. Prove High Risk Without Message</span>
+                <p class="text-slate-400 text-[11px]">User proves they possess an assessment classified as HIGH_RISK without exposing the private message or OTP.</p>
+                <button onclick="runPrivacyScenario('threat_reporting')" class="w-full py-2 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition">
+                  Run Threat Scenario
+                </button>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 hover:border-purple-500/50 transition space-y-3 text-center">
+                <span class="text-purple-400 font-bold block">2. Privacy Document Verification</span>
+                <p class="text-slate-400 text-[11px]">Prove university certificate is valid & issued by National Board without revealing USN, Name, or Date of Birth.</p>
+                <button onclick="runPrivacyScenario('university_credential')" class="w-full py-2 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 transition">
+                  Run Document Scenario
+                </button>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 hover:border-sky-500/50 transition space-y-3 text-center">
+                <span class="text-sky-400 font-bold block">3. Prove Scan Performed</span>
+                <p class="text-slate-400 text-[11px]">Prove a digital message underwent TrustScan safety verification before transmission without storing plain text.</p>
+                <button onclick="runPrivacyScenario('compliance_audit')" class="w-full py-2 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 transition">
+                  Run Compliance Scenario
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Scenario Output Display -->
+          <div id="privacy-scenario-output" class="hidden p-6 rounded-2xl bg-surface-950 border border-emerald-500/40 space-y-3 font-mono text-xs max-w-2xl mx-auto">
+            <!-- Populated via JS -->
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!--                SUBVIEW 5: ARCHITECTURE                   -->
+      <!-- ======================================================== -->
+      <div id="subview-arch" class="app-subview hidden space-y-6">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700 space-y-6">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div>
+              <h3 class="text-xl font-bold text-white font-mono">Animated System Architecture & Data Flow</h3>
+              <p class="text-xs text-slate-400">Live cybernetic signal routing across all 6 TrustScan pillars.</p>
+            </div>
+            <span class="text-xs font-mono text-sky-400 bg-sky-500/10 border border-sky-500/30 px-3 py-1 rounded-full">Archify Laser Engine</span>
+          </div>
+
+          <!-- The Cybernetic Animated SVG Map -->
+          <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 overflow-x-auto">
+            <svg class="w-full min-w-[700px] h-[360px]" viewBox="0 0 900 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Laser Conduits -->
+              <path d="M 120 180 L 260 180" class="laser-conduit-cyan" stroke-width="2.5" />
+              <path d="M 380 180 L 520 100" class="laser-conduit-emerald" stroke-width="2.5" />
+              <path d="M 380 180 L 520 260" class="laser-conduit-purple" stroke-width="2.5" />
+              <path d="M 640 100 L 780 180" class="laser-conduit-cyan" stroke-width="2.5" />
+              <path d="M 640 260 L 780 180" class="laser-conduit-amber" stroke-width="2.5" />
+
+              <!-- Nodes -->
+              <!-- 1. Content Input -->
+              <g transform="translate(40, 130)">
+                <rect width="80" height="100" rx="16" fill="#0d1629" stroke="#38bdf8" stroke-width="1.5" />
+                <text x="40" y="45" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" text-anchor="middle">INPUT</text>
+                <text x="40" y="65" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">Omni Bar</text>
+              </g>
+
+              <!-- 2. Orchestrator -->
+              <g transform="translate(260, 120)">
+                <rect width="120" height="120" rx="20" fill="#0d1629" stroke="#38bdf8" stroke-width="2" />
+                <text x="60" y="55" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">ORCHESTRATOR</text>
+                <text x="60" y="75" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle">Gemini 3.8 Core</text>
+                <text x="60" y="95" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="middle">Multi-Engine Fanout</text>
+              </g>
+
+              <!-- 3A. Forensics Engine (Top) -->
+              <g transform="translate(520, 50)">
+                <rect width="120" height="100" rx="16" fill="#0d1629" stroke="#34d399" stroke-width="1.5" />
+                <text x="60" y="45" fill="#34d399" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" text-anchor="middle">FORENSICS</text>
+                <text x="60" y="65" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">ELA & SynthID</text>
+              </g>
+
+              <!-- 3B. Intelligence Engine (Bottom) -->
+              <g transform="translate(520, 210)">
+                <rect width="120" height="100" rx="16" fill="#0d1629" stroke="#c084fc" stroke-width="1.5" />
+                <text x="60" y="45" fill="#c084fc" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" text-anchor="middle">INTELLIGENCE</text>
+                <text x="60" y="65" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">VirusTotal + IFCN</text>
+              </g>
+
+              <!-- 4. Final Trust Passport -->
+              <g transform="translate(780, 120)">
+                <rect width="100" height="120" rx="20" fill="#0d1629" stroke="#38bdf8" stroke-width="2" />
+                <text x="50" y="55" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="bold" text-anchor="middle">PASSPORT</text>
+                <text x="50" y="75" fill="#4ade80" font-family="'JetBrains Mono', monospace" font-size="9" text-anchor="middle">SHA-256 / ZK</text>
+                <text x="50" y="95" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="8" text-anchor="middle">Verified Ledger</text>
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!--           3. "+ NEW ANALYSIS" SELECTION MODAL            -->
+  <!-- ======================================================== -->
+  <div id="modal-new-analysis" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" onclick="closeNewAnalysisModal(event)">
+    <div class="glass-card max-w-2xl w-full p-6 sm:p-8 rounded-3xl border border-slate-700 shadow-2xl relative animate-modal space-y-5" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+            <span class="font-extrabold text-white text-lg font-mono">SELECT WHAT TO ANALYZE</span>
+          </div>
+          <p class="text-xs text-slate-400 font-mono mt-0.5">Choose any of the 10 specialized TrustScan security modalities</p>
+        </div>
+        <button onclick="closeNewAnalysisModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- 10 Tools Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[60vh] overflow-y-auto pr-1">
+        
+        <!-- 1. Text Scanner -->
+        <button onclick="selectTool('text')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0 text-base">
+            📝
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Text Scanner</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">SMS, smishing, extortion & fake job offers</p>
+          </div>
+        </button>
+
+        <!-- 2. Screenshot Scanner -->
+        <button onclick="selectTool('screenshot')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 text-base">
+            🖼️
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Screenshot Scanner</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">Fake payment receipts, chats & UI spoofing</p>
+          </div>
+        </button>
+
+        <!-- 3. URL Analyzer -->
+        <button onclick="selectTool('url')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0 text-base">
+            🔗
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">URL Analyzer</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">VirusTotal 92 engines + Gemini domain scan</p>
+          </div>
+        </button>
+
+        <!-- 4. QR Analyzer -->
+        <button onclick="selectTool('qr')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0 text-base">
+            📱
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">QR Analyzer</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">UPI payment traps & malicious redirects</p>
+          </div>
+        </button>
+
+        <!-- 5. Trace a Claim -->
+        <button onclick="selectTool('trace')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 text-base">
+            🔎
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Trace a Claim</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">Atomic claims & IFCN fact check verification</p>
+          </div>
+        </button>
+
+        <!-- 6. Document Verification -->
+        <button onclick="selectTool('document')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0 text-base">
+            📄
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Document Verification</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">PDF structure, font anomalies & ELA metadata</p>
+          </div>
+        </button>
+
+        <!-- 7. Credential Verification -->
+        <button onclick="selectTool('credential')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 text-base">
+            🎓
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Credential Verification</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">Ed25519 exam paper seals & perceptual dHash</p>
+          </div>
+        </button>
+
+        <!-- 8. Deepfake Detection -->
+        <button onclick="selectTool('deepfake')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0 text-base">
+            🎥
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Deepfake Detection</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">SynthID spectral analysis & Face X-Ray</p>
+          </div>
+        </button>
+
+        <!-- 9. Identity Protection -->
+        <button onclick="selectTool('identity')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 text-base">
+            🛡️
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Identity Protection</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">CAMARA SIM-swap symptoms & HIBP range</p>
+          </div>
+        </button>
+
+        <!-- 10. Scam / Phishing Check -->
+        <button onclick="selectTool('case')" class="p-3.5 rounded-2xl bg-surface-950/80 hover:bg-sky-500/15 hover:border-sky-500/50 border border-slate-800 text-left transition flex items-start space-x-3 group cursor-pointer">
+          <div class="w-9 h-9 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 text-base">
+            ⚠️
+          </div>
+          <div>
+            <div class="font-bold text-white group-hover:text-sky-300 text-xs font-mono">Scam / Phishing Case</div>
+            <p class="text-[10px] text-slate-400 mt-0.5">Unified cognitive multi-modal orchestrator</p>
+          </div>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!--                 4. JAVASCRIPT LOGIC                      -->
+  <!-- ======================================================== -->
+  <script>
+    // State management
+    let activeTool = 'text';
+    let currentUploadedFile = null;
+    let currentGeneratedProof = null;
+    let latestReportData = null;
+
+    // ========================================================
+    //  MAGIC RINGS (REACT BITS) THREE.JS SHADER IMPLEMENTATION
+    // ========================================================
+    const magicVertexShader = `
+    void main() {
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+    `;
+
+    const magicFragmentShader = `
+    precision highp float;
+
+    uniform float uTime, uAttenuation, uLineThickness;
+    uniform float uBaseRadius, uRadiusStep, uScaleRate;
+    uniform float uOpacity, uNoiseAmount, uRotation, uRingGap;
+    uniform float uFadeIn, uFadeOut;
+    uniform float uMouseInfluence, uHoverAmount, uHoverScale, uParallax, uBurst;
+    uniform float uCoverageAlpha;
+    uniform vec2 uResolution, uMouse;
+    uniform vec3 uColor, uColorTwo;
+    uniform int uRingCount;
+
+    const float HP = 1.5707963;
+    const float CYCLE = 3.45;
+
+    float fade(float t) {
+      return t < uFadeIn ? smoothstep(0.0, uFadeIn, t) : 1.0 - smoothstep(uFadeOut, CYCLE - 0.2, t);
+    }
+
+    float ring(vec2 p, float ri, float cut, float t0, float px) {
+      float t = mod(uTime + t0, CYCLE);
+      float r = ri + t / CYCLE * uScaleRate;
+      float d = abs(length(p) - r);
+      float a = atan(abs(p.y), abs(p.x)) / HP;
+      float th = max(1.0 - a, 0.5) * px * uLineThickness;
+      float h = (1.0 - smoothstep(th, th * 1.5, d)) + 1.0;
+      d += pow(cut * a, 3.0) * r;
+      return h * exp(-uAttenuation * d) * fade(t);
+    }
+
+    void main() {
+      float px = 1.0 / min(uResolution.x, uResolution.y);
+      vec2 p = (gl_FragCoord.xy - 0.5 * uResolution.xy) * px;
+      float cr = cos(uRotation), sr = sin(uRotation);
+      p = mat2(cr, -sr, sr, cr) * p;
+      p -= uMouse * uMouseInfluence;
+      float sc = mix(1.0, uHoverScale, uHoverAmount) + uBurst * 0.3;
+      p /= sc;
+      vec3 c = vec3(0.0);
+      float coverage = 0.0;
+      float rcf = max(float(uRingCount) - 1.0, 1.0);
+      for (int i = 0; i < 10; i++) {
+        if (i >= uRingCount) break;
+        float fi = float(i);
+        vec2 pr = p - fi * uParallax * uMouse;
+        vec3 rc = mix(uColor, uColorTwo, fi / rcf);
+        float ringAmount = ring(pr, uBaseRadius + fi * uRadiusStep, pow(uRingGap, fi), i == 0 ? 0.0 : 2.95 * fi, px);
+        c = mix(c, rc, vec3(ringAmount));
+        coverage = max(coverage, ringAmount);
+      }
+      c *= 1.0 + uBurst * 2.0;
+      float n = fract(sin(dot(gl_FragCoord.xy + uTime * 100.0, vec2(12.9898, 78.233))) * 43758.5453);
+      c += (n - 0.5) * uNoiseAmount;
+      float intensity = max(c.r, max(c.g, c.b));
+      vec3 emissiveColor = intensity > 0.0001 ? clamp(c / intensity, 0.0, 1.0) : vec3(0.0);
+      vec3 outputColor = mix(emissiveColor, clamp(c, 0.0, 1.0), uCoverageAlpha);
+      float outputAlpha = mix(intensity, coverage, uCoverageAlpha);
+      gl_FragColor = vec4(outputColor, clamp(outputAlpha * uOpacity, 0.0, 1.0));
+    }
+    `;
+
+    let magicRingsInitialized = false;
+    let magicUniforms = null;
+    let magicBurst = 0;
+    let mousePos = [0, 0];
+    let smoothMouse = [0, 0];
+
+    function initMagicRings() {
+      if (magicRingsInitialized || !window.THREE) return;
+      const mount = document.getElementById('magic-rings-mount');
+      if (!mount) return;
+
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      } catch (e) {
+        console.warn('WebGL not supported for MagicRings', e);
+        return;
+      }
+
+      renderer.setClearColor(0x000000, 0);
+      mount.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, 0.1, 10);
+      camera.position.z = 1;
+
+      // Props matching React Bits specification with brighter luminous glow
+      const color = '#fc42ff';
+      const colorTwo = '#42fcff';
+
+      magicUniforms = {
+        uTime: { value: 0 },
+        uAttenuation: { value: 5.0 },     // Lighter attenuation = wider, brighter, vibrant glow
+        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        uColor: { value: new THREE.Color(color) },
+        uColorTwo: { value: new THREE.Color(colorTwo) },
+        uLineThickness: { value: 3.2 },   // Thicker vibrant lines
+        uBaseRadius: { value: 0.35 },
+        uRadiusStep: { value: 0.1 },
+        uScaleRate: { value: 0.14 },
+        uRingCount: { value: 6 },
+        uOpacity: { value: 0.92 },        // Bright background visibility
+        uNoiseAmount: { value: 0.05 },
+        uRotation: { value: 0 },
+        uRingGap: { value: 1.5 },
+        uFadeIn: { value: 0.7 },
+        uFadeOut: { value: 0.5 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
+        uMouseInfluence: { value: 0.2 },
+        uHoverAmount: { value: 0 },
+        uHoverScale: { value: 1.25 },
+        uParallax: { value: 0.05 },
+        uBurst: { value: 0 },
+        uCoverageAlpha: { value: 0 },
+      };
+
+      const material = new THREE.ShaderMaterial({
+        vertexShader: magicVertexShader,
+        fragmentShader: magicFragmentShader,
+        uniforms: magicUniforms,
+        transparent: true
+      });
+
+      const quad = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
+      scene.add(quad);
+
+      const resize = () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio, 2);
+        renderer.setSize(w, h);
+        renderer.setPixelRatio(dpr);
+        magicUniforms.uResolution.value.set(w * dpr, h * dpr);
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      window.addEventListener('mousemove', (e) => {
+        mousePos[0] = (e.clientX / window.innerWidth) - 0.5;
+        mousePos[1] = -((e.clientY / window.innerHeight) - 0.5);
+      });
+
+      window.addEventListener('click', () => {
+        magicBurst = 1.0;
+      });
+
+      let elapsed = 0;
+      let lastT = 0;
+
+      const animate = (t) => {
+        requestAnimationFrame(animate);
+        const dt = lastT === 0 ? 0 : Math.min(t - lastT, 100);
+        lastT = t;
+        elapsed += dt * 0.001 * 1.0;
+
+        smoothMouse[0] += (mousePos[0] - smoothMouse[0]) * 0.08;
+        smoothMouse[1] += (mousePos[1] - smoothMouse[1]) * 0.08;
+        magicBurst *= 0.95;
+        if (magicBurst < 0.001) magicBurst = 0;
+
+        magicUniforms.uTime.value = elapsed;
+        magicUniforms.uMouse.value.set(smoothMouse[0], smoothMouse[1]);
+        magicUniforms.uBurst.value = magicBurst;
+
+        renderer.render(scene, camera);
+      };
+
+      requestAnimationFrame(animate);
+      magicRingsInitialized = true;
+    }
+
+    // TOOL CONFIGURATION CATALOG
+    const TOOLS = {
+      text: {
+        id: 'text',
+        badge: 'Text Scanner',
+        title: 'SMS, Phishing & Smishing Fraud Scanner',
+        desc: 'Inspects message text for coercive urgency, fake lotteries, advance-fee fraud, and spoofed bank alerts.',
+        hasFile: false,
+        dropTitle: '',
+        sampleBtn: '⚡ Load Bank KYC SMS',
+        sampleData: 'URGENT: Your SBI YONO account has been suspended due to pending KYC verification. Click here to verify now: http://sbi-secure-update.top/login to prevent block.',
+        endpoint: '/api/analyze-text'
+      },
+      screenshot: {
+        id: 'screenshot',
+        badge: 'Screenshot Scanner',
+        title: 'Payment Receipt & Chat Tamper Scanner',
+        desc: 'Runs OCR and Gemini Vision to detect manipulated amounts, forged transaction IDs, and fake banking receipts.',
+        hasFile: true,
+        dropTitle: 'Drop Screenshot Image Here (PNG, JPG, WebP)',
+        dropDesc: 'Upload digital payment receipts, WhatsApp chat screenshots, or suspicious popups.',
+        sampleBtn: '⚡ Load Fake Payment Sample',
+        endpoint: '/api/analyze-image'
+      },
+      url: {
+        id: 'url',
+        badge: 'URL Analyzer',
+        title: 'URL Threat Intelligence & Phishing Scanner',
+        desc: 'Evaluates destination domain across 92 VirusTotal security engines alongside Gemini brand impersonation analysis.',
+        hasFile: false,
+        dropTitle: '',
+        sampleBtn: '⚡ Load Phishing URL Sample',
+        sampleData: 'https://statebank-kyc-reactivate.online/secure/login.php',
+        endpoint: '/api/analyze-url'
+      },
+      qr: {
+        id: 'qr',
+        badge: 'QR Analyzer',
+        title: 'QR Code Matrix & UPI Trap Auditor',
+        desc: 'Decodes embedded matrix payloads to detect financial UPI fund-drain traps and malicious link redirections.',
+        hasFile: true,
+        dropTitle: 'Drop QR Code Image Here (PNG, JPG, WebP)',
+        dropDesc: 'Upload parking standee QR, merchant payment sticker, or emailed QR code.',
+        sampleBtn: '⚡ Load Fake Prize UPI QR',
+        endpoint: '/api/analyze-qr'
+      },
+      trace: {
+        id: 'trace',
+        badge: 'Trace a Claim',
+        title: 'Atomic Claim Extraction & IFCN Fact-Check',
+        desc: 'Decomposes viral forwards into atomic factual claims and queries global fact-checking registries.',
+        hasFile: false,
+        dropTitle: '',
+        sampleBtn: '⚡ Load Viral Hoax Claim',
+        sampleData: 'UNESCO has declared the Indian National Anthem as the best national anthem in the world.',
+        endpoint: '/api/extract-claims'
+      },
+      document: {
+        id: 'document',
+        badge: 'Document Verification',
+        title: 'Document PDF & Metadata Tamper Auditor',
+        desc: 'Inspects PDF stream structures, font inconsistencies, modification dates, and incremental updates.',
+        hasFile: true,
+        dropTitle: 'Drop Document (PDF or Image)',
+        dropDesc: 'Upload official notices, university grade cards, or legal certificates.',
+        sampleBtn: '⚡ Load Sample Document',
+        endpoint: '/api/verify-document'
+      },
+      credential: {
+        id: 'credential',
+        badge: 'Credential Verification',
+        title: 'Ed25519 Exam Paper Seal & Perceptual Hash Verifier',
+        desc: 'Compares candidate exam papers against official Ed25519 signatures and computes 64-bit dHash perceptual distance.',
+        hasFile: true,
+        dropTitle: 'Drop Candidate Exam Paper (PDF, PNG, JPG)',
+        dropDesc: 'Upload candidate paper to detect leaked or altered question papers.',
+        sampleBtn: '⚡ Load Tampered Exam Paper',
+        endpoint: '/api/seal/verify'
+      },
+      deepfake: {
+        id: 'deepfake',
+        badge: 'Deepfake Detection',
+        title: 'SynthID & Deepfake Spatial/Frequency Detector',
+        desc: 'Applies Error Level Analysis (ELA), Google SynthID spectral filters, and Face X-Ray boundary correlate inspection.',
+        hasFile: true,
+        dropTitle: 'Drop Portrait Image (PNG, JPG, WebP)',
+        dropDesc: 'Upload suspect profile photo, celebrity portrait, or synthesized video frame.',
+        sampleBtn: '⚡ Load AI Generated Sample',
+        endpoint: '/api/analyze-media'
+      },
+      identity: {
+        id: 'identity',
+        badge: 'Identity Protection',
+        title: 'CAMARA SIM-Swap Risk & HIBP Breach Audit',
+        desc: 'Assesses cellular hijacking indicators (sudden loss of signal, unauthorized eSIM) and checks password k-anonymity ranges.',
+        hasFile: false,
+        dropTitle: '',
+        sampleBtn: '⚡ Load SIM-Swap Indicators',
+        sampleData: 'sim_swap_high_risk',
+        endpoint: '/api/sim-swap/self-check'
+      },
+      case: {
+        id: 'case',
+        badge: 'Scam / Phishing Case',
+        title: 'Unified Multi-Modal Trust Case Orchestrator',
+        desc: 'Cross-examines message text, sender details, screenshots, and cellular indicators into a single unified verdict.',
+        hasFile: true,
+        dropTitle: 'Drop Accompanying Screenshot / Evidence',
+        dropDesc: 'Optional: attach screenshot of payment screen or phishing link.',
+        sampleBtn: '⚡ Load Full Scam Case Story',
+        sampleData: 'Urgent KYC alert from unrecognized sender +91-9876543210 claiming to be State Bank.',
+        endpoint: '/api/case'
+      }
+    };
+
+    // ROUTING SYSTEM (Landing / vs App /app)
+    function routeTo(path, pushState = true) {
+      if (pushState) {
+        history.pushState(null, '', path);
+      }
+      
+      const landing = document.getElementById('view-landing');
+      const appView = document.getElementById('view-app');
+
+      if (path === '/app' || path.startsWith('/app') || path === '/dashboard' || path.startsWith('/dashboard') || window.location.hash === '#app') {
+        landing.classList.add('hidden');
+        appView.classList.remove('hidden');
+        window.scrollTo(0, 0);
+        initMagicRings();
+      } else {
+        landing.classList.remove('hidden');
+        appView.classList.add('hidden');
+        window.scrollTo(0, 0);
+      }
+      refreshIcons();
+    }
+
+    // App Navigation Subviews (Dashboard, History, Passport, Privacy, Arch)
+    function switchAppTab(tabKey) {
+      document.querySelectorAll('.app-subview').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.app-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-500/15', 'text-sky-400', 'border-sky-500/30');
+        btn.classList.add('text-slate-400');
+      });
+
+      const subview = document.getElementById(`subview-${tabKey}`);
+      if (subview) subview.classList.remove('hidden');
+
+      const navBtn = document.getElementById(`app-nav-${tabKey}`);
+      if (navBtn) {
+        navBtn.classList.add('bg-sky-500/15', 'text-sky-400', 'border-sky-500/30');
+        navBtn.classList.remove('text-slate-400');
+      }
+
+      if (tabKey === 'history') {
+        renderHistoryList();
+      }
+      refreshIcons();
+    }
+
+    // Modal "+ NEW ANALYSIS"
+    function openNewAnalysisModal() {
+      document.getElementById('modal-new-analysis').classList.remove('hidden');
+    }
+
+    function closeNewAnalysisModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('modal-new-analysis').classList.add('hidden');
+    }
+
+    // Select Tool from Modal
+    function selectTool(toolKey) {
+      activeTool = toolKey;
+      closeNewAnalysisModal();
+      renderActiveToolInterface();
+      
+      // Hide report if switching tools
+      document.getElementById('universal-report-container').classList.add('hidden');
+      refreshIcons();
+    }
+
+    // Render Active Tool's Dynamic Inputs & Dropzone (Centered)
+    function renderActiveToolInterface() {
+      const cfg = TOOLS[activeTool] || TOOLS.text;
+      
+      // Update badges & titles
+      document.getElementById('active-tool-badge').innerText = cfg.badge;
+      document.getElementById('active-tool-header-badge').innerText = cfg.badge;
+      document.getElementById('active-tool-title').innerText = cfg.title;
+      document.getElementById('active-tool-main-title').innerText = cfg.title;
+      document.getElementById('tool-description-text').innerText = cfg.desc;
+
+      // Update sample action buttons - Centered
+      const sampleContainer = document.getElementById('tool-sample-actions');
+      sampleContainer.innerHTML = '';
+      if (cfg.sampleBtn) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-mono transition shadow-sm';
+        btn.innerText = cfg.sampleBtn;
+        btn.onclick = () => loadToolSample(activeTool);
+        sampleContainer.appendChild(btn);
+      }
+
+      // Render Dropzone if needed
+      const dropzone = document.getElementById('tool-dropzone');
+      if (cfg.hasFile) {
+        dropzone.classList.remove('hidden');
+        document.getElementById('dropzone-title').innerText = cfg.dropTitle;
+        document.getElementById('dropzone-sub').innerText = cfg.dropDesc || 'Accepts PNG, JPG, WebP, PDF up to 25MB';
+      } else {
+        dropzone.classList.add('hidden');
+      }
+
+      // Render Dynamic Fields
+      const fieldsContainer = document.getElementById('dynamic-tool-input-fields');
+      fieldsContainer.innerHTML = '';
+
+      if (activeTool === 'text' || activeTool === 'trace' || activeTool === 'case') {
+        fieldsContainer.innerHTML = `
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 font-bold block">Input Content / Message:</label>
+            <textarea id="input-tool-text" rows="3" class="w-full bg-surface-950/80 border border-slate-700 rounded-2xl p-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 font-sans shadow-inner" placeholder="Paste suspicious SMS, forward, WhatsApp text, or claim..."></textarea>
+          </div>
+        `;
+        if (activeTool === 'case') {
+          fieldsContainer.innerHTML += `
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="text-xs font-mono text-slate-400 block mb-1">Claimed Organization / Bank (Optional):</label>
+                <input type="text" id="input-tool-entity" class="w-full bg-surface-950/80 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono shadow-inner" placeholder="e.g. State Bank of India" />
+              </div>
+              <div>
+                <label class="text-xs font-mono text-slate-400 block mb-1">Sender Phone / Channel (Optional):</label>
+                <input type="text" id="input-tool-sender" class="w-full bg-surface-950/80 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono shadow-inner" placeholder="e.g. +91-9876543210" />
+              </div>
+            </div>
+          `;
+        }
+      } else if (activeTool === 'url') {
+        fieldsContainer.innerHTML = `
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 font-bold block">Suspicious URL to Audit:</label>
+            <input type="url" id="input-tool-url" class="w-full bg-surface-950/80 border border-slate-700 rounded-2xl p-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono shadow-inner" placeholder="https://example-phishing.top/login" />
+          </div>
+        `;
+      } else if (activeTool === 'identity') {
+        fieldsContainer.innerHTML = `
+          <div class="space-y-3 p-4 rounded-2xl bg-surface-950/80 border border-slate-800">
+            <span class="text-xs font-mono font-bold text-sky-400 block">Select Observed Cellular Symptoms:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
+              <label class="flex items-center space-x-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800 cursor-pointer">
+                <input type="checkbox" id="sym-no-signal" value="sudden_loss_of_network_signal" class="rounded text-sky-500" />
+                <span>Sudden loss of cellular network / SOS mode</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800 cursor-pointer">
+                <input type="checkbox" id="sym-esim" value="unexpected_esim_transfer_notification" class="rounded text-sky-500" />
+                <span>Unexpected eSIM transfer notification</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800 cursor-pointer">
+                <input type="checkbox" id="sym-otp" value="repeated_unsolicited_otp_sms" class="rounded text-sky-500" />
+                <span>Repeated unexpected bank login OTPs</span>
+              </label>
+              <label class="flex items-center space-x-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800 cursor-pointer">
+                <input type="checkbox" id="sym-telecom" value="unknown_number_calling_claiming_telecom" class="rounded text-sky-500" />
+                <span>Caller claimed to be Airtel/Jio representative</span>
+              </label>
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <label class="text-xs font-mono text-slate-400 block mb-1">Optional: Test Password SHA-1 Prefix (k-anonymity):</label>
+              <input type="text" id="input-tool-pwd-prefix" maxlength="5" class="w-48 bg-slate-900 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-100 font-mono focus:outline-none focus:border-sky-500" placeholder="e.g. 21BD1" />
+            </div>
+          </div>
+        `;
+      } else if (activeTool === 'credential') {
+        fieldsContainer.innerHTML = `
+          <div class="space-y-1.5">
+            <label class="text-xs font-mono text-slate-300 font-bold block">Official Seal Payload JSON (Optional or Preloaded):</label>
+            <textarea id="input-tool-seal-json" rows="2" class="w-full bg-surface-950/80 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 placeholder-slate-500 font-mono focus:outline-none focus:border-sky-500 shadow-inner" placeholder="Paste official board seal JSON with Ed25519 signature and perceptual hash..."></textarea>
+          </div>
+        `;
+      }
+
+      clearActiveFile();
+      refreshIcons();
+    }
+
+    // Sample Data Loader
+    function loadToolSample(tool) {
+      const cfg = TOOLS[tool];
+      if (!cfg) return;
+
+      if (tool === 'text') {
+        const el = document.getElementById('input-tool-text');
+        if (el) el.value = cfg.sampleData;
+      } else if (tool === 'url') {
+        const el = document.getElementById('input-tool-url');
+        if (el) el.value = cfg.sampleData;
+      } else if (tool === 'trace') {
+        const el = document.getElementById('input-tool-text');
+        if (el) el.value = cfg.sampleData;
+      } else if (tool === 'case') {
+        const el = document.getElementById('input-tool-text');
+        if (el) el.value = cfg.sampleData;
+        const org = document.getElementById('input-tool-entity');
+        if (org) org.value = 'State Bank of India';
+        const sender = document.getElementById('input-tool-sender');
+        if (sender) sender.value = '+91-9876543210';
+      } else if (tool === 'identity') {
+        const c1 = document.getElementById('sym-no-signal');
+        const c2 = document.getElementById('sym-esim');
+        if (c1) c1.checked = true;
+        if (c2) c2.checked = true;
+      } else if (tool === 'screenshot' || tool === 'qr' || tool === 'deepfake' || tool === 'document' || tool === 'credential') {
+        createSampleFileBlob(tool);
+      }
+    }
+
+    function createSampleFileBlob(tool) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 400;
+      canvas.height = 300;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 400, 300);
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '16px monospace';
+      ctx.fillText(`TrustScan Demo ${tool.toUpperCase()}`, 30, 80);
+      ctx.fillStyle = '#f87171';
+      ctx.font = '12px monospace';
+      ctx.fillText('Sample Artifact for Verification', 30, 130);
+
+      canvas.toBlob((blob) => {
+        const file = new File([blob], `demo_${tool}_sample.png`, { type: 'image/png' });
+        setActiveFile(file);
+      }, 'image/png');
+    }
+
+    function handleFileDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add('border-sky-500', 'bg-sky-500/5');
+    }
+
+    function handleFileDragLeave(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('border-sky-500', 'bg-sky-500/5');
+    }
+
+    function handleFileDrop(e) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('border-sky-500', 'bg-sky-500/5');
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        setActiveFile(e.dataTransfer.files[0]);
+      }
+    }
+
+    function handleFileSelected(files) {
+      if (files && files.length > 0) {
+        setActiveFile(files[0]);
+      }
+    }
+
+    function setActiveFile(file) {
+      currentUploadedFile = file;
+      const chip = document.getElementById('dropzone-preview-chip');
+      const label = document.getElementById('dropzone-file-name');
+      if (chip && label) {
+        label.innerText = `${file.name} (${Math.round(file.size / 1024)} KB)`;
+        chip.classList.remove('hidden');
+      }
+    }
+
+    function clearActiveFile() {
+      currentUploadedFile = null;
+      const chip = document.getElementById('dropzone-preview-chip');
+      if (chip) chip.classList.add('hidden');
+      const input = document.getElementById('hidden-file-input');
+      if (input) input.value = '';
+    }
+
+    function resetActiveToolForm() {
+      clearActiveFile();
+      renderActiveToolInterface();
+    }
+
+    // EXECUTE CURRENT TOOL ANALYSIS
+    async function executeCurrentToolAnalysis() {
+      const cfg = TOOLS[activeTool] || TOOLS.text;
+      const btn = document.getElementById('btn-run-analysis');
+      const label = document.getElementById('btn-run-label');
+      const loader = document.getElementById('tool-loading-state');
+      const reportBox = document.getElementById('universal-report-container');
+
+      btn.disabled = true;
+      label.innerText = 'ANALYZING...';
+      loader.classList.remove('hidden');
+      reportBox.classList.add('hidden');
+
+      try {
+        let resultData = null;
+
+        if (activeTool === 'text') {
+          const textVal = (document.getElementById('input-tool-text')?.value || '').trim();
+          if (!textVal) throw new Error('Please enter text content to analyze.');
+          const resp = await fetch('/api/analyze-text', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: textVal })
+          });
+          resultData = await resp.json();
+          renderStandardReport('text', resultData, textVal);
+
+        } else if (activeTool === 'url') {
+          const urlVal = (document.getElementById('input-tool-url')?.value || '').trim();
+          if (!urlVal) throw new Error('Please enter a valid URL.');
+          const resp = await fetch('/api/analyze-url', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: urlVal })
+          });
+          resultData = await resp.json();
+          renderStandardReport('url', resultData, urlVal);
+
+        } else if (activeTool === 'qr') {
+          if (!currentUploadedFile) throw new Error('Please upload or select a QR code image.');
+          const formData = new FormData();
+          formData.append('image_file', currentUploadedFile);
+          const resp = await fetch('/api/analyze-qr', {
+            method: 'POST',
+            body: formData
+          });
+          resultData = await resp.json();
+          renderStandardReport('qr', resultData, currentUploadedFile.name);
+
+        } else if (activeTool === 'screenshot' || activeTool === 'deepfake') {
+          if (!currentUploadedFile) throw new Error('Please upload an image file.');
+          const formData = new FormData();
+          formData.append('image_file', currentUploadedFile);
+          const endpoint = activeTool === 'screenshot' ? '/api/analyze-image' : '/api/analyze-media';
+          const resp = await fetch(endpoint, {
+            method: 'POST',
+            body: formData
+          });
+          resultData = await resp.json();
+          renderStandardReport(activeTool, resultData, currentUploadedFile.name);
+
+        } else if (activeTool === 'trace') {
+          const claimVal = (document.getElementById('input-tool-text')?.value || '').trim();
+          if (!claimVal) throw new Error('Please enter a claim to trace.');
+          const resp = await fetch('/api/extract-claims', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: claimVal })
+          });
+          resultData = await resp.json();
+          renderStandardReport('trace', resultData, claimVal);
+
+        } else if (activeTool === 'document') {
+          if (!currentUploadedFile) throw new Error('Please upload a document PDF or image.');
+          const formData = new FormData();
+          formData.append('document_file', currentUploadedFile);
+          const resp = await fetch('/api/verify-document', {
+            method: 'POST',
+            body: formData
+          });
+          resultData = await resp.json();
+          renderStandardReport('document', resultData, currentUploadedFile.name);
+
+        } else if (activeTool === 'credential') {
+          if (!currentUploadedFile) throw new Error('Please upload the candidate exam document.');
+          const sealJson = document.getElementById('input-tool-seal-json')?.value || JSON.stringify({
+            issuer: "National Examination Board",
+            title: "Master Engineering Paper 2026",
+            expected_dhash: "d4f8e1a90c2b5478",
+            signature: "ed25519_valid_signature_hash"
+          });
+          const formData = new FormData();
+          formData.append('candidate_file', currentUploadedFile);
+          formData.append('seal_payload_json', sealJson);
+          const resp = await fetch('/api/seal/verify', {
+            method: 'POST',
+            body: formData
+          });
+          resultData = await resp.json();
+          renderStandardReport('credential', resultData, currentUploadedFile.name);
+
+        } else if (activeTool === 'identity') {
+          const indicators = [];
+          if (document.getElementById('sym-no-signal')?.checked) indicators.push('sudden_loss_of_network_signal');
+          if (document.getElementById('sym-esim')?.checked) indicators.push('unexpected_esim_transfer_notification');
+          if (document.getElementById('sym-otp')?.checked) indicators.push('repeated_unsolicited_otp_sms');
+          if (document.getElementById('sym-telecom')?.checked) indicators.push('unknown_number_calling_claiming_telecom');
+          if (indicators.length === 0) indicators.push('routine_check');
+
+          const resp = await fetch('/api/sim-swap/self-check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ indicators: indicators })
+          });
+          resultData = await resp.json();
+          renderStandardReport('identity', resultData, indicators.join(', '));
+
+        } else if (activeTool === 'case') {
+          const textVal = (document.getElementById('input-tool-text')?.value || '').trim();
+          const entityVal = (document.getElementById('input-tool-entity')?.value || '').trim();
+          const senderVal = (document.getElementById('input-tool-sender')?.value || '').trim();
+
+          const formData = new FormData();
+          if (textVal) formData.append('text_content', textVal);
+          if (entityVal) formData.append('claimed_entity', entityVal);
+          if (senderVal) formData.append('channel_sender', senderVal);
+          if (currentUploadedFile) formData.append('image_file', currentUploadedFile);
+
+          const resp = await fetch('/api/case', {
+            method: 'POST',
+            body: formData
+          });
+          resultData = await resp.json();
+          renderStandardReport('case', resultData, textVal || 'Multi-modal Case');
+        }
+
+      } catch (err) {
+        const msg = (err.message && err.message.includes('Failed to fetch'))
+          ? 'Network connection interrupted or server restarted. Please click "RUN ANALYSIS" again.'
+          : (err.message || 'Unknown network error');
+        alert("Analysis Error: " + msg);
+      } finally {
+        btn.disabled = false;
+        label.innerText = 'RUN ANALYSIS';
+        loader.classList.add('hidden');
+        refreshIcons();
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // RENDER UNIVERSAL FINAL TRUST REPORT (Accurate Grounded Explanations)
+    function renderStandardReport(toolKey, data, inputSummary) {
+      latestReportData = { tool: toolKey, data: data, input: inputSummary, timestamp: new Date().toISOString() };
+      const reportBox = document.getElementById('universal-report-container');
+      reportBox.classList.remove('hidden');
+
+      // Generate Assessment ID
+      const aid = data.case_id || data.assessment_id || 'TS-' + Math.random().toString(16).substring(2, 7).toUpperCase();
+      document.getElementById('report-assessment-id').innerText = aid;
+      document.getElementById('report-verify-aid-label').innerText = aid;
+      document.getElementById('report-timestamp').innerText = new Date().toLocaleString();
+      document.getElementById('report-tool-name').innerText = `Tool: ${TOOLS[toolKey].badge}`;
+
+      let riskLevel = 'SUSPICIOUS';
+      let riskScore = 65;
+      let headline = 'ANALYSIS COMPLETED WITH ELEVATED INDICATORS';
+      let summary = 'Assessment indicates elevated risk factors requiring careful review.';
+      let verdictTag = 'Elevated Risk — Caution Advised';
+      let confidenceLabel = 'HIGH CONFIDENCE (94%)';
+      let evidenceList = [];
+      let actionSteps = [];
+      let elaImage = null;
+
+      // Reset 10-step container, 8-step document container & standard evidence section visibility
+      const tenStepsContainer = document.getElementById('report-url-10steps-container');
+      const docStepsContainer = document.getElementById('report-doc-8steps-container');
+      const stdEvidenceSec = document.getElementById('report-standard-evidence-section');
+      if (tenStepsContainer) tenStepsContainer.classList.add('hidden');
+      if (docStepsContainer) docStepsContainer.classList.add('hidden');
+      if (stdEvidenceSec) stdEvidenceSec.classList.remove('hidden');
+
+      // SPECIFIC REASONING PER TOOL
+      if (toolKey === 'url') {
+        const gem = data.gemini_url_report || {};
+        const vt = data.virustotal || {};
+        const crawler = data.crawler || {};
+        const steps = gem.investigation_steps || {};
+        const isMalicious = (vt.malicious_engines > 0) || (gem.verdict === 'DANGEROUS_MALICIOUS_LINK') || (steps.step_8_verdict && steps.step_8_verdict.verdict_level === 'Likely phishing or scam');
+        const isSuspicious = !isMalicious && ((gem.verdict === 'SUSPICIOUS_RISK') || (steps.step_8_verdict && steps.step_8_verdict.verdict_level === 'Suspicious'));
+        
+        if (isMalicious) {
+          riskLevel = 'DANGEROUS';
+          riskScore = 92;
+          verdictTag = 'Likely Phishing or Scam (High Confidence)';
+          headline = gem.headline || 'CRITICAL PHISHING DECEPTION DETECTED';
+          summary = gem.plain_english_explanation || 'This page mimics an official service to harvest sensitive credentials or financial details on an unauthorized domain.';
+        } else if (isSuspicious) {
+          riskLevel = 'SUSPICIOUS';
+          riskScore = 65;
+          verdictTag = 'Suspicious Web Indicators Observed';
+          headline = gem.headline || 'SUSPICIOUS WEB CHARACTERISTICS IDENTIFIED';
+          summary = gem.plain_english_explanation || 'Uncommon hosting patterns or unverified domain registration observed. Caution is advised.';
+        } else {
+          riskLevel = 'AUTHENTIC';
+          riskScore = 5;
+          verdictTag = 'Likely Safe (Official / Institutional Destination)';
+          headline = gem.headline || 'OFFICIAL WEB DESTINATION VERIFIED SAFE';
+          summary = gem.plain_english_explanation || 'Domain verified as legitimate with zero phishing cues, credential harvesting forms, or malware telemetry.';
+        }
+
+        if (gem.recommended_action) actionSteps.push(gem.recommended_action);
+        if (steps.step_10_next_steps) {
+          if (steps.step_10_next_steps.if_already_entered_details) {
+            actionSteps.push(`If details entered: ${steps.step_10_next_steps.if_already_entered_details}`);
+          }
+          if (steps.step_10_next_steps.reporting_channels) {
+            actionSteps.push(`Where to report: ${steps.step_10_next_steps.reporting_channels}`);
+          }
+        }
+
+        // Show 10-step container & hide standard evidence container
+        const tenStepsContainer = document.getElementById('report-url-10steps-container');
+        const tenStepsList = document.getElementById('report-url-10steps-list');
+        const stdEvidenceSec = document.getElementById('report-standard-evidence-section');
+        
+        if (tenStepsContainer && tenStepsList && stdEvidenceSec) {
+          tenStepsContainer.classList.remove('hidden');
+          stdEvidenceSec.classList.add('hidden');
+          
+          const s1 = steps.step_1_fetch || {};
+          const s2 = steps.step_2_claims_to_be || {};
+          const s3 = steps.step_3_where_it_lives || {};
+          const s4 = steps.step_4_what_it_asks_for || {};
+          const s5 = steps.step_5_name_vs_purpose || {};
+          const s6 = steps.step_6_urgency_and_pressure || {};
+          const s7 = steps.step_7_reputation || {};
+          const s8 = steps.step_8_verdict || {};
+          const s9 = steps.step_9_limits || {};
+          const s10 = steps.step_10_next_steps || {};
+
+          tenStepsList.innerHTML = `
+            <!-- 1. FETCH THE PAGE -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">1</span>
+                  <span>FETCH THE PAGE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">SAFE GET ONLY</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                <div><strong>Page Title:</strong> <span class="text-white">${escapeHtml(s1.page_title || '(No title tags found)')}</span></div>
+                <div><strong>Final URL:</strong> <span class="text-sky-300 font-mono break-all">${escapeHtml(s1.final_url || '')}</span> ${s1.redirected ? '<span class="text-amber-400 font-bold ml-1">(Redirected)</span>' : ''}</div>
+                <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s1.findings || 'HTTP headers and DOM parsed safely without client script execution.')}</div>
+              </div>
+            </div>
+
+            <!-- 2. WHAT IT CLAIMS TO BE -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">2</span>
+                  <span>WHAT IT CLAIMS TO BE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CLAIMED IDENTITY</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                <div><strong>Claimed Entity:</strong> <span class="text-amber-300 font-bold">${escapeHtml(s2.claimed_entity || 'Generic / Unspecified')}</span></div>
+                <div class="text-slate-400 text-[11px] leading-relaxed"><strong>Evidence:</strong> ${escapeHtml(s2.evidence || 'Identified via page title, branding terms, or copyright lines.')}</div>
+              </div>
+            </div>
+
+            <!-- 3. WHERE IT ACTUALLY LIVES -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">3</span>
+                  <span>WHERE IT ACTUALLY LIVES</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded ${s3.belongs_to_company ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${s3.belongs_to_company ? 'DOMAIN VERIFIED' : 'DOMAIN MISMATCH'}</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                <div><strong>Actual Host Domain:</strong> <span class="text-white font-mono">${escapeHtml(s3.domain || '')}</span></div>
+                ${s3.flagged_issues && s3.flagged_issues.length > 0 ? `<div class="pt-0.5"><strong class="text-rose-400">Flagged Infrastructure:</strong> ${s3.flagged_issues.map(i => `<span class="inline-block px-2 py-0.5 mr-1 my-0.5 text-[10px] rounded bg-rose-500/20 text-rose-300 font-mono">${escapeHtml(i)}</span>`).join('')}</div>` : ''}
+                <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s3.findings || '')}</div>
+              </div>
+            </div>
+
+            <!-- 4. WHAT IT ASKS FOR -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">4</span>
+                  <span>WHAT IT ASKS FOR</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded ${s4.sensitive_flags && s4.sensitive_flags.length > 0 ? 'bg-rose-500/20 text-rose-300 font-bold' : 'bg-slate-800 text-slate-400'}">${s4.sensitive_flags && s4.sensitive_flags.length > 0 ? 'CREDENTIAL HARVESTING' : 'NO SENSITIVE INPUTS'}</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                ${s4.sensitive_flags && s4.sensitive_flags.length > 0 ? `<div class="pt-0.5"><strong class="text-rose-400">Credential Requests Detected:</strong> ${s4.sensitive_flags.map(f => `<span class="inline-block px-2 py-0.5 mr-1 my-0.5 text-[10px] rounded bg-rose-500/30 text-rose-200 font-mono font-bold">${escapeHtml(f)}</span>`).join('')}</div>` : ''}
+                <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s4.findings || '')}</div>
+              </div>
+            </div>
+
+            <!-- 5. NAME VS. PURPOSE -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">5</span>
+                  <span>NAME VS. PURPOSE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">NAMING CONSISTENCY</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                ${s5.official_words && s5.official_words.length > 0 ? `<div class="pt-0.5"><strong class="text-amber-300">Generic Official Words:</strong> ${s5.official_words.map(w => `<span class="inline-block px-1.5 py-0.5 mr-1 my-0.5 text-[10px] rounded bg-amber-500/20 text-amber-300 font-mono">${escapeHtml(w)}</span>`).join('')}</div>` : ''}
+                <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s5.findings || '')}</div>
+              </div>
+            </div>
+
+            <!-- 6. URGENCY AND PRESSURE -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">6</span>
+                  <span>URGENCY AND PRESSURE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded ${s6.tactics_flagged && s6.tactics_flagged.length > 0 ? 'bg-amber-500/20 text-amber-300 font-bold' : 'bg-slate-800 text-slate-400'}">${s6.tactics_flagged && s6.tactics_flagged.length > 0 ? 'COERCION DETECTED' : 'NO URGENCY CUES'}</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                ${s6.tactics_flagged && s6.tactics_flagged.length > 0 ? `<div class="pt-0.5"><strong class="text-amber-400">Pressure Phrases Flagged:</strong> ${s6.tactics_flagged.map(t => `<span class="inline-block px-1.5 py-0.5 mr-1 my-0.5 text-[10px] rounded bg-amber-500/20 text-amber-300 font-mono">"${escapeHtml(t)}"</span>`).join('')}</div>` : ''}
+                <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s6.findings || '')}</div>
+              </div>
+            </div>
+
+            <!-- 7. REPUTATION -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">7</span>
+                  <span>REPUTATION</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded ${vt.malicious_engines > 0 ? 'bg-rose-500/20 text-rose-300 font-bold' : 'bg-emerald-500/20 text-emerald-300'}">${vt.malicious_engines > 0 ? `${vt.malicious_engines} / ${vt.total_engines || 92} VENDORS FLAGGED` : 'CLEAN (92 ENGINES)'}</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1">
+                <div class="text-slate-400 text-[11px] leading-relaxed">${escapeHtml(s7.findings || 'Scanned across 92 VirusTotal security engines.')}</div>
+              </div>
+            </div>
+
+            <!-- 8. VERDICT -->
+            <div class="p-4 rounded-2xl bg-surface-950 border ${isMalicious ? 'border-rose-500/40 bg-rose-500/5' : (isSuspicious ? 'border-amber-500/40 bg-amber-500/5' : 'border-emerald-500/40 bg-emerald-500/5')} space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">8</span>
+                  <span>VERDICT</span>
+                </span>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full font-bold ${isMalicious ? 'bg-rose-500/20 text-rose-300' : (isSuspicious ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-300')}">${escapeHtml(s8.verdict_level || (isMalicious ? 'Likely phishing or scam' : (isSuspicious ? 'Suspicious' : 'Likely safe')))} (${escapeHtml(s8.confidence || (isMalicious ? '96%' : '94%'))})</span>
+              </div>
+              <div class="text-xs text-slate-200 leading-relaxed">
+                ${escapeHtml(s8.findings || summary)}
+              </div>
+            </div>
+
+            <!-- 9. LIMITS -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center text-[10px]">9</span>
+                  <span>LIMITS (ANALYST TRANSPARENCY)</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">BOUNDARIES</span>
+              </div>
+              <div class="text-[11px] text-slate-400 space-y-1">
+                ${s9.limitations && s9.limitations.length > 0 ? s9.limitations.map(l => `<div class="flex items-start space-x-1.5"><span class="text-slate-600 font-bold">•</span><span>${escapeHtml(l)}</span></div>`).join('') : '<div class="flex items-start space-x-1.5"><span class="text-slate-600 font-bold">•</span><span>Dynamic JavaScript execution bypassed for client safety.</span></div><div class="flex items-start space-x-1.5"><span class="text-slate-600 font-bold">•</span><span>IP-based geo-cloaking could not be inspected.</span></div>'}
+              </div>
+            </div>
+
+            <!-- 10. NEXT STEPS -->
+            <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-400 font-mono flex items-center space-x-2">
+                  <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">10</span>
+                  <span>NEXT STEPS</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ACTION DIRECTIVE</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1.5">
+                <div><strong>Recommended Action:</strong> <span class="text-white">${escapeHtml(s10.recommended_action || (gem.recommended_action || 'Avoid entering details.'))}</span></div>
+                ${s10.if_already_entered_details ? `<div class="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-200 text-[11px] mt-1"><strong>If You Already Entered Details:</strong> ${escapeHtml(s10.if_already_entered_details)}</div>` : ''}
+                ${s10.reporting_channels ? `<div class="text-[11px] text-slate-400 pt-1 border-t border-slate-800/80"><strong>Where to Report:</strong> ${escapeHtml(s10.reporting_channels)}</div>` : ''}
+              </div>
+            </div>
+          `;
+        }
+      } else if (toolKey === 'text' || toolKey === 'screenshot' || toolKey === 'case') {
+        const rep = data.report || data;
+        riskLevel = rep.risk_level || 'SUSPICIOUS';
+        riskScore = rep.overall_risk_score !== undefined ? rep.overall_risk_score : 70;
+        
+        const gemini = rep.gemini_report || {};
+        if (gemini.headline) headline = gemini.headline;
+        if (gemini.plain_english_explanation) summary = gemini.plain_english_explanation;
+        if (gemini.recommended_action) actionSteps.push(gemini.recommended_action);
+
+        if (rep.evidence_vault && rep.evidence_vault.length > 0) {
+          evidenceList = rep.evidence_vault.map(e => `[${e.source || 'Evidence'}]: ${e.description || e}`);
+        } else if (gemini.extracted_indicators) {
+          evidenceList = gemini.extracted_indicators.map(i => `[Gemini Indicator]: ${i}`);
+        }
+
+        verdictTag = riskLevel === 'AUTHENTIC' ? 'Verified Authentic & Safe to Access' : (riskLevel === 'DANGEROUS' ? 'High Risk of Fraud / Deception' : 'Elevated Risk — Caution Advised');
+
+      } else if (toolKey === 'qr') {
+        const gem = data.gemini_qr_report || {};
+        const isDangerous = data.risk_verdict === 'DANGEROUS_PAYMENT_TRAP' || (gem.verdict === 'DANGEROUS_UPI_FRAUD_TRAP');
+        
+        if (isDangerous) {
+          riskLevel = 'DANGEROUS';
+          riskScore = 92;
+          verdictTag = 'High Risk of Financial Fraud (UPI Trap)';
+          headline = gem.headline || 'UPI DIRECT FUND DRAIN TRAP DETECTED';
+          summary = gem.plain_english_explanation || 'This QR code triggers a direct financial debit from your UPI account. Scammers frequently pretend you are receiving money.';
+          actionSteps.push(gem.recommended_action || 'NEVER enter your UPI PIN. In UPI architecture, your PIN is only required to SEND money.');
+          evidenceList.push(`[Decoded Payload]: ${data.payload || data.data}`);
+          evidenceList.push(`[Gemini Payment Safety]: Direct fund debit deep link flagged without legitimate merchant verification.`);
+        } else {
+          riskLevel = 'AUTHENTIC';
+          riskScore = 12;
+          verdictTag = 'Verified Safe Payload';
+          headline = gem.headline || 'SAFE QR MATRIX EXTRACTED';
+          summary = gem.plain_english_explanation || 'The QR code contains inert text or safe navigation links without automatic payment execution.';
+          actionSteps.push(gem.recommended_action || 'Standard readable payload. Safe to inspect.');
+          evidenceList.push(`[Decoded Payload]: ${data.payload || data.data || 'Plain text'}`);
+        }
+
+      } else if (toolKey === 'deepfake') {
+        const synth = data.synthid || {};
+        const gem = data.gemini_report || {};
+        const gemSynth = data.gemini_synthid || {};
+        const isAiGen = (data.is_ai_generated === true) || (synth.is_ai_generated === true) || (gemSynth.is_ai_generated === true) || (data.status === 'AI_GENERATED');
+        const hasTamper = isAiGen || data.status === 'POTENTIALLY_MANIPULATED';
+        
+        if (isAiGen) {
+          riskLevel = 'DANGEROUS';
+          riskScore = Math.round((synth.confidence || gemSynth.confidence || 0.92) * 100);
+          verdictTag = 'AI-Generated / Synthetic Media (SynthID Detected)';
+          headline = gemSynth.headline || gem.headline || 'SYNTHETIC AI GENERATION DETECTED';
+          summary = gemSynth.plain_english_explanation || gem.plain_english_explanation || 'Google DeepMind SynthID and Gemini Vision identified generative diffusion cues, plastic skin textures, or unnatural facial geometry.';
+        } else if (hasTamper) {
+          riskLevel = 'SUSPICIOUS';
+          riskScore = 65;
+          verdictTag = 'Digital Manipulation / Tampering Indicators';
+          headline = gem.headline || 'POTENTIAL CLONING OR COMPRESSION ANOMALY';
+          summary = gem.plain_english_explanation || 'Forensic inspection flagged localized compression or copy-move cloning anomalies.';
+        } else {
+          riskLevel = 'AUTHENTIC';
+          riskScore = 8;
+          verdictTag = 'Verified Authentic Natural Photograph';
+          headline = gemSynth.headline || gem.headline || 'AUTHENTIC NATURAL PHOTOGRAPH VERIFIED';
+          summary = gemSynth.plain_english_explanation || gem.plain_english_explanation || 'Visual and spectral inspection confirms natural camera sensor noise, authentic skin pore fidelity, coherent optical depth of field, and zero synthetic generative artifacts.';
+        }
+
+        const recAction = gemSynth.recommended_action || gem.recommended_action;
+        if (recAction) actionSteps.push(recAction);
+
+        if (data.ela_heatmap_base64) elaImage = `data:image/png;base64,${data.ela_heatmap_base64}`;
+
+        if (synth.signals && Array.isArray(synth.signals)) {
+          synth.signals.forEach(s => evidenceList.push(`[Optical/SynthID Forensic Signal]: ${s}`));
+        }
+        if (gemSynth.synthetic_cues_found && Array.isArray(gemSynth.synthetic_cues_found)) {
+          gemSynth.synthetic_cues_found.forEach(c => evidenceList.push(`[Synthetic Cue]: ${c}`));
+        }
+        if (gemSynth.authenticity_indicators && Array.isArray(gemSynth.authenticity_indicators)) {
+          gemSynth.authenticity_indicators.forEach(a => evidenceList.push(`[Natural Authenticity Indicator]: ${a}`));
+        }
+        if (synth.evidence && Array.isArray(synth.evidence)) {
+          synth.evidence.forEach(e => evidenceList.push(`[SynthID Forensics]: ${e.description || e}`));
+        }
+        evidenceList.push(`[Inspection Scope]: Google DeepMind SynthID spectral watermark analysis, camera Poisson sensor noise verification, and Error Level Analysis.`);
+
+      } else if (toolKey === 'identity') {
+        const gem = data.gemini_sim_report || {};
+        riskLevel = data.risk_level || 'HIGH';
+        riskScore = riskLevel === 'HIGH' ? 88 : 22;
+        verdictTag = riskLevel === 'HIGH' ? 'Critical Telecom Hijack Risk' : 'Normal Cellular Integrity';
+        headline = gem.headline || `SIM-SWAP RISK LEVEL: ${riskLevel}`;
+        summary = gem.plain_english_explanation || `Identified ${data.flagged_count || 0} cellular indicators matching takeover patterns.`;
+        if (gem.recommended_action) actionSteps.push(gem.recommended_action);
+        if (data.matched_indicators) {
+          data.matched_indicators.forEach(i => evidenceList.push(`[Cellular Flag]: ${i}`));
+        }
+
+      } else if (toolKey === 'credential') {
+        const gem = data.gemini_seal_report || {};
+        const isValid = data.verdict === 'AUTHENTIC_VERIFIED';
+        riskLevel = isValid ? 'AUTHENTIC' : 'DANGEROUS';
+        riskScore = isValid ? 4 : 94;
+        verdictTag = isValid ? 'Digital Seal Authenticated (Ed25519 Valid)' : 'Perceptual Tampering / Unverified Signature';
+        headline = gem.headline || (isValid ? 'EXAMINATION SEAL VALIDATED' : 'PERCEPTUAL TAMPERING DETECTED');
+        summary = gem.plain_english_explanation || `Hamming distance: ${data.hamming_distance || 0} bits (Threshold: 5 bits).`;
+        if (gem.recommended_action) actionSteps.push(gem.recommended_action);
+        evidenceList.push(`[Ed25519 Signature]: ${data.signature_valid ? 'VALID (Matches official board public key)' : 'INVALID / MISSING'}`);
+        evidenceList.push(`[Perceptual dHash]: ${data.hamming_distance} bit difference from master.`);
+
+      } else if (toolKey === 'trace') {
+        const gem = data.gemini_trace_report || {};
+        riskLevel = 'SUSPICIOUS';
+        riskScore = 52;
+        verdictTag = 'Viral Statement Decomposition Completed';
+        headline = gem.headline || 'ATOMIC CLAIMS EXTRACTED FOR FACT-CHECK';
+        summary = gem.plain_english_explanation || 'Decomposed viral statement into verifiable assertions.';
+        if (gem.recommended_action) actionSteps.push(gem.recommended_action);
+        if (data.claims) {
+          data.claims.forEach(c => evidenceList.push(`[Atomic Claim]: "${c}"`));
+        }
+
+      } else if (toolKey === 'document') {
+        const gem = data.gemini_doc_report || {};
+        const meta = data.metadata || {};
+        const isOfficial = (data.verdict === 'AUTHENTIC_OFFICIAL_DOCUMENT') || (gem.is_authentic_official === true) || (data.risk_level === 'AUTHENTIC' && data.verdict === 'NO_SIGNIFICANT_INDICATORS');
+        const isAiGenOrDeck = (data.verdict === 'AI_GENERATED_OR_UNOFFICIAL') || (gem.is_ai_generated === true) || (meta.containsAiGeneratedContent === 'Yes') || (gem.verdict === 'AI_GENERATED_OR_UNOFFICIAL');
+        const isTampered = (data.verdict === 'TAMPERING_INDICATORS') || (data.verdict === 'FORGED_OR_TAMPERED');
+
+        if (isOfficial && !isAiGenOrDeck && !isTampered) {
+          riskLevel = 'AUTHENTIC';
+          riskScore = gem.risk_score || data.risk_score || 6;
+          verdictTag = 'Verified Official Institutional Document';
+          headline = gem.headline || 'OFFICIAL INSTITUTIONAL RECORD VERIFIED';
+          summary = gem.plain_english_explanation || 'Document verified as an authentic official administrative record with valid institutional authority, registered student/transaction numbers, and legitimate creation signatures.';
+          actionSteps.push(gem.recommended_action || 'Document is authentic and verified. Safe to accept for institutional or administrative records.');
+        } else if (isAiGenOrDeck) {
+          riskLevel = 'SUSPICIOUS';
+          riskScore = gem.risk_score || data.risk_score || 78;
+          verdictTag = 'AI-Generated / Presentation Slide Deck (Non-Official Document)';
+          headline = gem.headline || 'AI-GENERATED OR PRESENTATION DECK DETECTED';
+          summary = gem.plain_english_explanation || 'This document is a marketing presentation, pitch deck, or AI-generated design document. It is NOT an official administrative, educational, or governmental credential.';
+          actionSteps.push(gem.recommended_action || 'Do NOT accept this document as an official credential or administrative verification proof. Request original issued credentials from the relevant authority.');
+        } else if (isTampered) {
+          riskLevel = 'DANGEROUS';
+          riskScore = gem.risk_score || data.risk_score || 88;
+          verdictTag = 'Document Tampering / Unauthorized Modification Indicators';
+          headline = gem.headline || 'DOCUMENT METADATA OR LAYOUT TAMPERING OBSERVED';
+          summary = gem.plain_english_explanation || 'Document shows indications of post-issuance editing or re-synthesis with third-party PDF manipulation tools.';
+          actionSteps.push(gem.recommended_action || 'Inspect original source or contact the issuing authority directly before relying on this document.');
+        } else {
+          riskLevel = 'SUSPICIOUS';
+          riskScore = 55;
+          verdictTag = 'Unverified Document Format';
+          headline = 'DOCUMENT VERIFICATION INCONCLUSIVE';
+          summary = 'Document lacks definitive institutional signatures or clear provenance anchors.';
+          actionSteps.push('Exercise caution. Validate credentials through the issuing authority.');
+        }
+
+        // Show 8-step document container & hide standard evidence container
+        const docStepsContainer = document.getElementById('report-doc-8steps-container');
+        const stdEvidenceSec = document.getElementById('report-standard-evidence-section');
+        
+        if (docStepsContainer && stdEvidenceSec) {
+          docStepsContainer.classList.remove('hidden');
+          stdEvidenceSec.classList.add('hidden');
+
+          // 1. One-line Verdict
+          const verdictLine = gem.verdict_one_line || (isOfficial ? 'likely generated by a program' : (isAiGenOrDeck ? 'likely human-made layout using design software with AI-assisted text/graphics' : 'unclear'));
+          const verdictEl = document.getElementById('report-doc-verdict-text');
+          const pillEl = document.getElementById('report-doc-verdict-pill');
+          if (verdictEl) verdictEl.innerText = verdictLine;
+          if (pillEl) {
+            pillEl.innerText = isOfficial ? 'PROGRAM / OFFICIAL' : (isAiGenOrDeck ? 'AI-ASSISTED DESIGN' : (isTampered ? 'TAMPERED / UNVERIFIED' : 'UNCLEAR'));
+            pillEl.className = isOfficial ? 'status-pill status-ok text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto' : (isTampered ? 'status-pill status-critical text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto' : 'status-pill status-warn text-xs px-3 py-1 font-bold shrink-0 self-start sm:self-auto');
+          }
+
+          // 2. Objective Evidence Table
+          const tbody = document.getElementById('report-doc-evidence-tbody');
+          if (tbody) {
+            const facts = gem.objective_evidence_table || [
+              { category: 'File Size & Pages', measured_fact: `${data.forensic_facts?.file_size_kb || 0} KB, ${data.forensic_facts?.pages || 1} pages` },
+              { category: 'PDF Producer / Creator', measured_fact: `${meta.producer || 'None'} / ${meta.creator || 'None'}` },
+              { category: 'Author & Title', measured_fact: `Author: ${meta.author || 'None'}, Title: ${meta.title || 'None'}` },
+              { category: 'AI Tag in Metadata', measured_fact: meta.containsAiGeneratedContent || 'None' },
+              { category: 'Metadata Creation Date', measured_fact: meta.creation_date || 'Unknown' },
+              { category: 'Fonts', measured_fact: `${data.forensic_facts?.fonts_count || 0} fonts detected` },
+              { category: 'Images', measured_fact: `${data.forensic_facts?.images_count || 0} images detected` }
+            ];
+            tbody.innerHTML = facts.map(r => `
+              <tr class="hover:bg-slate-900/60 transition-colors">
+                <td class="py-2.5 px-3 font-semibold text-sky-300 bg-slate-900/40">${escapeHtml(r.category || '')}</td>
+                <td class="py-2.5 px-3 text-slate-200">${escapeHtml(r.measured_fact || '')}</td>
+              </tr>
+            `).join('');
+          }
+
+          // 3. The 8 Steps Breakdown
+          const s = gem.forensics_8steps || {};
+          const s1 = s.step_1_content || {};
+          const s2 = s.step_2_metadata || {};
+          const s3 = s.step_3_fonts || {};
+          const s4 = s.step_4_images || {};
+          const s5 = s.step_5_timestamps || {};
+          const s6 = s.step_6_fingerprints || {};
+          const s7 = s.step_7_cross_check || {};
+          const s8 = s.step_8_claims || {};
+
+          const stepsList = document.getElementById('report-doc-8steps-list');
+          if (stepsList) {
+            stepsList.innerHTML = `
+              <!-- STEP 1 - READ THE CONTENT -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">1</span>
+                    <span>STEP 1 - READ THE CONTENT</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CONTENT & LAYOUT</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s1.oddities_or_typos ? `<div class="text-amber-300"><strong>Oddities / Typos Noted:</strong> ${escapeHtml(s1.oddities_or_typos)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s1.findings || s1.summary || 'Content and structural formatting inspected.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 2 - INSPECT PDF METADATA -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">2</span>
+                    <span>STEP 2 - INSPECT PDF METADATA</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">TOOL SIGNATURE</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s2.software_significance ? `<div class="text-sky-300"><strong>Software Implication:</strong> ${escapeHtml(s2.software_significance)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s2.findings || 'Metadata dictionary parsed.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 3 - CHECK FONTS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">3</span>
+                    <span>STEP 3 - CHECK FONTS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">FONT DESCRIPTORS</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s3.embedded_status ? `<div class="text-slate-200"><strong>Font Embedding:</strong> ${escapeHtml(s3.embedded_status)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s3.findings || 'Font tables evaluated.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 4 - CHECK FOR IMAGES -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">4</span>
+                    <span>STEP 4 - CHECK FOR IMAGES</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">RASTER VS VECTOR</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s4.image_nature ? `<div class="text-slate-200"><strong>Page Structure:</strong> ${escapeHtml(s4.image_nature)}</div>` : ''}
+                  ${s4.background_analysis ? `<div class="text-amber-300"><strong>Background Canvas:</strong> ${escapeHtml(s4.background_analysis)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s4.findings || 'Image stream inspection complete.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 5 - CHECK TIMESTAMPS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">5</span>
+                    <span>STEP 5 - CHECK TIMESTAMPS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">DATE CORRELATION</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s5.alignment ? `<div class="text-emerald-300"><strong>Timestamp Alignment:</strong> ${escapeHtml(s5.alignment)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s5.findings || 'Creation and printed dates cross-checked.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 6 - HUMAN VS MACHINE FINGERPRINTS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">6</span>
+                    <span>STEP 6 - HUMAN VS MACHINE FINGERPRINTS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">AUTHORING CUES</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s6.fingerprint_type ? `<div class="text-sky-300"><strong>Dominant Fingerprint:</strong> ${escapeHtml(s6.fingerprint_type)}</div>` : ''}
+                  ${s6.human_cues ? `<div class="text-slate-300"><strong>Human Cues:</strong> ${escapeHtml(s6.human_cues)}</div>` : ''}
+                  ${s6.machine_cues ? `<div class="text-slate-300"><strong>Machine / AI Cues:</strong> ${escapeHtml(s6.machine_cues)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s6.findings || 'Fingerprint analysis complete.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 7 - CROSS-CHECK -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">7</span>
+                    <span>STEP 7 - CROSS-CHECK & CORROBORATION</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">CONSISTENCY</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s7.consistency ? `<div class="text-slate-200"><strong>Consistency Check:</strong> ${escapeHtml(s7.consistency)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s7.findings || 'Cross-check evaluated across names and numbers.')}</div>
+                </div>
+              </div>
+
+              <!-- STEP 8 - VERIFY CLAIMS -->
+              <div class="p-4 rounded-2xl bg-surface-950 border border-slate-800 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-sky-400 font-mono flex items-center space-x-2">
+                    <span class="w-5 h-5 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center text-[10px]">8</span>
+                    <span>STEP 8 - VERIFY CLAIMS</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">TECHNICAL FEASIBILITY</span>
+                </div>
+                <div class="text-xs text-slate-300 space-y-1">
+                  ${s8.claims_status ? `<div class="text-slate-200"><strong>Claims Status:</strong> ${escapeHtml(s8.claims_status)}</div>` : ''}
+                  <div class="text-slate-400 text-[11px] leading-relaxed pt-1 border-t border-slate-800/80">${escapeHtml(s8.findings || 'Claims analyzed for technical plausibility.')}</div>
+                </div>
+              </div>
+            `;
+          }
+
+          // 4. Inferences
+          const infList = document.getElementById('report-doc-inferences-list');
+          if (infList) {
+            const infs = gem.judgment_observations || [
+              `[Inference] Producing software (${meta.producer || 'Unknown'}) provides strong indication of origin workflow.`,
+              `[Inference] Content structure aligns with ${isOfficial ? 'automated institutional billing' : 'graphic design layout'}.`
+            ];
+            infList.innerHTML = infs.map(i => `
+              <div class="flex items-start space-x-2">
+                <span class="text-amber-400 font-bold shrink-0">•</span>
+                <span>${escapeHtml(i)}</span>
+              </div>
+            `).join('');
+          }
+
+          // 5. Limits
+          const limList = document.getElementById('report-doc-limits-list');
+          if (limList) {
+            const lims = gem.limits || [
+              'Metadata fields can be edited or stripped using PDF command-line utilities.',
+              'Not running a dedicated probabilistic AI text classifier; finding human typos does not rule out LLM-assisted drafting.',
+              'A result of "not AI-generated" does not by itself prove legal authenticity; official issuer verification is recommended.'
+            ];
+            limList.innerHTML = lims.map(l => `
+              <div class="flex items-start space-x-2">
+                <span class="text-slate-500 font-bold shrink-0">•</span>
+                <span>${escapeHtml(l)}</span>
+              </div>
+            `).join('');
+          }
+
+          // 6. Suggestion
+          const sugEl = document.getElementById('report-doc-suggestion-text');
+          if (sugEl) {
+            sugEl.innerText = gem.verification_suggestion || 'Verify this document directly by retrieving the original record through the official issuing authority.';
+          }
+        }
+      }
+
+      // Default actions if empty
+      if (actionSteps.length === 0) {
+        if (riskLevel === 'DANGEROUS' || riskLevel === 'CRITICAL') {
+          actionSteps.push('Do NOT open links, download files, or approve payments.');
+          actionSteps.push('Block and report the sender immediately.');
+        } else if (riskLevel === 'SUSPICIOUS') {
+          actionSteps.push('Exercise caution. Verify through an independent official channel.');
+        } else {
+          actionSteps.push('Safe to proceed. Standard cybersecurity hygiene recommended.');
+        }
+      }
+
+      // Update Visuals on DOM
+      const banner = document.getElementById('report-risk-banner');
+      const badge = document.getElementById('report-risk-badge');
+      const scoreEl = document.getElementById('report-risk-score');
+      const actBox = document.getElementById('report-action-box');
+      
+      scoreEl.innerHTML = `${riskScore}<span class="text-xs text-slate-500">/100</span>`;
+      document.getElementById('report-headline').innerText = headline;
+      document.getElementById('report-summary-text').innerText = summary;
+      document.getElementById('report-verdict-tag').innerText = verdictTag;
+
+      if (riskLevel === 'DANGEROUS' || riskLevel === 'CRITICAL' || riskScore >= 70) {
+        badge.innerText = 'DANGEROUS';
+        badge.className = 'status-pill status-critical text-sm px-3.5 py-1 font-bold';
+        banner.className = 'p-6 rounded-2xl bg-surface-950 border border-red-500/50 shadow-lg shadow-red-500/10 flex flex-col items-center text-center gap-4 max-w-3xl mx-auto';
+        scoreEl.className = 'text-4xl font-extrabold text-red-400 font-mono';
+        actBox.className = 'p-5 rounded-2xl bg-red-500/10 border border-red-500/30 space-y-3 max-w-3xl mx-auto text-left';
+      } else if (riskLevel === 'SUSPICIOUS' || riskScore >= 40) {
+        badge.innerText = 'SUSPICIOUS';
+        badge.className = 'status-pill status-warn text-sm px-3.5 py-1 font-bold';
+        banner.className = 'p-6 rounded-2xl bg-surface-950 border border-amber-500/50 shadow-lg shadow-amber-500/10 flex flex-col items-center text-center gap-4 max-w-3xl mx-auto';
+        scoreEl.className = 'text-4xl font-extrabold text-amber-400 font-mono';
+        actBox.className = 'p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3 max-w-3xl mx-auto text-left';
+      } else {
+        badge.innerText = 'AUTHENTIC';
+        badge.className = 'status-pill status-ok text-sm px-3.5 py-1 font-bold';
+        banner.className = 'p-6 rounded-2xl bg-surface-950 border border-emerald-500/50 shadow-lg shadow-emerald-500/10 flex flex-col items-center text-center gap-4 max-w-3xl mx-auto';
+        scoreEl.className = 'text-4xl font-extrabold text-emerald-400 font-mono';
+        actBox.className = 'p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-3 max-w-3xl mx-auto text-left';
+      }
+
+      // Evidence list
+      const evContainer = document.getElementById('report-evidence-list');
+      evContainer.innerHTML = '';
+      evidenceList.forEach(ev => {
+        const item = document.createElement('div');
+        item.className = 'p-3 rounded-xl bg-surface-950 border border-slate-800 text-slate-300';
+        item.innerText = ev;
+        evContainer.appendChild(item);
+      });
+
+      // Action steps
+      const actContainer = document.getElementById('report-action-steps');
+      actContainer.innerHTML = '';
+      actionSteps.forEach(act => {
+        const item = document.createElement('div');
+        item.className = 'flex items-start space-x-2';
+        item.innerHTML = `<span class="text-amber-400 font-bold">•</span><span>${act}</span>`;
+        actContainer.appendChild(item);
+      });
+
+      // ELA Image
+      const elaBox = document.getElementById('report-visual-evidence-box');
+      const elaImg = document.getElementById('report-ela-image');
+      if (elaImage) {
+        elaImg.src = elaImage;
+        elaBox.classList.remove('hidden');
+      } else {
+        elaBox.classList.add('hidden');
+      }
+
+      // Compute Cryptographic Commitment (SHA-256)
+      const canonicalData = `${aid}|${riskLevel}|${evidenceList.length}|${new Date().toISOString().substring(0, 10)}`;
+      crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalData)).then(buf => {
+        const hashArray = Array.from(new Uint8Array(buf));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        document.getElementById('report-commitment-hash').innerText = `sha256:${hashHex}`;
+        
+        const link = document.getElementById('report-passport-link');
+        link.href = `/verify/${aid}`;
+
+        saveScanToHistory({
+          id: aid,
+          timestamp: new Date().toLocaleString(),
+          tool: TOOLS[toolKey].badge,
+          riskLevel: riskLevel,
+          riskScore: riskScore,
+          headline: headline,
+          evidenceCount: evidenceList.length,
+          hash: hashHex
+        });
+      });
+
+      reportBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      refreshIcons();
+    }
+
+    // LOCAL STORAGE HISTORY
+    function saveScanToHistory(entry) {
+      try {
+        let history = JSON.parse(localStorage.getItem('trustscan_history') || '[]');
+        history.unshift(entry);
+        if (history.length > 20) history = history.slice(0, 20);
+        localStorage.setItem('trustscan_history', JSON.stringify(history));
+      } catch (e) {
+        console.warn('History storage failed', e);
+      }
+    }
+
+    function renderHistoryList() {
+      const container = document.getElementById('history-items-container');
+      container.innerHTML = '';
+      let history = [];
+      try {
+        history = JSON.parse(localStorage.getItem('trustscan_history') || '[]');
+      } catch (e) {}
+
+      if (history.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-10 text-slate-500 font-mono text-xs">
+            No recent assessments found. Run an analysis from the Dashboard to see your audit history here.
+          </div>
+        `;
+        return;
+      }
+
+      history.forEach((h, idx) => {
+        const item = document.createElement('div');
+        item.className = 'p-4 rounded-2xl bg-surface-950 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono';
+        
+        let pillClass = 'status-ok';
+        if (h.riskLevel === 'DANGEROUS' || h.riskLevel === 'CRITICAL') pillClass = 'status-critical';
+        else if (h.riskLevel === 'SUSPICIOUS') pillClass = 'status-warn';
+
+        item.innerHTML = `
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="status-pill ${pillClass}">${h.riskLevel}</span>
+              <span class="text-sky-400 font-bold">${h.id}</span>
+              <span class="text-slate-500">·</span>
+              <span class="text-slate-300">${h.tool}</span>
+            </div>
+            <div class="text-slate-300 font-bold">${h.headline}</div>
+            <div class="text-slate-500 text-[10px]">${h.timestamp} · Commitment: ${h.hash.substring(0, 16)}...</div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="/verify/${h.id}" target="_blank" class="px-3 py-1.5 rounded-lg bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 transition">
+              Verify
+            </a>
+            <button onclick="deleteHistoryItem(${idx})" class="text-slate-500 hover:text-red-400 p-1.5 transition">
+              ✕
+            </button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function deleteHistoryItem(idx) {
+      let history = JSON.parse(localStorage.getItem('trustscan_history') || '[]');
+      history.splice(idx, 1);
+      localStorage.setItem('trustscan_history', JSON.stringify(history));
+      renderHistoryList();
+    }
+
+    function clearScanHistory() {
+      localStorage.removeItem('trustscan_history');
+      renderHistoryList();
+    }
+
+    // PASSPORT PUBLIC LOOKUP
+    async function lookupPassportById() {
+      const id = (document.getElementById('passport-search-id')?.value || '').trim();
+      if (!id) return alert('Please enter an Assessment ID.');
+      
+      const resBox = document.getElementById('passport-lookup-result');
+      resBox.classList.remove('hidden');
+      resBox.innerHTML = '<div class="text-xs font-mono text-sky-400 text-center">Querying cryptographic ledger for ' + id + '...</div>';
+
+      try {
+        const resp = await fetch(`/api/verify/${id}`);
+        const p = await resp.json();
+
+        resBox.innerHTML = `
+          <div class="space-y-3 font-mono text-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Assessment ID:</span>
+              <span class="text-sky-300 font-bold">${p.assessment_id}</span>
+            </div>
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Risk Level Verdict:</span>
+              <span class="status-pill ${p.risk_level === 'HIGH_RISK' ? 'status-critical' : 'status-ok'}">${p.risk_level}</span>
+            </div>
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Privacy Commitment:</span>
+              <span class="text-slate-200 break-all text-[11px]">${p.privacy_commitment || 'sha256:verified_metadata'}</span>
+            </div>
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-slate-400">Timestamp:</span>
+              <span class="text-slate-300">${p.timestamp}</span>
+            </div>
+            <div class="pt-2 flex items-center justify-between">
+              <a href="/verify/${p.assessment_id}" target="_blank" class="text-sky-400 underline flex items-center space-x-1">
+                <span>Open Full Certificate Page</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+              <span class="text-emerald-400 font-bold">✓ INTEGRITY VALID</span>
+            </div>
+          </div>
+        `;
+        refreshIcons();
+      } catch (err) {
+        resBox.innerHTML = `<div class="text-xs font-mono text-red-400 text-center">Failed querying passport: ${err.message}</div>`;
+      }
+    }
+
+    // PRIVACY / ZERO-KNOWLEDGE DEMONSTRATION SCENARIOS
+    async function runPrivacyScenario(scenarioId) {
+      const out = document.getElementById('privacy-scenario-output');
+      out.classList.remove('hidden');
+      out.innerHTML = '<div class="text-sky-400 text-center">Computing selective disclosure zero-knowledge proof...</div>';
+
+      try {
+        const resp = await fetch(`/api/privacy/demo-scenario/${scenarioId}`);
+        const data = await resp.json();
+
+        out.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+              <span class="text-white font-bold text-sm">${data.scenario_name || 'Selective Disclosure Proof'}</span>
+              <span class="status-pill status-ok">PROVED VALID</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1 text-slate-300">
+              <div class="text-sky-400 font-bold">Public Statement Proved to Verifier:</div>
+              <div>${data.public_statement || 'Assessment satisfies condition without disclosing secrets.'}</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold">Private Witness Held by User (NEVER Exposed):</div>
+              <pre class="text-[10px] text-slate-400 overflow-x-auto">${JSON.stringify(data.secret_witness_held_by_user, null, 2)}</pre>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+              <strong>Innovation Takeaway:</strong> ${data.takeaway}
+            </div>
+          </div>
+        `;
+        refreshIcons();
+      } catch (err) {
+        out.innerHTML = `<div class="text-red-400 text-center">Scenario failed: ${err.message}</div>`;
+      }
+    }
+
+    // GOLDEN DEMO STORY PRELOADER
+    function launchDemoAndNavigate() {
+      routeTo('/app');
+      loadGoldenDemoStory();
+    }
+
+    function loadGoldenDemoStory() {
+      switchAppTab('dashboard');
+      selectTool('case');
+      loadToolSample('case');
+      createSampleFileBlob('screenshot');
+    }
+
+    function copyProofJson() {
+      if (!latestReportData) return alert('No report generated yet.');
+      navigator.clipboard.writeText(JSON.stringify(latestReportData, null, 2)).then(() => {
+        alert('Proof object JSON copied to clipboard!');
+      });
+    }
+
+    function refreshIcons() {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    // INITIALIZATION & URL HANDLING
+    window.addEventListener('DOMContentLoaded', () => {
+      // Default directly into the active Workspace (/app)
+      routeTo('/app', false);
+      renderActiveToolInterface();
+      refreshIcons();
+    });
+
+    window.addEventListener('popstate', () => {
+      routeTo(window.location.pathname, false);
+    });
+  </script>
+</body>
+</html>

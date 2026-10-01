@@ -1,0 +1,202 @@
+================================================================================
+                           TRUSTSCAN 360
+      KNOW WHAT TO TRUST IN A DIGITALLY MANIPULATED WORLD
+================================================================================
+Digital Trust & Cognitive Safety Platform
+Architecture: Unified Six-Pillar Cognitive Trust Engine
+Core Model: Google Gemini 3.8 Flash Core + VirusTotal Multi-Engine Telemetry
+Specification: Problem Statement 2 — Trust in a Synthetic World
+Website Route: / (Landing Page)  -->  /app (Main Application Workspace)
+================================================================================
+
+
+[ SECTION 1: NAVIGATION HEADER ]
+--------------------------------------------------------------------------------
+Brand Name: TRUSTSCAN 360
+Tagline: Digital Trust & Safety Platform
+Navigation Links:
+  - Six Pillars
+  - Workflow
+  - Evidence Model
+  - ZK Privacy
+Primary CTA Button: [ LAUNCH TRUSTSCAN ]  --> Navigates to /app
+
+
+
+[ SECTION 2: HERO SECTION ]
+--------------------------------------------------------------------------------
+Header Badge:
+  • Problem Statement 2: Trust in a Synthetic World · Gemini 3.8 Flash Core
+
+Headline:
+  TRUSTSCAN 360
+
+Subtitle:
+  Know what to trust in a digitally manipulated world.
+
+Supporting Text:
+  Detect suspicious content, verify authenticity, trace digital claims,
+  protect identities, and respond to online threats — with evidence-backed
+  AI analysis.
+
+Primary Call to Action:
+  [ LAUNCH TRUSTSCAN ]
+  (Directly launches the unified 10-modality security workspace at /app)
+
+Secondary Call to Action:
+  [ Load Golden Demo Story (2.5m) ]
+  (Pre-loads a multi-modal fraud case with bank impersonation, tampered
+   payment receipt, and malicious QR link)
+
+Key Capability Highlights:
+  1. 10 SCANNERS      - Unified inside the central [+] Action Command Bar
+  2. REAL EVIDENCE    - Zero placeholder data; grounded forensic telemetry
+  3. ZK-READY         - Cryptographic SHA-256 commitments & Groth16 circuits
+  4. FAST & AUDITABLE - Public verifiable passports hosted on /verify/{id}
+
+
+
+[ SECTION 3: THE SIX PILLARS OF DIGITAL INTEGRITY ]
+--------------------------------------------------------------------------------
+Architecture & Coverage Overview:
+A comprehensive defense system built to protect individuals, enterprises,
+and institutions against synthetic media, digital deception, impersonation,
+and fraudulent payment channels.
+
+PILLAR 1: DETECT (Deepfake & Forensics)
+---------------------------------------
+Headline: DETECT
+Summary: Find manipulated and suspicious content.
+Details: Inspects error level analysis (ELA) compression heatmaps, Google
+         SynthID spectral watermarks, Face X-Ray boundary correlates,
+         latent diffusion noise patterns, and C2PA provenance manifests.
+Core Engine: DeepfakeBench + SynthID Forensics
+
+
+PILLAR 2: PROTECT (Identity & Telecom)
+---------------------------------------
+Headline: PROTECT
+Summary: Identify identity and impersonation risks.
+Details: Audits CAMARA cellular SIM-swap symptom flags (sudden loss of signal,
+         unauthorized eSIM transfers, unsolicited bank OTP bursts) and
+         performs HaveIBeenPwned (HIBP) k-anonymity SHA-1 range checks
+         without plain-text password exposure.
+Core Engine: CAMARA Telecom API + HIBP k-Anonymity
+
+
+PILLAR 3: VERIFY (Cryptographic Seals)
+---------------------------------------
+Headline: VERIFY
+Summary: Check authenticity of documents, credentials, and digital content.
+Details: Issues and verifies official Ed25519 examination paper digital seals
+         and computes 64-bit dHash perceptual hash consistency down to
+         single-character document tampering.
+Core Engine: Ed25519 Cryptographic Signatures + 64-bit dHash Distance
+
+
+PILLAR 4: TRACE (Provenance & Fact-Check)
+-----------------------------------------
+Headline: TRACE
+Summary: Investigate the origin and spread of claims.
+Details: Extracts atomic claims via NLP decomposition, queries Google
+         Fact Check and International Fact-Checking Network (IFCN) verified
+         archives, and cross-references reverse image provenance timelines.
+Core Engine: IFCN Archives + Reverse Provenance Mapping
+
+
+PILLAR 5: SECURE (Scams, Phishing & QR)
+---------------------------------------
+Headline: SECURE
+Summary: Detect scams, phishing, and cyber threats.
+Details: Scans web destinations across 92 VirusTotal security engines and
+         decodes embedded QR matrices to alert users against UPI payment
+         drain traps, malicious redirects, and coercive smishing attacks.
+Core Engine: VirusTotal 92-Engine Telemetry + UPI Trap Heuristics
+
+
+PILLAR 6: BUILD TRUST (Auditable Passports)
+-------------------------------------------
+Headline: BUILD TRUST
+Summary: Explain the evidence behind every result.
+Details: Issues tamper-proof Trust Passports with SHA-256 canonical
+         commitments and Zero-Knowledge verification proofs that can be
+         audited publicly on /verify/{assessment_id}.
+Core Engine: ZK Commitment Architecture + Public Passport Ledger
+
+
+
+[ SECTION 4: THE OPERATIONAL PIPELINE (HOW TRUSTSCAN WORKS) ]
+--------------------------------------------------------------------------------
+From raw input to cryptographically verifiable protection in 6 stages:
+
+  [1] CONTENT
+      User inputs SMS text, payment screenshot, suspect URL, QR code image,
+      university PDF, or examination document.
+          ↓
+  [2] ANALYSIS
+      Gemini 3.8 Flash Core orchestrates multi-engine analysis across VirusTotal,
+      DeepfakeBench, ELA heatmaps, and perceptual dHash hashing.
+          ↓
+  [3] EVIDENCE
+      Grounded extracted indicators, exact keyword matches, pixel compression
+      anomalies, and security vendor flags are isolated.
+          ↓
+  [4] VERIFICATION
+      Cryptographic Ed25519 signatures, perceptual hash distances, and
+      Zero-Knowledge metadata commitments are evaluated.
+          ↓
+  [5] FINAL REPORT
+      Standardized assessment delivers clear Real vs Fake verdict, threat
+      severity score (0-100), grounded rationale, and detector limitations.
+          ↓
+  [6] ACTION
+      Concrete, actionable prevention steps (e.g. block sender, refuse UPI PIN,
+      report to cybercrime.gov.in) empower the user to stay safe.
+
+
+
+[ SECTION 5: FOUNDATIONAL PHILOSOPHY & MANIFESTO ]
+--------------------------------------------------------------------------------
+Headline:
+  Trust isn't a guess. It's evidence.
+
+Manifesto Body:
+  In a world flooded with AI-synthesized audio, deepfaked videos, cloned
+  payment apps, and automated phishing campaigns, probabilistic AI confidence
+  scores are no longer enough. Single-source models and black-box verdicts
+  create dangerous false confidence.
+
+Four Core Architectural Principles:
+  1. Grounded Findings:
+     Every conclusion must highlight exact words, pixel anomalies, or domain
+     threat intelligence. No ungrounded hallucinations.
+
+  2. Detector Limitations:
+     We clearly disclose what was inspected and what remains uncertain.
+     Zero false omniscience.
+
+  3. Cryptographic Proof:
+     Ed25519 digital signatures and perceptual dHash hashes mathematically
+     guarantee exam paper and document authenticity.
+
+  4. Zero-Knowledge Ready:
+     Users can prove risk predicates (e.g., "This message is HIGH RISK")
+     to third parties without exposing private messages, passwords, or secrets.
+
+CTA Banner:
+  [ Enter TrustScan Workspace ]  -->  Opens /app
+  Real-Time Verification Guaranteed
+
+
+
+[ SECTION 6: FOOTER & METADATA ]
+--------------------------------------------------------------------------------
+Copyright: © 2026 TRUSTSCAN 360 — Digital Trust & Cognitive Safety Platform
+Primary Routes:
+  - Landing Page: /
+  - Security Workspace: /app
+  - Public Verification Ledger: /verify/{assessment_id}
+Privacy Guarantee:
+  Zero private content stored on server. Cryptographic commitments preserve
+  metadata integrity while keeping sensitive messages secret.
+================================================================================
