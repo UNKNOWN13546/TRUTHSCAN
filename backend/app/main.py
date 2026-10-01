@@ -95,6 +95,40 @@ async def analyze_media(
     image_file: UploadFile = File(...)
 ):
     content = await image_file.read()
+    filename = (image_file.filename or "media.bin").lower()
+    is_vid = any(filename.endswith(ext) for ext in ['.mp4', '.mov', '.avi', '.webm', '.mkv', '.m4v'])
+
+    if is_vid:
+        video_res = DeepfakeBenchService.analyze_video(content, filename=image_file.filename or "video.mp4")
+        confidence = video_res.get("confidence", 0.0)
+        verdict = video_res.get("verdict", "NATURAL_VIDEO")
+        is_ai_gen = confidence >= 0.55
+        
+        status = "AI_GENERATED" if is_ai_gen else ("POTENTIALLY_MANIPULATED" if confidence >= 0.40 else "AUTHENTIC_NATURAL_PHOTO")
+        
+        return {
+            "status": status,
+            "is_video": True,
+            "is_ai_generated": is_ai_gen,
+            "honest_notice": f"DeepfakeBench spatio-temporal video pipeline applied across {video_res['video_metadata']['sampled_frames_count']} sampled keyframes.",
+            "ela_heatmap_base64": "",
+            "suspicious_regions": [],
+            "c2pa": {"status": "VIDEO_STREAM_ANALYZED", "credentials_found": False},
+            "exif": {"filename": image_file.filename, "video_metadata": video_res.get("video_metadata", {})},
+            "video_metadata": video_res.get("video_metadata", {}),
+            "metrics": video_res.get("metrics", {}),
+            "synthid": {"is_ai_generated": is_ai_gen, "confidence": confidence},
+            "video_forensics": video_res,
+            "gemini_report": {
+                "headline": f"Deepfake Video Analysis: {verdict.replace('_', ' ').title()}",
+                "plain_english_explanation": video_res.get("forensic_explanation", "Temporal coherence and Face X-Ray boundary blending inspected across video stream."),
+                "recommended_action": "Flag candidate and require live proctored re-verification." if is_ai_gen else "Temporal continuity coherent across sampled video keyframes.",
+                "confidence": confidence
+            },
+            "evidence": video_res.get("evidence", []),
+            "limits": "DeepfakeBench spatio-temporal video inspection evaluates Face X-Ray boundary blending and inter-frame facial jitter across sampled keyframes."
+        }
+
     exif_meta, exif_ev = ForensicsService.inspect_exif(content)
     ela_bytes, ela_ev, boxes = ForensicsService.generate_ela(content)
     cm_ev = ForensicsService.detect_copy_move(content)
@@ -120,6 +154,7 @@ async def analyze_media(
 
     return {
         "status": verdict_status,
+        "is_video": False,
         "is_ai_generated": is_ai_generated,
         "honest_notice": "Google DeepMind SynthID and Gemini Vision evaluation applied." if not is_ai_generated else "Synthetic generative cues identified.",
         "ela_heatmap_base64": ela_b64,
@@ -505,9 +540,10 @@ async def deepfake_detector_status():
 
 @app.post("/api/deepfake-detector/analyze")
 async def analyze_deepfake(image_file: UploadFile = File(...)):
-    """DeepfakeBench Multimodal Spatial & Frequency Analysis Pipeline."""
+    """DeepfakeBench Multimodal Spatial, Frequency & Temporal Video Pipeline."""
     content = await image_file.read()
-    return DeepfakeBenchService.analyze_deepfake(content)
+    filename = image_file.filename or "media.bin"
+    return DeepfakeBenchService.analyze_media(content, filename=filename)
 
 @app.get("/api/reliability")
 async def get_reliability():
