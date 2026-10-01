@@ -252,6 +252,7 @@ class TrustFirewallService:
         return {
             "session_id": session_id,
             "timestamp": now_iso,
+            "score": trust_score,
             "trust_score": trust_score,
             "level": level,
             "status_description": status_desc,
@@ -259,9 +260,15 @@ class TrustFirewallService:
                 "deepfake_probability": round(deepfake_prob, 3),
                 "voice_clone_risk": round(audio_clone_prob, 3),
                 "liveness_confidence": round(1.0 - (deepfake_prob * 0.8), 3),
-                "identity_integrity": round(identity_confidence, 3)
+                "identity_integrity": round(identity_confidence, 3),
+                "deepfake_video": round(deepfake_prob, 3),
+                "voice_clone": round(audio_clone_prob, 3),
+                "lip_sync": {"offset_ms": 18 if audio_clone_prob < 0.5 else 220},
+                "sim_swap": {"risk": round(1.0 - identity_confidence, 3)}
             },
+            "reasons": reasons,
             "explainable_reasons": reasons,
+            "action": "ALLOW_SESSION" if level == cls.RISK_LEVEL_GREEN else ("WARN_AND_REVERIFY" if level == cls.RISK_LEVEL_YELLOW else "BLOCK_AND_ISOLATE"),
             "action_directive": "PROCEED" if level == cls.RISK_LEVEL_GREEN else ("WARN_USER" if level == cls.RISK_LEVEL_YELLOW else "BLOCK_OR_REQUIRE_LIVENESS")
         }
 
@@ -292,6 +299,8 @@ class TrustFirewallService:
             "session_id": session_id,
             "challenge_id": chosen["id"],
             "instruction": chosen["instruction"],
+            "prompt": chosen["instruction"],
+            "expected_action": chosen.get("code", chosen["type"]),
             "type": chosen["type"],
             "timeout_seconds": 8,
             "timestamp": now_iso

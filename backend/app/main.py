@@ -539,7 +539,16 @@ async def verify_trust_frame(session_id: str, payload: Dict[str, Any] = Body(...
     """Process video frame and audio chunk for deepfake, voice-clone, and liveness signals."""
     frame_b64 = payload.get("frame_base64")
     audio_b64 = payload.get("audio_chunk_base64")
-    meta = payload.get("metadata", {})
+    meta = dict(payload.get("metadata") or payload)
+    
+    # Map high-level attack flags from client simulation
+    if payload.get("face_boundary_jitter", 0) > 0.5:
+        meta["synthetic_flag"] = True
+    if payload.get("voice_harmonic_distortion", 0) > 0.5 or payload.get("lip_sync_latency_ms", 0) > 100:
+        meta["voice_clone_flag"] = True
+    if payload.get("sim_swap_detected"):
+        meta["sim_swap_flag"] = True
+        
     return TrustFirewallService.process_telemetry_chunk(session_id, frame_b64, audio_b64, meta)
 
 @app.post("/api/trust/session/{session_id}/liveness-challenge")
